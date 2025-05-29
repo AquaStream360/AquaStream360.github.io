@@ -458,24 +458,226 @@
         background-color: #6a049d;
     }
 
+     
+
+     
+
+   
+    /* Video Demo Section*/
+    .video-demo {
+        background: linear-gradient(135deg, #0f0522 0%, #1e063b 100%);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video-demo::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('images/water-pattern.png') repeat;
+        opacity: 0.05;
+        pointer-events: none;
+    }
+
+    .video-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .video-header h2 {
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 0 2px 10px rgba(123, 31, 162, 0.7);
+        margin-bottom: 15px;
+    }
+
+    .magic-text {
+        background: linear-gradient(90deg, #ff00cc, #3333ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: hue-rotate 5s linear infinite;
+    }
+
+    .subtitle {
+        color: #b8c1ec;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+
+    .video-embed-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        transform: perspective(1000px) rotateX(0deg);
+        transition: transform 0.5s ease;
+    }
+
+    .video-embed-container:hover {
+        transform: perspective(1000px) rotateX(5deg);
+    }
+
+    .video-embed-container iframe {
+        width: 100%;
+        height: 500px;
+        display: block;
+    }
+
+    .video-engagement {
+        background: rgba(25, 10, 48, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .engagement-stats {
+        display: flex;
+        gap: 20px;
+    }
+
+    .stat {
+        color: #d1d5ff;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .stat i {
+        color: #7fafe2;
+    }
+
+    .cta-pulse {
+        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+    .cta-pulse:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(37, 117, 252, 0.6);
+        animation: none;
+    }
 
 
 
+    /* Engagement Buttons */
+    .engagement-actions {
+    display: flex;
+    gap: 15px;
+    }
+
+    .engagement-btn {
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    }
+
+    .like-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #d1d5ff;
+    border: 1px solid #7fafe2;
+    }
+
+    .like-btn:hover {
+    background: rgba(255, 0, 0, 0.2);
+    transform: translateY(-3px);
+    }
+
+    .subscribe-btn {
+    background: #FF0000;
+    color: white;
+    }
+
+    .subscribe-btn:hover {
+    background: #CC0000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    }
+
+
+    .visit-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: #d1d5ff;
+        border: 1px solid #7fafe2;
+        text-decoration: none;
+    }
+    
+    .visit-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+    }
+    
+    .engagement-btn i {
+        margin-right: 5px;
+    }
+    
+ 
+    @keyframes pulse-grow {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    .success-animation {
+        animation: pulse-grow 0.5s ease;
+    }
+
+  
 
 
 
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes hue-rotate {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
+    }
+    @media (max-width: 768px) {
+  .engagement-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .engagement-btn, .cta-pulse {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -498,9 +700,9 @@
             <h2>Streamlining Water Network Operations</h2>
             <p>Comprehensive tool for Modeling and Analysis of Water Distribution Networks</p>
             <div class="hero-buttons">
-                <a href="#download" class="cta-button">Download Latest Version</a>
+                <a href="#download" class="cta-button">Download Beta Version</a>
                 <a href="#gallery" class="secondary-button">View Software Images</a>
-                <a href="https://www.youtube.com/@MoonSucker" class="secondary-button" target="_blank">Watch Demo Video</a>
+                <a href="#video-demo" class="secondary-button">Watch Demo Video</a>
             </div>
         </div>
     </section>
@@ -544,6 +746,44 @@
         </div>
     </section>
 
+    
+
+
+
+    
+
+    <section id="video-demo" class="video-demo">
+        <div class="container">
+            <div class="video-header">
+                <h2><span class="magic-text">Explore the Features of AquaStream360</span></h2>
+            </div>
+            <div class="video-embed-container">
+                <iframe id="youtube-iframe" src="https://www.youtube.com/embed/y6WcH2qoUCQ?enablejsapi=1&autoplay=0&rel=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+                <div class="video-engagement">
+                    <div class="engagement-actions">
+                        <button class="engagement-btn like-btn" id="likeButton">
+                            <i class="fas fa-thumbs-up"></i> Like
+                        </button>
+                        <button class="engagement-btn subscribe-btn" id="subscribeButton">
+                            <i class="fab fa-youtube"></i> Subscribe
+                        </button>
+                    </div>
+
+                    <button class="cta-pulse" onclick="scrollToDownload()">
+                        <i class="fas fa-download"></i> Get AquaStream360 Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    
+
+
     <section id="download" class="download">
         <div class="container">
             <h2>Get AquaStream360</h2>
@@ -552,7 +792,7 @@
                 <p><strong>Latest Version:</strong> v1.0</p>
                 <p><strong>Released:</strong> June 15, 2025</p>
             </div>
-            <a href="#" class="cta-button">Download Latest Version</a>
+            <a href="#" id="downloadButton" class="cta-button">Download Beta Version</a>
         </div>
     </section>
 
@@ -698,10 +938,6 @@
 
     <script>
 
-
-
-
-
         // Modal functions
         function closeModal() {
             document.getElementById('messageModal').style.display = 'none';
@@ -732,7 +968,122 @@
                 });
             });
         });
+
+
+        // Add this to your existing script
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: {
+            'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+            alert('Message sent successfully!');
+            this.reset();
+            closeModal();
+            } else {
+            throw new Error('Network response was not ok');
+            }
+        }).catch(error => {
+            alert('There was a problem sending your message');
+        });
+        });
     </script>
     
+
+
+
+    <script>
+        function scrollToDownload() {
+            document.querySelector('#download').scrollIntoView({
+                behavior: 'smooth'
+            });
+            }
+
+        // YouTube redirect confirmation
+        document.querySelector('.video-button[target="_blank"]').addEventListener('click', function(e) {
+            if (!confirm('You are about to be redirected to YouTube. Continue?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const youtubeVideoId = 'y6WcH2qoUCQ'; 
+    const youtubeVideoUrl = `https://www.youtube.com/watch?v=${youtubeVideoId}`;
+
+    // Like Button
+    document.getElementById('likeButton').addEventListener('click', function() {
+        window.open(youtubeVideoUrl, '_blank');
+    });
+
+    // Subscribe Button
+    document.getElementById('subscribeButton').addEventListener('click', function() {
+        window.open(youtubeVideoUrl, '_blank');
+    });
+
+});
+
+
+
+
+    // Subscribe Button (works exactly as you wanted)
+    document.getElementById('subscribeButton').addEventListener('click', function() {
+        const btn = this;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing';
+        
+        youtubeIframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'subscribe'
+        }), '*');
+        
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+            btn.style.background = '#4CAF50';
+            btn.disabled = false;
+        }, 1500);
+    });
+
+   
+
+
+   // Enhanced version with loading state
+    document.getElementById('downloadButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        const btn = this;
+        const originalText = btn.innerHTML;
+        
+        // Show loading state
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing download...';
+        btn.disabled = true;
+        
+        setTimeout(() => {
+            const downloadUrl = 'https://github.com/AquaStream360/yourrepo/releases/download/v1.0/AquaStream360.exe';
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = 'AquaStream360.exe';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Restore button
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            
+            // Track downloads (optional)
+            fetch('https://your-analytics-endpoint.com/track-download', {
+                method: 'POST',
+                body: JSON.stringify({ product: 'AquaStream360' })
+            });
+        }, 1000);
+    });
+
+</script>
 </body>
 </html>
