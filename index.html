@@ -700,6 +700,19 @@
         padding: 2rem 1rem;
     }
 
+
+    .features-list li i {
+    color: #39b9ff;
+    margin-right: 10px;
+    animation: pulseFeature 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseFeature {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+
  
 
     @keyframes pulse-grow {
@@ -763,7 +776,7 @@
             <div class="hero-buttons">
                 <a href="#download" class="cta-button">Download Beta Version</a>
                 <a href="#gallery" class="secondary-button">View Software Images</a>
-                <a href="#video-demo" class="secondary-button">Watch Demo Video</a>
+                <a href="#video-demo" class="secondary-button">Watch A Video</a>
             </div>
         </div>
     </section>
@@ -776,16 +789,21 @@
             <div class="acronym">
                 <h3>Designed For:</h3>
                 <ul>
-                    <li><strong>M</strong> – Modeling</li>
-                    <li><strong>O</strong> – Optimization</li>
-                    <li><strong>O</strong> – Operational Monitoring</li>
-                    <li><strong>N</strong> – Network Testing</li>
-                    <li><strong>S</strong> – Scenario-Based Simulations</li>
-                    <li><strong>U</strong> – Uncertainty Analysis</li>
-                    <li><strong>C</strong> – Criticality Analysis</li>
-                    <li><strong>K</strong> – Knowledge-Driven Decision Making</li>
-                    <li><strong>E</strong> – Enhancing Efficiency</li>
-                    <li><strong>R</strong> – Resilience Analysis and Risk Assessment</li>
+            <li><strong>Modeling & Simulation</strong> – Supports automated model generation from raw data stored across diverse formats—including Microsoft Excel, databases, GIS files, and more. Also enables model creation from schematic images and drawings that lack extractable attributes.</li>
+
+            <li><strong>Automated Analysis & Report Generation</strong> – Generates comprehensive and intuitive reports with network plots, graphs, tables, summaries, and contextual narratives—communicating key network dynamics critical for design, decision-making, and stakeholder engagement.</li>
+
+            <li><strong>Geospatial Analysis</strong> – Enables automated georeferencing and high-resolution network visualization. Detects spatial conflicts, design flaws, and topographical inconsistencies before implementation. Supports numerous tile formats for mapping and ensures spatial precision during layout and construction planning.</li>
+
+            <li><strong>Performance Investigation & Optimization</strong> – Offer numerous network testing features that allows utilities to enhance operational efficiency, reduce losses, and fine-tune system behavior under varied conditions.</li>
+
+            <li><strong>Resilience Analytics</strong> – Facilitates in-depth assessment of uncertainty, risk, and criticality to improve decision-making confidence and prioritize interventions across the network. Allows utilities to identify key vulnerabilities and high-impact elements, enabling them to proactively strengthen weak points, reduce service disruptions, and ensure long-term system resilience.</li>
+
+            <li><strong>Decision Support</strong> – Equips utilities with dynamic forecasting capabilities, strategic planning modules, and performance insights to transition from reactive to proactive water infrastructure management.</li>
+            
+            <li><strong>Climatic Data Integration</strong> – Uses NASA's global climate datasets to fetch and analyze historical weather and environmental data for any location on Earth—enabling climate-resilient planning, stress testing, and scenario evaluation.</li>
+
+            <li><strong>Scalable Data Analytics</strong> – Offers lightning-fast processing of massive datasets—capable of handling millions of rows for automated analysis, anomaly detection, and predictive insights with unmatched speed and accuracy.</li>
                 </ul>
             </div>
         </div>
@@ -793,21 +811,20 @@
 
     <section class="features">
         <div class="container">
-            <h2>Key Features</h2>
-            <ul>
-                <li>Automated Modeling Capabilities</li>
-                <li>Extensive Network Analysis</li>
-                <li>Automated GIS Integration</li>
-                <li>Resilience Analysis</li>
-                <li>Weather Pattern Analysis</li>
-                <li>Robust Data Analysis and Visualization Features</li>
-                <li>Network Performance Monitoring</li>
-                <li>User-Friendly Interface</li>
+            <h2><span class="magic-text">Features at a Glance</span></h2>
+            <ul class="features-list">
+                <li><i class="fas fa-cogs"></i> Automated Modeling Capabilities</li>
+                <li><i class="fas fa-project-diagram"></i> Extensive Network Analysis</li>
+                <li><i class="fas fa-map-marked-alt"></i> Automated GIS Integration</li>
+                <li><i class="fas fa-shield-alt"></i> Resilience Analysis</li>
+                <li><i class="fas fa-cloud-sun-rain"></i> Weather Pattern Analysis</li>
+                <li><i class="fas fa-chart-bar"></i> Robust Data Analysis and Visualization</li>
+                <li><i class="fas fa-tachometer-alt"></i> Network Performance Monitoring</li>
+                <li><i class="fas fa-user-check"></i> User-Friendly Interface</li>
             </ul>
         </div>
     </section>
 
-    
 
 
 
@@ -819,15 +836,15 @@
                 <h2><span class="magic-text">Explore the Features of AquaStream360</span></h2>
             </div>
             <div class="video-embed-container">
-                <iframe id="youtube-iframe" src="https://www.youtube.com/embed/y6WcH2qoUCQ?enablejsapi=1&autoplay=0&rel=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                <iframe id="youtube-iframe" src="https://www.youtube.com/embed/k1nUFrBHt1s?si=FDQrhl71CDjMi0KV" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                 </iframe>
                 <div class="video-engagement">
                     <div class="engagement-actions">
                         <button class="engagement-btn like-btn" id="likeButton">
-                            <i class="fas fa-thumbs-up"></i> Like
+                            <i class="fas fa-thumbs-up"></i> Like on YouTube
                         </button>
                         <button class="engagement-btn subscribe-btn" id="subscribeButton">
-                            <i class="fab fa-youtube"></i> Subscribe
+                            <i class="fab fa-youtube"></i> Subscribe on YouTube
                         </button>
                     </div>
 
@@ -851,9 +868,9 @@
             <p>The software is updated monthly with new features and improvements.</p>
             <div class="version-box">
                 <p><strong>Latest Version:</strong> v1.0</p>
-                <p><strong>Released:</strong> May 28, 2025</p>
+                <p><strong>Released:</strong> June 14, 2025</p>
             </div>
-            <a href="#" id="downloadButton" class="cta-button">Download Beta Version</a>
+            <a href="#" id="downloadButton" class="cta-button">Download (Not Available Yet)</a>
         </div>
     </section>
 
@@ -909,7 +926,7 @@
                     <p>Have questions or feedback? Reach out for support or partnership opportunities.</p>
                     <p><i class="fas fa-envelope"></i> <strong>Email:</strong> aquastream360pro@gmail.com</p>
                     <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +263 77 944 9428</p>
-                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 123 Water Tech, Blvd, Bulawayo, Zimbabwe</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Located:</strong> Bulawayo, Zimbabwe</p>
                     
                     <h3>Follow Us</h3>
                     <div class="social-links">
@@ -1153,7 +1170,7 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-    const youtubeVideoId = 'y6WcH2qoUCQ'; 
+    const youtubeVideoId = 'k1nUFrBHt1s'; 
     const youtubeVideoUrl = `https://www.youtube.com/watch?v=${youtubeVideoId}`;
 
     // Like Button
