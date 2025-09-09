@@ -225,15 +225,15 @@
             margin: 20px 0;
             display: inline-block;
         }
+        
 
-        /* Gallery Section */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 30px;
-            
         }
+        
         .gallery-item img {
             border-radius: 5px;
             box-shadow: 0 5px 15px rgba(34, 56, 151, 0.1);
@@ -688,7 +688,7 @@
         margin: 0 0.5rem;
     }
 
-    /* Modal Styling (optional refinement) */
+ 
     .legal-modal-content {
          font-family: "Segoe UI", sans-serif;
         font-size: 0.85rem;      
@@ -706,6 +706,15 @@
     animation: pulseFeature 2.5s infinite ease-in-out;
     }
 
+
+
+
+
+
+
+
+
+    
     @keyframes pulseFeature {
         0%, 100% { transform: scale(1); opacity: 1; }
         50% { transform: scale(1.1); opacity: 0.8; }
@@ -865,13 +874,38 @@
         <div class="container">
             <h2>Get AquaStream360</h2>
             <p>The software is updated monthly with new features and improvements.</p>
+
+            <div class="windows-note">
+                <h4><i class="fas fa-shield-alt"></i> Important Windows Security Notice</h4>
+                <p>Because AquaStream360 is new software, <strong>Windows SmartScreen</strong> may prevent installation. This is a normal security step.</p>
+                <p><strong>To install:</strong> Click "More info" then select "Run anyway". Your download is safe and virus-free.</p>
+            </div>
+
             <div class="version-box">
                 <p><strong>Latest Version:</strong> v1.0</p>
-                <p><strong>Released:</strong> June 14, 2025</p>
+                <p><strong>Released:</strong> September 9, 2025</p>
             </div>
-            <a href="#" id="downloadButton" class="cta-button">Download (Not Available Yet)</a>
+
+            <button id="realDownloadButton" class="cta-button">Download Now</button>
+
+            <a href="https://github.com/AquaStream360/AquaStream360.github.io/releases/download/v1.0/AquaStream360.exe" 
+            id="hiddenDownloadLink"
+            download="AquaStream360-v1.0.exe"
+            style="display:none;">
+            </a>
+
+            <p class="download-note"><small>Windows executable (.exe) | Version 1.0</small></p>
         </div>
     </section>
+
+    <script>
+    document.getElementById("realDownloadButton").addEventListener("click", function () {
+        document.getElementById("hiddenDownloadLink").click();
+    });
+    </script>
+
+
+    
 
     <section id="gallery" class="gallery">
         <div class="container">
@@ -895,9 +929,28 @@
                 <div class="gallery-item">
                     <img src="images/screenshots/Screenshot (1348).png" alt="Screenshot 1348">
                 </div>
+                <div class="gallery-item">
+                    <img src="images/screenshots/Screenshot (1546).png" alt="Screenshot 1546">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/screenshots/Screenshot (1557).png" alt="Screenshot 1557">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/screenshots/Screenshot (1558).png" alt="Screenshot 1558">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/screenshots/Screenshot (1559).png" alt="Screenshot 1559">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/screenshots/Screenshot (1560).png" alt="Screenshot 1560">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/screenshots/Screenshot (1561).png" alt="Screenshot 1561">
+                </div>
             </div>
         </div>
     </section>
+
 
 
 
@@ -924,7 +977,6 @@
                     <h3>Get In Touch</h3>
                     <p>Have questions or feedback? Reach out for support or partnership opportunities.</p>
                     <p><i class="fas fa-envelope"></i> <strong>Email:</strong> aquastream360pro@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +263 77 944 9428</p>
                     <p><i class="fas fa-map-marker-alt"></i> <strong>Located:</strong> Bulawayo, Zimbabwe</p>
                     
                     <h3>Follow Us</h3>
@@ -1204,33 +1256,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
    
 
-
-    document.getElementById('downloadButton').addEventListener('click', function(e) {
-        e.preventDefault();
-        const btn = this;
-        const originalText = btn.innerHTML;
-        
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing download...';
-        btn.disabled = true;
-
-        setTimeout(() => {
-            const downloadUrl = 'https://github.com/AquaStream360/yourrepo/releases/download/v1.0/AquaStream360.exe';
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = 'AquaStream360.exe';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            
-            fetch('https://your-analytics-endpoint.com/track-download', {
-                method: 'POST',
-                body: JSON.stringify({ product: 'AquaStream360' })
-            });
-        }, 1000);
-    });
 </script>
 </body>
 </html>
