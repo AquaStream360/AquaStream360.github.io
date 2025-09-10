@@ -392,26 +392,96 @@
             background: #010802;
             color: rgb(23, 242, 209);
             text-align: center;
-            padding: 20px 0;
-        }
-        footer p {
-            margin-bottom: 0;
+            padding: 30px 0 20px;
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .features ul {
-                columns: 1;
-            }
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
-            }
-            .hero-buttons a {
-                width: 100%;
-                margin: 5px 0;
-            }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
         }
+
+        .footer-link {
+            color: #5779f4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+        }
+
+        .footer-link:hover {
+            color: #99ffc7;
+            text-decoration: underline;
+        }
+
+        .divider {
+            color: #7049e3;
+            margin: 0 5px;
+        }
+
+        /* Legal Modal Styles */
+        .legal-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .legal-modal-content {
+            background: #041d0e;
+            color: #0aadf9;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .legal-modal-content h3 {
+            color: #7fafe2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .legal-text {
+            line-height: 1.6;
+        }
+
+        .legal-text p {
+            margin-bottom: 15px;
+        }
+
+        .close-legal-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
         /* Formspree Form Styles */
@@ -1060,28 +1130,22 @@
 
 
 
-    
-
-
-
-
-
-
     <footer>
     <div class="container">
         <p>© 2025 AquaStream360 Water Network Management</p>
         <div class="footer-links">
-            <a href="#privacy-modal" class="footer-link" onclick="showPrivacyModal()">Privacy Policy</a>
+            <a href="#" class="footer-link" onclick="showPrivacyModal(); return false;">Privacy Policy</a>
             <span class="divider">|</span>
-            <a href="#terms-modal" class="footer-link" onclick="showTermsModal()">Terms of Service</a>
+            <a href="#" class="footer-link" onclick="showTermsModal(); return false;">Terms of Service</a>
             <span class="divider">|</span>
             <a href="#contact" class="footer-link">Contact Us</a>
         </div>
     </div>
 
     <!-- Privacy Policy Modal -->
-    <div id="privacy-modal" class="legal-modal">
-        <div class="legal-modal-content">
+    <div id="privacy-modal" class="legal-modal" onclick="closeLegalModal('privacy-modal')">
+        <div class="legal-modal-content" onclick="event.stopPropagation()">
+            <span class="close-legal-modal" onclick="closeLegalModal('privacy-modal')">&times;</span>
             <h3>Privacy Policy</h3>
             <div class="legal-text">
                 <p><strong>Last Updated:</strong> May 28, 2025</p> 
@@ -1098,31 +1162,40 @@
         </div>
     </div>
 
-    <!-- Terms of Service Modal -->
-    <div id="terms-modal" class="legal-modal">
-        <div class="legal-modal-content">
-            <h3>Terms of Service</h3>
+
+    <!--EULA Modal -->
+    <div id="terms-modal" class="legal-modal" onclick="closeLegalModal('terms-modal')">
+        <div class="legal-modal-content" onclick="event.stopPropagation()">
+            <span class="close-legal-modal" onclick="closeLegalModal('terms-modal')">&times;</span>
+            <h3>AquaStream360 Beta End-User License Agreement (EULA)</h3>
             <div class="legal-text">
-                <p><strong>Last Updated:</strong> May 28, 2025</p>
-                <p>
-                    AquaStream360 is licensed for both personal and commercial use under a limited, non-exclusive agreement. This beta version is provided solely for evaluation, compatibility testing, and user feedback. Features may be incomplete or subject to change without prior notice.
-                </p>
-                <p>
-                    Redistribution, unauthorized modification, or attempts to alter the software’s functionality are strictly prohibited without prior written consent from the developer. All intellectual property rights remain the sole property of the developer. No ownership rights are conferred through use.
-                </p>
-                <p>
-                    The software is provided “as is,” without warranties of any kind, express or implied. The developer assumes no responsibility for errors, disruptions, or adverse outcomes arising from its use. Users accept full responsibility and use the software at their own discretion. The developer shall not be liable for any damages, including but not limited to data loss or operational failures.
-                </p>
-                <p>
-                    AquaStream360 is purpose-built for water engineering applications. Its development is guided by the foundational principles of <strong>technical integrity</strong>, <strong>sustainability</strong>, and <strong>public safety</strong>.
-                </p>
-                <p>
-                    By using this software, you confirm that you have read, understood, and agree to be bound by these terms.
-                </p>
+                <p>This Agreement governs your use of AquaStream360. By installing or using the software, you acknowledge that you have read, understood, and agree to be bound by these terms.</p>
+
+                <h4>1. License and Beta Use</h4>
+                <p>The Developer grants you a non-exclusive, non-transferable, royalty-free license to use AquaStream360. This Beta version is operational and designed to deliver real results. It is currently undergoing thorough testing and validation, so some features are still under active development and may change in future versions. Your use and feedback will directly contribute to improving these releases.</p>
+                <p>This Beta version (v1.0) is scheduled to expire on January 10, 2026. Newer, improved versions will be released before this date.</p>
+
+                <h4>2. Disclaimer, Liability, and Indemnification</h4>
+                <p>AquaStream360 is provided “as is.” While efforts have been made to ensure its reliability and usefulness, the Developer cannot guarantee complete accuracy in all situations. You should apply professional judgment when interpreting results. The software's outputs are designed to support your analysis and decision-making but should always be verified with professional expertise. The Developer cannot accept responsibility for decisions or outcomes based solely on the software’s results.</p>
+                <p>In no event shall the Developer be liable for any damages, losses, or expenses arising from the misuse of AquaStream360, reliance on its results, or any other issues related to the software. By using this software, you agree to hold the Developer harmless from any claims connected to your use of the software.</p>
+
+                <h4>3. Copyright and Acceptance</h4>
+                <p>AquaStream360 is copyrighted. All rights are reserved. Your installation or use of the software confirms your agreement to these terms.</p>
+                <p>This Beta release is a commitment to continuous improvement, designed to test performance and refine the tool. Your feedback is essential to help AquaStream360 evolve into its best possible version.</p>
+
+                <p>We would love to hear about how you are using AquaStream360. The Developer is happy to provide free assistance whenever possible.</p>
+
+                <p>With appreciation,<br>
+                <strong>Prince K. Munsaka</strong><br>
+                Lead Developer, AquaStream360<br>
+                National University of Science and Technology (NUST)<br>
+                Civil and Water Engineering Student</p>
             </div>
         </div>
     </div>
-</footer>
+
+
+
 
 
 
@@ -1146,6 +1219,26 @@
     <script>
 
         // Modal functions
+        function showPrivacyModal() {
+            document.getElementById('privacy-modal').style.display = 'flex';
+        }
+
+        function showTermsModal() {
+            document.getElementById('terms-modal').style.display = 'flex';
+        }
+
+        function closeLegalModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modals when clicking outside content
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('legal-modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+
         function closeModal() {
             document.getElementById('messageModal').style.display = 'none';
         }
