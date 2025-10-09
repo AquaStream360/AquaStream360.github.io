@@ -852,7 +852,7 @@
             <h2>Streamlining Water Network Operations</h2>
             <p>Comprehensive tool for Modeling and Analysis of Water Distribution Networks</p>
             <div class="hero-buttons">
-                <a href="#download" class="cta-button">Download Beta Version</a>
+                <a href="#download" class="cta-button">Download Beta Version (Available Tommorrow)</a>
                 <a href="#gallery" class="secondary-button">View Software Images</a>
                 <a href="#video-demo" class="secondary-button">Watch A Video</a>
             </div>
@@ -951,10 +951,10 @@
 
             <div class="version-box">
                 <p><strong>Latest Version:</strong> v1.0</p>
-                <p><strong>Released:</strong> September 9, 2025</p>
+                <p><strong>Released:</strong> October 10, 2025</p>
             </div>
 
-            <button id="realDownloadButton" class="cta-button">Download Now</button>
+            <button id="realDownloadButton" class="cta-button">Download Tomorrow</button>
 
             <a href="https://github.com/AquaStream360/AquaStream360.github.io/releases/download/v1.0/AquaStream360.exe" 
             id="hiddenDownloadLink"
@@ -967,8 +967,13 @@
     </section>
 
     <script>
-    document.getElementById("realDownloadButton").addEventListener("click", function () {
-        document.getElementById("hiddenDownloadLink").click();
+        const downloadBtn = document.getElementById("realDownloadButton");
+
+
+        downloadBtn.disabled = true;
+
+        document.getElementById("realDownloadButton").addEventListener("click", function () {
+            document.getElementById("hiddenDownloadLink").click();
     });
     </script>
 
