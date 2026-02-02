@@ -1,0 +1,141 @@
+Rapid Testing Module User Guide
+
+This module is designed to help users analyze, test the impact of different options, and optimize water distribution networks with ease.
+________________________________________
+1. Getting Started
+First-Time Setup
+1.	Import Your Network – Click “Import Net” (top-left) and select your EPANET .INP file
+If you don’t have a file, the app will use a built-in example network
+2.	The Main Dashboard – Your network data loads automatically, and you’ll see:
+o	A table showing network elements (pipes, junctions, tanks, etc.)
+o	Analysis report panel (right side)
+o	Control panel (left side)
+________________________________________
+2. Understanding the Interface
+Left Panel – Network Controls
+•	Element type dropdown: Select what you want to analyze (Pipes, Junctions, Tanks, etc.)
+•	Element Name dropdown: Choose the specific element from your network
+•	Attribute dropdown: Pick which characteristic to modify (diameter, pressure, demand, etc.)
+•	Options table: Where you create different scenarios to test
+Right Panel – Results & Reports
+•	Analysis Report: Shows detailed simulation results
+•	Export buttons: Save reports as PDF or HTML
+•	Expand/Collapse: Toggle report visibility
+Bottom Section – Action Buttons
+•	Run Simulation: Test your modified network
+•	Graphical Tools: Create charts and animations
+•	Export Options: Save your network or data
+________________________________________
+3. Core Workflow – Testing Different Scenarios
+Step 1: Select What to Test
+1.	From “Element type”, choose (e.g., “Pipe”)
+2.	From “Element Name”, pick a specific pipe
+3.	From “Attribute”, select what to change (e.g., “Diameter”)
+Step 2: Create Multiple Options
+1.	Number of Options: Set how many variations to test (default: 10)
+2.	Start Value: Enter the starting value (e.g., current diameter: 0.3)
+3.	Increment by: How much to increase each option (e.g., 0.01)
+4.	Click “AutoFill” – The table automatically fills with your options
+Step 3: Run the Analysis
+1.	Click “Run Simulation and Report” (red button)
+2.	Wait for processing – a progress bar shows analysis status
+3.	View results in the Analysis Report panel
+Step 4: Compare Results
+•	Each “Option” in your table becomes a separate scenario
+•	The report compares all options side-by-side
+•	Critical metrics are highlighted (pressure issues, water quality, etc.)
+________________________________________
+4. Advanced Features
+Graphical Comparison
+Click “Graphical Comparison” to:
+•	Create bar charts or line graphs comparing options
+•	Visualize how changes affect performance over time
+•	Export charts for presentations
+Animations
+Click “Animations” to:
+•	See animated graphs showing changes across all options
+•	Visualize trends and patterns dynamically
+Deep Assessment
+Click “Deep Assessment” to:
+•	Get comprehensive tables comparing all network elements
+•	See detailed performance metrics for every pipe and junction
+Network Visualization
+Click “Run and Display on Net” to:
+•	See your network layout with color-coded performance
+•	Identify problem areas visually
+•	Compare different scenarios on the network map
+Performance Testing & Calibration
+Click “Performance Testing and Calibration” to:
+•	Test your network against standards
+•	Identify calibration needs
+•	Optimize system performance
+Elementary Analysis (Links Only)
+Quick analysis focusing on pipeline performance and headloss.
+________________________________________
+5. Exporting & Saving
+Save Your Work
+•	Export Net: Save modified network as EPANET .INP file
+•	Save All Options: Export all scenarios to Excel for external analysis
+•	Save PDF/HTML: Export analysis reports for sharing
+Auto-Save Features
+•	The app automatically saves your network between sessions
+•	Temporary files are stored in: AquaStream Files folder
+________________________________________
+6. Practical Examples
+Example 1: Testing Pipe Diameter Changes
+1.	Select: Element type = Pipe, Element name = Pipe-10, Attribute = Diameter
+2.	Set: Start Value = 0.3, Increment = 0.02, Options = 8
+3.	Click AutoFill → Run Simulation
+4.	Result: See how increasing diameter affects pressure and flow
+Example 2: Adjusting Tank Levels
+1.	Select: Element type = Tank, Attribute = Initial Level
+2.	Create options with different starting levels
+3.	Run simulation to see impact on system pressure
+Example 3: Demand Pattern Testing
+1.	Select: Element type = Junction, Attribute = Demand Pattern
+2.	Test different consumption scenarios
+3.	Identify peak demand impacts
+________________________________________
+7. Understanding Results
+Key Metrics Explained
+•	Pressure: Should stay above minimum requirements (red flags if too low)
+•	Water Age: How long water stays in system (ideal: <24 hours)
+•	Flow Rate: Volume moving through pipes
+•	Headloss: Pressure loss in pipes
+•	Demand: Water consumption at different points
+Reading the Report
+•	Green text: Normal operation
+•	Warning sections: Potential issues identified
+•	Comparative tables: Option 1 vs Option 2 vs Option 3...
+•	Time steps: Analysis at different hours (0-23)
+________________________________________
+8. Tips & Best Practices
+For Accurate Results
+1.	Always start with a valid EPANET .INP file
+2.	Create small increments between options initially
+3.	Run baseline (original network) first for comparison
+4.	Focus on one change at a time for clear cause-effect analysis
+Performance Tips
+•	Close other applications during large simulations
+•	Use fewer options (5-10) for quicker results
+•	The “Significant Figures” button controls decimal precision
+Troubleshooting
+•	No results? Ensure network imported successfully
+•	Missing elements? Check your .INP file contains the elements
+•	Calculation errors? Try smaller value increments
+•	Contact Support: Use “Contact Us” for technical issues
+________________________________________
+9. Quick Reference
+Frequently Used Buttons
+•	Import Net: Load your water network
+•	Run Simulation: Test current options
+•	AutoFill: Quickly create multiple scenarios
+•	Graphical Comparison: Visualize results
+•	Export Net: Save modified network
+•	5 decimals: Adjust number precision
+________________________________________
+10. Support & Feedback
+Getting Help
+•	Use “Contact Us” button for questions or issues
+•	Include error codes if reporting problems
+
