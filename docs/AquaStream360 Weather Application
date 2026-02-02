@@ -1,0 +1,140 @@
+User Guide: AquaStream360 Weather Application
+________________________________________
+1. Introduction 
+This tool supports water resource management, environmental analysis, and weather data processing. It enables the collection, analysis, and visualization of weather  data to support decision-making in any field where understanding weather data is crucial. Applications include:
+•	Water resource management
+•	Agricultural planning
+•	Climate impact assessment
+•	Reservoir and dam operations
+•	Environmental monitoring
+
+Key Benefits
+•	Data Integration: Combine weather data with any external datasets to analyze interactions or influences
+•	Time-Series Analysis: Track patterns over days, months, or years
+•	Correlation Studies: Identify relationships between weather and other variables e.g. water demand
+•	Professional Reporting: Export analyses and visualizations
+•	User-Friendly Interface: Accessible, intuitive controls
+
+________________________________________
+2. Weather Analysis Module
+Purpose
+Analyze historical weather data from NASA POWER database for management applications.
+Capabilities
+1.	Data Acquisition: Fetch historical satellite and ground measurements
+2.	Data Processing: Organize into structured tables
+3.	Statistical Analysis: Summarize variables comprehensively
+4.	Correlation Analysis: Identify relationships between variables
+5.	Visualization: Graphs and charts for pattern recognition
+________________________________________
+3. Demand Analysis Module
+Purpose
+Analyze water demand data alongside weather patterns to support management decisions.
+Capabilities
+•	Monitor water usages or reservoir capacity and discharge 
+•	Track storage levels and consumption patterns
+•	Analyze seasonal variations
+Integration
+•	Import from Excel, CSV, or databases
+•	Align dates with weather data automatically
+•	Generate correlation matrices
+________________________________________
+4. Flexible Analysis Module
+Purpose
+Analyze any provided attribute (e.g., crop yield, energy consumption, or other metrics) alongside weather patterns to support management decisions.
+Capabilities
+•	Monitor the selected attribute over time
+•	Track patterns, trends, or fluctuations
+•	Analyze seasonal or periodic variations
+Integration
+•	Import data from Excel, CSV, or databases
+•	Align dates automatically with weather or other time-series data
+•	Generate correlation matrices or statistical summaries
+Note: The module does not assume the type of data you provide. You may be prompted to specify the name of the attribute or variable so the system can incorporate it into analyses and generate meaningful comparisons.
+
+________________________________________
+5. Getting Started
+System Requirements
+•	Internet connection for data retrieval
+•	Excel or compatible software for export
+First-Time Users
+1.	Start with Weather Analysis Module
+2.	Fetch sample NASA weather data
+3.	Explore visualization tools
+4.	Save your first analysis
+________________________________________
+6. Core Functionality
+6.1 Data Acquisition
+NASA Weather Data
+•	Click Connect to NASA.
+•	Enter a location (latitude/longitude or city), or click on the side map to select the area whose weather data you want to fetch — this method is fast and effective.
+•	Specify the date range and fetch the data.
+
+Local Data Import
+•	Supported: Excel (.xlsx/.xls), CSV, AquaStream360 files
+•	Steps: Click Import, select file → automatic column detection
+6.2 Data Processing
+•	Automatic: Identify dates, sort chronologically, remove duplicates, handle missing values, format data
+•	Manual: Round values, reset, clear views, custom formatting
+6.3 Statistical Analysis
+•	Descriptive statistics: Mean, median, standard deviation
+•	Correlation matrices
+•	Variation analysis
+•	Trend identification
+________________________________________
+7. Data Management
+7.1 Saving Work
+•	Export: Excel, CSV, HTML, JSON, database
+•	Auto-save previous sessions
+•	Manual save for specific analyses
+7.2 Organization
+•	Each project stores weather and demand data separately
+•	Results timestamped
+•	Default location: Desktop > Saved AquaStream Files
+•	Supports batch export and template saving
+________________________________________
+8. Visualization Tools
+8.1 Static Visualizations
+•	Line graphs, bar charts, box plots, correlation heatmaps
+•	Customization: Colors, labels, font sizes, gridlines, legends
+8.2 Dynamic Visualizations
+•	Animated weather patterns and correlation development
+•	Zoom/pan, highlight points, export frames, pause/resume
+8.3 Data Visualization Broker
+•	Suggests optimal chart types based on data
+•	Pattern recognition, multi-variable handling, parameter optimization
+________________________________________
+9. Advanced Features
+9.1 Weather-Demand Correlation
+•	Load weather and demand data
+•	Run correlation analysis
+•	Generate relationship metrics and impact assessments
+9.2 Comprehensive Analysis Dialog
+•	Multi-variable comparison
+•	Statistical significance testing
+•	Outlier detection
+•	Seasonal decomposition and forecasting
+9.3 Database Integration
+•	PostgreSQL support
+•	Import/export tables
+•	Query integration and real-time streaming
+________________________________________
+10. Troubleshooting & Support
+Common Issues
+•	NASA data not loading → Check internet, date range, coordinates
+•	Loading taking too long → Poor internet 
+•	Import errors → Verify format, remove special characters
+•	Performance issues → Reduce dataset, close other apps
+Error Reporting
+•	Click Report Issues, describe problem, steps to reproduce, submit details
+•	Collected info: Error type, function, data characteristics, system config
+Support Resources
+•	Built-in tooltips and context guidance
+•	Example datasets and tutorial prompts
+Best Practices
+•	Clean data before import
+•	Use consistent date formats
+•	Remove unnecessary columns
+•	Validate numeric ranges
+•	Backup projects, use clear naming, version control
+________________________________________
+
