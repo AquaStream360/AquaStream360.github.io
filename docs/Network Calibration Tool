@@ -1,0 +1,391 @@
+AquaStream360's Network Calibration Tool
+
+Step-by-Step Guide
+________________________________________
+Welcome to Network Calibration
+What Is This Tool?
+This is a water network calibration and testing application. It allows you to safely experiment with changes to your water distribution system—pipes, pumps, tanks, valves, and junctions—without affecting your original network model.
+It provides a controlled testing environment where you can evaluate multiple scenarios, analyze outcomes, and make informed decisions before applying changes to a production network.
+Key Benefits
+•	Test multiple scenarios without risking original data
+•	Identify optimal component values through systematic simulation
+•	Understand how changes affect pressure, flow, and water quality
+•	Make data-driven decisions before implementing real-world updates
+________________________________________
+Part 1: Getting Started
+A. Launching the Application
+Initial Setup
+•	The application automatically loads an example network (Net3) on startup so you can explore features immediately.
+•	You may import your own network at any time using the Import New Net button in the top-left corner.
+Interface Overview
+The interface is divided into two main sections:
+•	Left Panel: Controls for defining test scenarios and running simulations
+•	Right Panel: Results display, analysis tools, and reporting options
+________________________________________
+Part 2: The Testing Process (Step by Step)
+Step 1: Define What You Want to Test
+1.1 Select Element Type
+Use the Element Type To Test dropdown to choose the component category you want to analyze:
+•	junction
+•	pipe
+•	tank
+•	valve
+•	reservoir
+•	pump
+Example: Select pipe to evaluate pipe-related attributes.
+1.2 Choose Which Elements
+•	All Elements: Tests every element of the selected type
+•	Specific Element: Tests only the selected element
+Example: Choose All Elements to test all pipes simultaneously.
+1.3 Select the Attribute to Modify
+Available attributes depend on the selected element type.
+Examples:
+•	Pipes: length, diameter, roughness, minor_loss, check_valve
+•	Junctions: base_demand, elevation
+Example: Select diameter to evaluate different pipe sizes.
+________________________________________
+Step 2: Define How You Want to Test
+2.1 Choose Test Condition
+Available test conditions include:
+•	In Range: Tests values between two limits
+•	In List: Tests specific values
+•	Above: Tests values greater than a threshold
+•	Below: Tests values less than a threshold
+•	Closest to: Finds values closest to a target
+•	Is: Used for True/False attributes only
+2.2 Enter Test Values
+•	In Range
+Example formats: 0.1-0.5, 0.1:0.5, or 0.1;0.5
+The tool automatically generates 10 evenly spaced values.
+•	In List
+Example: 0.1, 0.3, 0.5, 0.7
+Commas, spaces, or semicolons may be used.
+•	Above / Below
+Enter a single threshold value.
+•	Closest to
+Enter a target value.
+2.3 Set Proximity Factor (If Applicable)
+This option appears for Above, Below, and Closest to conditions.
+Purpose: Controls how far apart test values are.
+Example with target value = 100 and proximity factor = 0.1:
+•	Above: 100, 110, 120, 130, ...
+•	Below: 100, 90, 80, 70, ...
+•	Closest to: Values within ±10% of 100
+________________________________________
+Part 3: Running Simulations
+Click Run Simulation to begin.
+What happens:
+•	The tool generates multiple test scenarios
+•	Each test value is simulated independently
+•	Progress is shown in the progress bar
+Important note:
+If you change any input after running simulations, the Run Simulation button turns red to indicate that results are outdated and must be regenerated.
+________________________________________
+Part 4: Analyzing Results
+Option A: Quick Analysis (Right Panel)
+1.	Choose analysis type:
+o	Analysis Node Attribute (e.g., pressure, demand)
+o	Analysis Link Attribute (e.g., flow, velocity)
+2.	Set analysis parameters:
+o	Element Name (specific or all)
+o	Simulation Attribute
+o	Time Step (specific hour or all hours)
+o	Filter Method (value, minimum, maximum, standard deviation)
+o	Condition (above, below, closest to, etc.)
+o	Target Value
+3.	Click Run Simple Analysis
+________________________________________
+Option B: Detailed Automated Analysis
+Click Detailed Analysis for comprehensive reports.
+Output depends on your selection:
+Selection	Result
+All Elements + All Hours	Frequency analysis
+Specific Element + All Hours	Time series analysis
+All Elements + Specific Time	Snapshot analysis
+Specific Element + Specific Time	Point comparison with statistics
+________________________________________
+Option C: Visual Analysis
+Click Visual Analysis to generate charts and graphs.
+Benefits:
+•	Identifies trends and patterns
+•	Ideal for presentations and reporting
+________________________________________
+Option D: Attribute Network Viewer
+After running simulations, click View Network Results to open the Attribute Network Viewer.
+This tool provides spatial analysis of how different scenarios affect your network.
+Features
+•	Interactive 2D network display with color-coded elements
+•	Multiple scenario comparison at specific locations
+•	Time-step animation to observe changes over time
+•	Hover over any element to view all scenario values simultaneously
+•	Compare pressure, flow, demand, or other attributes across scenarios
+How to Use
+1.	Run simulations with different parameter values
+2.	Click View Network Results
+3.	Select attributes to compare from dropdown menus
+4.	Use the time slider to analyze different simulation periods
+5.	Hover over network elements to see scenario comparisons
+Example Application
+•	Test different pipe diameters
+•	View spatial pressure distribution
+•	Hover over junctions to identify optimal diameters
+•	Identify problem areas that respond differently to changes
+________________________________________
+Part 5: Making Permanent Changes
+Safety Design
+All changes initially occur in a test copy of your network. The original network remains unchanged until explicitly updated.
+Applying Changes
+1. Modify All
+•	Available for Above, Below, and Closest to conditions
+•	Modifies all elements matching the condition
+•	Displays a warning before applying changes
+Example: Modify all pipes with diameter above 0.3 m.
+2. Update Original Network
+•	Final step after completing testing and analysis
+•	Copies all test modifications to the original network
+•	Requires confirmation
+Reset Modifications
+•	Reverts all changes made during the session
+•	Restores the test network to its original state
+________________________________________
+Part 6: Special Features
+Results Panel Tools
+•	Read Aloud: Reads displayed text aloud for accessibility
+•	Copy All: Copies results to the clipboard
+•	Save PDF: Exports a professional PDF report
+•	Clear: Clears the results panel
+________________________________________
+Part 7: Practical Examples
+Example 1: Optimal Pipe Diameter
+•	Element Type: pipe
+•	Element: All Elements
+•	Attribute: diameter
+•	Condition: In Range
+•	Values: 0.1–0.5
+Run simulation, analyze pressure, and apply the best result.
+Example 2: Identify Low-Pressure Junctions
+•	Element Type: junction
+•	Element: All Elements
+•	Analysis: pressure below 20 m
+Run simple analysis to identify problem areas.
+Example 3: Calibration Using Field Data
+•	Element Type: pump
+•	Element: Pump-123
+•	Attribute: speed
+•	Condition: Closest to
+•	Target: 1.2
+Find the closest match and apply the modification.
+________________________________________
+Part 8: Important Notes and Warnings
+Color Coding
+•	Red buttons: Settings changed, simulation required
+•	Green results: Good matches
+•	Orange results: Warnings or partial matches
+•	Blue headers: Section titles
+Automatic Safeguards
+•	Invalid options are automatically disabled
+•	Attributes only appear when relevant
+•	Boolean conditions appear only for True/False attributes
+Performance Tips
+•	Start with wide ranges, then refine
+•	Use All Elements cautiously
+•	Export PDFs regularly
+•	Reset modifications if results seem inconsistent
+________________________________________
+Part 9: Troubleshooting
+Issue	Solution
+No network loaded	Import a network or use the example
+Simulation fails	Check for invalid values
+No results	Ensure simulations were run
+Missing attribute	Attribute may be element-specific
+No matching elements	Conditions may be too strict
+Help resources:
+•	Step-by-step guide button
+•	Hover tooltips
+•	This document
+________________________________________
+Part 10: Advanced Use Cases
+System Optimization
+•	Test multiple parameters
+•	Fine-tune using Closest to
+•	Compare PDF reports
+•	Use visual analysis to select optimal scenarios
+Model Calibration
+•	Import field measurements
+•	Use them as target values
+•	Iteratively adjust parameters
+•	Document progress with PDFs
+Emergency Planning
+•	Simulate failures and stress conditions
+•	Identify vulnerabilities
+•	Develop contingency strategies
+________________________________________
+Final Checklist Before Saving
+•	All desired tests completed
+•	Analysis confirms improvements
+•	No red warning buttons remain
+•	Update Original Network dialog understood
+•	Backup of original network exists
+________________________________________
+This tool is designed to let you experiment safely and confidently. Use the test environment freely, explore alternatives, and commit changes only when you are fully satisfied with the results.
+AquaStream360 Network Calibration Tool
+Version 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Here’s a clean, polished version of your section with grammar, flow, and formatting improved while keeping it fully user-focused and readable:
+________________________________________
+Section 3: Intelligent Automation Features
+The Network Testing and Calibration Tool includes advanced automation features designed to streamline your workflow, reduce manual effort, and prevent common errors. These intelligent systems work in the background to make calibration faster, easier, and more reliable.
+________________________________________
+3.1 What “Automation” Means in This Tool
+In this module, automation refers to the system’s ability to:
+•	Anticipate your needs based on current selections
+•	Perform routine calculations and configurations automatically
+•	Prevent invalid operations before they occur
+•	Guide you through complex workflows with minimal manual input
+________________________________________
+3.2 Key Automation Features
+A. Smart Default Values
+How it works:
+•	Automatically suggests target values based on your network data
+•	Populates reasonable test ranges based on selected conditions
+•	Applies proper measurement units from your network settings
+Example: Selecting "Pressure" analysis → system auto-suggests the average pressure value from your simulation results.
+User action: Review and adjust suggested values if needed.
+________________________________________
+B. Dynamic Interface Adaptation
+How it works:
+•	Shows only relevant options, hiding irrelevant controls
+•	Displays new inputs when specific operations require them
+•	Updates placeholder text to guide expected input
+•	Automatically toggles units based on context
+Example: Choosing "In Range" condition → input field shows “Enter range (e.g., 5–10)”
+Benefit: Reduces confusion and keeps the interface uncluttered.
+________________________________________
+C. Intelligent Test Value Generation
+How it works:
+•	Automatically generates test values for conditions like Above/Below or Closest To
+•	Distributes values evenly for range testing
+•	Uses your specified gap ratio or target value
+Example: Setting “Above 50 with gap ratio 0.1” → system tests: 55, 60, 65… 100
+User action: Just set the base value; the tool handles the rest.
+________________________________________
+D. Context-Aware Validation
+How it works:
+•	Blocks simulation attempts with missing inputs
+•	Highlights incomplete fields in red
+•	Disables buttons until prerequisites are met
+•	Shows clear error messages for invalid inputs
+Benefit: Prevents wasted time on failed simulations.
+________________________________________
+E. Automated Analysis Configuration
+How it works:
+•	Sets visualization parameters automatically
+•	Generates meaningful chart titles and axis labels
+•	Selects appropriate statistical measures
+•	Organizes results for easy comparison
+Example: Time series analysis → system creates hourly data tables for all test scenarios.
+________________________________________
+3.3 Leveraging Automation Effectively
+Best Practices:
+1.	Start with suggested values and refine as needed
+2.	Use automated test generation for exploratory analysis
+3.	Follow visual cues: red warnings indicate required actions; enabled buttons show available operations
+4.	Trust the interface adaptation to focus only on relevant options
+When to Override Automation:
+•	You have domain-specific knowledge requiring custom values
+•	Regulatory standards dictate precise test protocols
+•	Historical data suggests different test ranges
+•	You need to troubleshoot edge cases
+________________________________________
+3.4 Automation in Different Workflows
+Quick Calibration:
+1.	Select attribute
+2.	Accept suggested value
+3.	Use automated test generation
+4.	Run simulations
+5.	Review automated analysis
+Time saved: ~70% vs. manual setup
+Precise Testing:
+1.	Select attribute
+2.	Manually enter exact values
+3.	Use automation for analysis configuration and reporting
+Time saved: ~40% in analysis and reporting
+Exploratory Analysis:
+1.	Let system suggest parameters
+2.	Use range testing with automated value distribution
+3.	Allow automated comparative visualizations and pattern detection
+Benefit: Discover unexpected relationships efficiently.
+________________________________________
+3.5 Customizing Automation Behavior
+Adjustable Parameters:
+•	Proximity factor: Sets how close “closest to” test values are
+•	Gap ratio: Controls spacing between test values
+•	Test count: Limits number of automated test values (default: 10)
+Override Options:
+•	Click any field to replace automated suggestions
+•	Use “In List” condition for full manual control
+•	Export results for further external analysis
+________________________________________
+3.6 Troubleshooting Automation
+Common Questions:
+•	Q: Why is a button disabled?
+A: Required inputs are missing or invalid. Check red-highlighted fields.
+•	Q: Suggested values seem wrong.
+A: They are based on network averages. Enter your preferred values manually if needed.
+•	Q: Can I turn off automation?
+A: No, but you can override any suggestion by typing your own values.
+•	Q: Why did the interface change suddenly?
+A: Your selection triggered a different workflow mode; the system adapted accordingly.
+________________________________________
+3.7 Advanced Automation: Bulk Operations
+Feature: “Modify All Matching Elements”
+How it works:
+1.	Identifies all elements matching your condition
+2.	Presents modification options (set to, multiply by, add, etc.)
+3.	Calculates default values intelligently
+4.	Applies changes consistently across matched elements
+5.	Reports success/failure counts
+Use case: Increase diameters for all pipes with roughness above a threshold
+Caution: Permanent changes; use “Reset Modifications” to undo.
+________________________________________
+3.8 Automation Performance Tips
+1.	For fastest results → use system suggestions and automated test generation
+2.	For precise control → manually enter values but leverage automated analysis
+3.	For complex scenarios → combine automated test generation with manual refinement
+4.	For reporting → always use automated PDF export for consistent formatting
+________________________________________
+3.9 What Automation Doesn’t Do
+•	❌ Make engineering decisions for you
+•	❌ Guarantee optimal calibration results
+•	❌ Replace engineering judgment
+•	❌ Learn your preferences over time
+•	❌ Automatically save or backup work
+________________________________________
+3.10 Getting the Most Value
+Beginner users: Follow suggestions and learn from automated workflows
+Intermediate users: Use automation for routine tasks, override selectively
+Advanced users: Let automation handle repetitive tasks, focus on complex analysis
+Remember: Automation is your assistant, not a replacement. It handles routine tasks so you can focus on interpretation, decision-making, and applying your expertise.
+
