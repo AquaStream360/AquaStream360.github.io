@@ -1,0 +1,98 @@
+AquaStream360 Data Visualizer – User Guide
+
+What This Tool Does
+The Data Visualizer transforms your data into easy-to-understand charts. You provide the dataset, and it generates interactive visualizations, allowing you to explore trends, patterns, and distributions without modifying the original data.
+Access: The Data Visualizer is available from multiple modules whenever data visualization is required, including Weather Data, Data Analysis, Simulation Results, and more.
+________________________________________
+Getting Started – Step by Step
+Step 1: Opening the Tool
+You can open the Data Visualizer in two ways:
+1. From the Main Welcome Window
+•	Click the “Data Visualizer” button.
+•	The tool opens empty.
+•	You need to import your data using the “Import More Data” button.
+2. From Other AquaStream360 Modules
+•	Opened from Water Engineering, Weather, or Data Analysis tools.
+•	Your data is already loaded automatically.
+•	You see it immediately in the pattern list on the right—no import needed.
+________________________________________
+Step 2: Understanding the Interface
+The window is divided into two main areas:
+•	Left panel: Big chart area where your visualizations appear.
+•	Right panel: Controls, pattern list, and statistical information.
+________________________________________
+Step 3: Check Your Pattern List
+•	If names are listed → data is already loaded.
+•	If empty → you need to import data.
+________________________________________
+Step 4: Importing Data
+Click “Import More Data” → choose your file.
+Supported file types:
+•	Excel (.xlsx, .xls)
+•	CSV (.csv)
+•	Text (.txt)
+•	JSON (.json)
+What happens after import:
+•	Each column becomes a “pattern”.
+•	Column names appear in the list on the right.
+•	Select any pattern to view it as a chart on the left.
+________________________________________
+Step 5: Selecting a Pattern
+•	Click a name in the list.
+•	The chart appears immediately.
+•	If data was passed from another tool, no import is needed.
+________________________________________
+Step 6: Choosing Chart Types
+Use the dropdown at the top of the left panel to select:
+•	Line Chart – shows changes over time or index
+•	Bar Chart – compares values
+•	Scatter Plot – shows individual points
+•	Histogram – groups numbers into ranges
+•	Pie Chart – shows percentages
+________________________________________
+Step 7: Smoothing Your Data (Optional)
+If your chart looks jagged:
+1.	Go to “Advanced Smoothing” on the right.
+2.	Select a smoothing method (start with Gaussian).
+3.	Adjust the slider:
+o	Left → less smooth
+o	Right → more smooth
+4.	The green line updates in real time.
+________________________________________
+Step 8: Understanding Statistics
+The Pattern Statistics box shows:
+•	Number of data points
+•	Average (mean)
+•	Minimum and maximum values
+•	Standard deviation, skewness, and kurtosis
+________________________________________
+Step 9: Additional Features
+•	Analyze Trend → detailed trend and statistical analysis
+•	Show Box Plot → display data distribution visually
+•	Change Background Color → personalize chart colors
+•	Predict Values → estimate values for future points
+________________________________________
+Step 10: Saving Your Work
+Click “Export All” → choose a format → save file.
+Available formats:
+•	Excel (.xlsx)
+•	CSV (.csv)
+•	HTML (.html)
+________________________________________
+Important Notes
+1.	If “Import More Data” is not visible → data was already loaded from another tool.
+2.	Clicking a pattern name → instantly updates the chart.
+3.	Original data is never altered; all changes are for visualization only.
+4.	If opened from the Water Engineering module → “Replace Pattern with Smoothed Pattern” lets you save smoothed data back to your network model.
+________________________________________
+Quick Workflow
+1.	Open the tool.
+2.	Check the pattern list.
+3.	If empty, import your data.
+4.	Click a pattern name.
+5.	Select chart type.
+6.	Smooth or adjust settings if needed.
+7.	Save your chart or export the data.
+________________________________________
+Tip: Click around and explore—everything updates in real time. You can’t break anything.
+
