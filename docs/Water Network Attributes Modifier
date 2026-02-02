@@ -1,0 +1,141 @@
+Water Network Attributes Modifier – User Guide
+Overview
+The Attributes Modifier is a useful tool within Aquastream360 that allows you to efficiently modify multiple element attributes simultaneously. This feature streamlines network editing by enabling batch operations on junctions, tanks, reservoirs, pipes, valves, and pumps.
+________________________________________
+Accessing the Modifier
+The Attributes Modifier dialog appears when you select “Modify Attributes” from the main application menu. This tool is designed for bulk editing operations across your water network model.
+________________________________________
+Interface Components
+Element Selection
+•	Select Element: Choose the type of network element you want to modify:
+o	Pipes
+o	Junctions
+o	Tanks
+o	Valves
+o	Reservoirs
+o	Pumps
+________________________________________
+Modification Scope
+•	How do you want to modify?: Define the selection criteria for elements:
+o	Modify All: Apply changes to all elements of the selected type
+o	Set Condition Based on Attribute Value: Select elements meeting specific attribute conditions
+o	Draw A Polygon Around Elements: Visually select elements on the network map
+o	Give a List: Provide specific element names
+o	Terminal Nodes / Articulation Points / Bridges: Network analysis–based selections
+(available for junctions and pipes only)
+________________________________________
+Attribute Selection
+•	Attribute To Modify: Choose which attribute you want to change for the selected elements
+•	Data Type Selection: Specify the data format for input values:
+o	Decimal Number
+o	Whole Number
+o	Text Input
+________________________________________
+Modification Functions
+      These functions either modify the values of elements or display elements that meet the selection criteria, or show specific statistical results relevant to the selected elements.
+      Function: Select the operation to perform:
+o	Show: Display elements that meet the selection criteria used
+o	Change to: Replace with a new value
+o	Multiply / Divide / Add / Subtract: Mathematical operations that modify the current value 
+o	Delete: Remove elements (with confirmation)
+o	Statistical Functions: Compute mean, median, mode, standard deviation, variance
+o	Power / Round: Exponential and rounding operations to modify the current value
+o	Find Min / Max: Compute minimum/maximum values
+________________________________________
+Condition Settings (Conditional Modifications)
+•	Condition: Define selection criteria when using conditional modification:
+o	Equals to
+o	Smaller than
+o	Greater than
+o	Is Not
+o	Between
+o	Not Between
+•	Value: Specify comparison value(s)
+
+________________________________________
+
+Guided Input Highlights
+As you work through the Attributes Modifier, the application highlights in red any fields or sections that require input based on your previous selections. This real-time guidance helps you follow the correct sequence, ensuring all necessary values are entered before applying changes. By following these visual cues, you can avoid mistakes, streamline your workflow, and confidently perform modifications across multiple elements.
+________________________________________
+
+
+Workflow Examples
+Example 1: Batch Diameter Modification
+1.	Select Pipes from Element Selection
+2.	Choose Modify All from Modification Scope
+3.	Select Diameter from Attribute To Modify
+4.	Choose Change to from Function
+5.	Enter the new diameter value
+6.	Click Apply
+________________________________________
+Example 2: Conditional Elevation Update
+1.	Select Junctions from Element Selection
+2.	Choose Set Condition Based on Attribute Value
+3.	Select Elevation from Attribute To Modify
+4.	Set Condition to Greater than
+5.	Enter threshold value (e.g., 100)
+6.	Choose Add value function
+7.	Enter increment value
+8.	Click Apply
+________________________________________
+Example 3: Visual Selection via Polygon
+1.	Select the desired element type.
+2.	Choose Draw a Polygon Around Elements.
+3.	Click Draw and Group Edit.
+4.	Draw polygons on the network map to select elements. For each polygon, specify the type of elements you want to filter while drawing.
+5.	Configure the attribute modifications.
+6.	Apply changes. (The application allows you to apply modifications per group, enabling you to modify different attributes of multiple groups of elements in sequence.)
+
+________________________________________
+Special Features
+Group Editing
+•	Create multiple selection groups via polygon drawing
+•	The system processes each group sequentially
+•	Edit group lists directly in the text field
+________________________________________
+Network Analysis Selections
+•	Terminal Nodes: End points of network branches
+•	Articulation Points: Critical junctions whose removal disconnects the network
+•	Bridges: Critical pipes whose removal disconnects the network
+________________________________________
+Data Type Awareness
+The system automatically validates input based on attribute data types:
+•	Numerical attributes accept decimal or whole numbers
+•	Text attributes accept string input
+•	Special attributes (patterns, curves) provide dropdown selection
+________________________________________
+Best Practices
+1.	Preview selections using the Show function before modifying
+2.	Back up your network before performing bulk deletions
+3.	Verify conditions with small test selections first
+4.	Use statistical functions to analyze attribute distributions quickly
+5.	Group similar operations into a single editing session
+________________________________________
+Safety Features
+•	Confirmation dialogs for critical operations (such as deletion)
+•	Value validation based on attribute data types
+•	Clear error messages with line-number references
+•	Undo protection warns about unsaved modifications
+________________________________________
+Troubleshooting
+Common Issues and Solutions
+1. “No elements meet selection criteria”
+•	Verify the selected element type
+•	Check condition values against attribute data types
+•	Confirm element names are correct when using lists
+2. Value conversion errors
+•	Ensure correct data type (decimal vs. whole number)
+•	Use Text Input for string-based attributes
+•	Verify special values (True / False / None / OPEN / CLOSED)
+3. Function not available
+•	Some functions are attribute-specific
+•	Text attributes usually support only Change to
+•	Pattern and curve attributes require dropdown selection
+________________________________________
+Efficiency Tips
+•	Use Modify All for global changes
+•	Apply conditional filters for targeted edits
+•	Use polygon selection for spatial grouping
+•	Chain multiple operations without closing the dialog
+•	Save frequently used element lists for reuse
+
