@@ -1,0 +1,144 @@
+AquaStream360 Network Transformation Module Guide
+
+What This Module Does
+The Network Transformation Module allows you to visually manipulate your water distribution network’s spatial layout. You can translate (move), rotate, scale, flip, and reflect your entire network while seeing real-time previews in both traditional plotting views and interactive GIS maps.
+Key Concepts to Understand
+1. Coordinate System
+•	Original Coordinates: Your network’s current geographical positions
+•	Transformed Coordinates: Modified positions after applying transformations
+•	World Units: Coordinates are typically in meters or feet (preserved from your .inp file)
+2. Transformation Types
+•	Translation: Moving the network along X and Y axes
+•	Rotation: Spinning the network around a central point
+•	Scaling: Enlarging or shrinking the entire network
+•	Reflection: Mirroring the network across X or Y axes
+3. Visualization Modes
+•	GIS Map: Interactive map with satellite/street views
+•	Both: Split-screen view for comparison
+________________________________________
+Getting Started
+Launching the Module
+The transformation module opens automatically when you: - Select “Transform Network” from the main menu of the main application
+Note: For best results, your network should include geographic coordinate data (latitude and longitude for all nodes). If you import a network without spatial coordinates, you can easily geo-reference it within AquaStream360.
+________________________________________
+Interface Layout
+Left Panel: Transformation Controls
+┌─────────────────────────────────┐
+│   [Drawing Plot] [GIS Map] [Both]  ← Visualization Mode
+│   [Tile Selector] [Show Grid]     ← Map & Display Options
+│                                 
+│   TRANSLATION                     ← Movement Controls
+│   X: [___]   Y: [___]             ← Coordinate Inputs
+│   Step: [___]                     ← Movement Increment
+│   Enable Drag                     ← Click & Drag Toggle
+│         ↑                         ← Arrow Navigation
+│     ←   ·   →                     │
+│         ↓                         │
+│                                 
+│   ROTATION                        ← Spin Controls
+│   Angle: [___]  [Dial]            ← Degree Input/Dial
+│   Center: [Network Center]        ← Rotation Pivot Point
+│   Cx: [___]   Cy: [___]           ← Custom Center Point
+│                                 
+│   REFLECTION                      ← Mirror Controls
+│   ☐ Flip X    ☐ Flip Y            ← Axis Flip Toggles
+│                                 
+│   SCALING                         ← Size Controls
+│   Factor: [___]                   ← Scale Multiplier
+│                                 
+│   Marker Size: [Slider]           ← Display Scaling
+│                                 
+│   [Reset] [Apply] [Cancel]        ← Action Buttons
+└─────────────────────────────────┘
+Right Panel: Visualization Area
+•	Top/Left: PyQtGraph plot with grid and axes
+•	Bottom/Right: Leaflet.js interactive map
+•	Both views update in real-time as you adjust parameters
+________________________________________
+Core Transformations: How to Use
+1. Translation (Moving the Network)
+When to use: Reposition your network to align with real-world coordinates or other datasets.
+Methods: - Direct Input: Enter exact X and Y values in the translation boxes - Arrow Buttons: Click ↑ ↓ ← → buttons to move by the step increment - Keyboard: Use arrow keys when no input field is selected - Click & Drag: Enable “Enable Drag” and double-click on plot/map, then drag
+Pro Tips: - Set a smaller Step value for precise positioning - Use both visualization modes to verify placement against real geography - X = East/West, Y = North/South (standard Cartesian)
+2. Rotation (Spinning the Network)
+When to use: Align your network with true north, match satellite imagery orientation, or correct import rotation errors.
+Methods: - Dial Control: Drag the circular dial for visual rotation - Numeric Input: Type exact degrees (0-360) in the angle box - Combined: Both controls are synchronized
+Rotation Center Options: - Origin (0,0): Rotate around the coordinate system origin - Network Center: Rotate around the network’s geographic center (recommended) - Custom: Specify exact X,Y coordinates as pivot point
+Pro Tips: - Use Network Center for most rotations to keep network centered - For 90° corrections, enter exact values: 90, 180, 270 - Check “Both” visualization mode to verify alignment with map imagery
+3. Reflection (Mirroring)
+When to use: Correct inverted networks, create symmetrical designs, or match mirrored coordinate systems.
+Options: - Flip X: Mirror horizontally (left ↔ right) - Flip Y: Mirror vertically (top ↔ bottom) - Both: Combine for 180° rotation effect
+Important: Reflections occur around the network’s center point, not the origin.
+4. Scaling (Resizing)
+When to use: Convert between unit systems (feet ↔ meters), adjust imported scale errors, or create design variations.
+How it works: - Factor = 1.0: Original size - Factor > 1.0: Enlarge (2.0 = double size) - Factor < 1.0: Shrink (0.5 = half size) - Factor negative: Flip and scale
+Note: Pipe lengths and other attributes are not automatically scaled - this only affects coordinates.
+________________________________________
+Visualization Modes: When to Use Each
+Drawing Plot Mode
+┌─────────────────────────┐
+│   Traditional grid plot │
+│   with axes │
+│                         │
+│   Best for:            │
+│   • Precision alignment│
+│   • Coordinate matching│
+│   • Grid-based work    │
+└─────────────────────────┘
+Features: - Cartesian grid with X,Y axes - Precise coordinate display - Node/edge selection (click) - Pan/zoom with mouse
+Use when: - You need exact numerical alignment - Working with CAD/GIS coordinates - Performing geometric transformations
+GIS Map Mode
+┌─────────────────────────┐
+│   Interactive map with  │
+│   satellite/street views│
+│                         │
+│   Best for:            │
+│   • Real-world alignment│
+│   • Geographic context  │
+│   • Site verification   │
+└─────────────────────────┘
+Features: - Multiple base maps (select from dropdown) - Real geographic context - Drag-enabled network movement - Zoom to any location
+Tile Options: - Satellite: High-resolution imagery (Esri) - CartoDB.DarkMatter: Dark theme for contrast - CartoDB.Positron: Light theme - TopoMap: Topographic contours - OpenStreetMap: Street maps
+Use when: - Aligning with real-world features - Verifying site placement - Presenting to stakeholders - Quality control checks
+Both Mode (Split Screen)
+Benefits: - Immediate feedback between plot and map - Verify transformations work in both views - Training and verification tool
+Pro Tip: Start in Both mode, make adjustments, then switch to your preferred single view.
+
+Advanced Features
+Keyboard Navigation
+•	Arrow Keys: Translate network (when no input field focused)
+•	Up/Down in spin boxes: Increment/decrement values
+•	Tab: Navigate between controls
+Drag and Drop Translation
+1.	Check “Enable Drag (double-click to grab)”
+2.	Double-click on plot or map
+3.	Drag to move entire network
+4.	Release mouse to stop
+5.	Works in both plot and map views
+Marker Size Adjustment
+•	Slider: Changes display size of nodes (visual only)
+•	Does not affect actual coordinates or network data
+•	Useful for presentations or dense networks
+Grid Display
+•	Toggle on/off with checkbox
+•	When off: Clean view, no axes
+•	When on: Engineering grid with coordinates
+•	Recommended: On for precision work, Off for map alignment
+________________________________________
+Important Considerations
+What Gets Transformed
+•	Node coordinates (X,Y positions)
+•	Visual representation of pipes/valves
+•	Pipe lengths (remain unchanged)
+•	Elevation data (Z coordinates if present)
+•	Network connectivity or attributes
+Transformation Order
+The system applies transformations in this sequence: 1. Scaling (enlargement/shrinking) 2. Reflection (flipping) 3. Rotation (around center point) 4. Translation (final positioning)
+This order ensures predictable results.
+Undo/Redo Capability
+•	Reset: Reverts all transformations to original state
+•	Before Apply: Unlimited experimentation
+•	After Apply: Changes are permanent to the network
+•	Recommendation: Test thoroughly before applying
+________________________________________
+
