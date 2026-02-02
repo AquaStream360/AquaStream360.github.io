@@ -1,130 +1,211 @@
-DataMaster - Professional Data Analysis and Manipulation Tool
+AquaStream360 DataMaster - User Guide
 
-Executive Summary
-DataMaster is a powerful application for MANIPULATING, cleaning, transforming, analyzing, and exporting structured datasets. It provides a user-friendly interface that eliminates the need for programming knowledge while serving as a central data processing hub within the AquaStream360 ecosystem.
-________________________________________
-Core Capabilities
-1. Data Import and Management
-•	Multi-format Support: Excel (.xlsx, .xls), CSV, JSON, text files, PostgreSQL databases
-•	Sheet Management: Handle multi-sheet Excel files with intelligent selection and merging
-•	Data Preservation: Original datasets remain untouched during transformations
-•	Database Integration: Connect directly to PostgreSQL for live data retrieval
-2. Data Cleaning and Preparation
-•	Handle missing values with mean/median imputation, forward filling, or custom replacements
-•	Identify and remove duplicates
-•	Convert between numeric, text, and date types
-•	Standardize formatting (whitespace removal, casing, special character correction)
-•	Bulk value replacement for text and numeric data
-3. Data Transformation
-•	Add, remove, rename, reorder, and split columns
-•	Insert, delete, filter, and sort rows
-•	Create calculated fields (mathematical operations, text manipulation)
-•	Reshape data: pivot, melt, stack, unstack, transpose
-4. Advanced Data Analysis
-•	Descriptive statistics: mean, median, mode, standard deviation, percentiles
-•	Correlation matrices to detect relationships
-•	Grouping and aggregation functions (sum, average, count, min, max)
-•	Trend analysis and pattern detection
-•	Outlier identification (IQR, z-scores)
-•	Simple linear regression for prediction
-5. Filtering and Selection
-•	Conditional filters with operators (>, <, =, !=, contains, starts/ends with)
-•	Range-based selection (numerical or date ranges)
-•	Multi-criteria filtering with AND/OR logic
-•	Advanced filtering using regular expressions
-6. Data Visualization
-•	Generate bar, line, scatter, histogram, and pie charts
-•	Correlation heatmaps and pattern visualizations
-•	Automatic data profiling and quality reports
-•	Export visualizations in standard formats
-7. Quality Assurance
-•	Automatic data quality scoring
-•	Validation rules and cross-validation for predictive models
-•	Comparison of multiple datasets
-•	Detailed error reporting
-8. Workflow Management
-•	Undo/redo all operations
-•	Version control with side-by-side comparison
-•	Batch processing for multiple datasets or columns
-•	Save transformation templates for reuse
-9. Export and Integration
-•	Export to Excel, CSV, JSON, HTML, or databases
-•	Generate analysis reports with statistics and charts
-•	Seamless data transfer to other AquaStream360 applications
-•	API access via Python interface for advanced users
-________________________________________
-User Interface Components
-Main Workspace
-•	Source Data View: Read-only view of original data
-•	Processing View: Shows the active dataset with applied transformations
-•	Preview Panel: Real-time visualization of results
-•	Statistics Panel: Summary of calculated statistics and data quality
-Control Areas
-•	Import/export controls
-•	Categorized transformation and analysis tools
-•	Visualization creation tools
-Status and Feedback
-•	Progress indicators for ongoing operations
-•	Data quality metrics
-•	Error reporting with explanations
-•	Processing time and performance metrics
-________________________________________
-Technical Capabilities
-Performance
-•	Supports datasets up to 100,000+ records (memory dependent)
-•	Real-time operations for datasets under 10,000 records
-•	Multi-threaded processing for complex transformations
-•	Efficient memory handling and caching
-Data Integrity
-•	Atomic operations with rollback support
-•	Type checking and constraint enforcement
-•	Error recovery and audit trail for all operations
-________________________________________
-Integration with AquaStream360
-Data Flow
-•	Upstream Sources: Water network models, sensor readings, weather and GIS data
-•	Downstream Applications: Pattern Visualizer, Network Calibrator, Economic Analysis, Reporting Tools
-•	Standardized Data Formats for smooth inter-application communication
-Workflow Integration
-•	Automated processing pipelines
-•	Centralized shared data storage
-•	Consistent interface design across tools
-________________________________________
-Professional Applications
-Water Engineering
-•	Analyze network data and sensor readings
-•	Study demand patterns and performance metrics
-•	Prepare data for calibration and simulation
-General Data Analysis
-•	Business intelligence: sales, financial, and operational data
-•	Research data processing and scientific analysis
-•	Quality control in manufacturing
-•	Administrative data management (HR, inventory, operations)
-________________________________________
-User Proficiency Levels
-Beginner
-•	Step-by-step guided workflows
-•	Template-based operations
-•	Automated data quality assessment
-Intermediate
-•	Direct access to all tools
-•	Custom operations and filters
-•	Advanced visualization creation
-Advanced
-•	Batch processing and template automation
-•	Custom function creation
-•	External data integration
-•	Programmatic access via Python interface
-________________________________________
-Support and Documentation
-•	Context-sensitive help
-•	Example datasets and tutorials
-•	Video demonstrations of common workflows
-•	Validation of analysis results and error suggestions
-________________________________________
-System Requirements
-•	Platform: Windows (primary), cross-platform considerations
-•	Memory: 4GB minimum, 8GB recommended
-•	Storage: 500MB application + data storage
-•	Performance varies with dataset size and complexity
+Overview
+DataMaster is a data analysis and manipulation application  designed to handle very large datasets efficiently. It is particularly suited for users working with water-related data, including network data, simulation outputs, weather datasets, or water consumption records.
+The application is built to simplify complex data workflows, offering tools to load, clean, analyze, and visualize data in an intuitive, user-friendly environment.
+Main Interface Components
+1. Top Toolbar (File Operations & Core Functions)
+Located at the very top of the application, this section contains essential file operations and data management tools. A few of the available operations and buttons are explained below:
+File Operations:
+•	Import Data: Load data from Excel/CSV files
+•	From PostgreSQL: Import data directly from PostgreSQL databases
+•	Export Output Data: Save processed data to various formats
+•	Export to Excel: Save data specifically as Excel files
+•	Load Previous: Restore previously worked-on data
+•	Example Data: Load sample datasets to explore features
+Data Processing Tools:
+•	Quick Scan: Generate a quick overview of your data
+•	Visual Analysis: Create automatic visualizations
+•	Auto Insights: Get intelligent data insights
+•	Advanced Filter: Apply complex filtering rules
+•	Manipulate: Access data transformation tools
+•	Search: Find specific values across all data
+•	Delete Row/Column: Remove rows or columns
+•	Fill Missing Numbers/Texts: Handle empty values
+•	Health Check: Assess data quality
+•	Full Report: Generate comprehensive data reports
+•	Box Plot: Create box plot visualizations
+•	Group Detection: Automatically identify data groups
+•	Append: Add new data to existing dataset
+•	Heatmap: Create correlation heatmaps
+•	Group By and Apply: Apply functions to grouped data
+2. Tab-Based Function Panel
+This is the main control center organized into seven tabs:
+Tab 1: Data Analysis
+•	Group By and Sum: Aggregate data by categories and sum values
+•	Group By and Plot: Create visualizations of grouped data
+•	Sort: Arrange data in ascending or descending order
+•	Predict: Make predictions using data patterns
+•	Stack/Unstack Data: Restructure data between wide and long formats
+•	Data Types: View column data types
+•	Value Lengths: Analyze text length distributions
+•	Value Counts: Count frequency of unique values
+•	Bar Graph: Create bar charts
+•	Boxplot: Generate aggregated data box plots
+•	Unique Values: Identify distinct values
+•	Describe: Generate statistical summaries
+•	Pivot Table: Create summary tables
+•	Melt: Convert data from wide to long format
+Tab 2: Statistics
+•	Outliers: Detect unusual values
+•	Maximum/Minimum: Find highest/lowest values
+•	Correlation Matrix: Analyze relationships between variables
+•	Mean/Median: Calculate averages
+•	Sum: Calculate totals
+•	Covariance: Measure how variables change together
+•	Predict (different files): Make predictions using multiple datasets
+•	Standard Deviation: Measure data spread
+•	Unique Values/Value Counts: Analyze data distribution
+•	Coefficient of Variation: Measure relative variability
+•	Correlate and Predict: Find relationships and make predictions
+Tab 3: Mathematical Filtering
+•	Greater than (>), Less than (<), Equal to (==): Basic numeric filters
+•	Greater/Less than or equal to (≥, ≤): Inclusive range filters
+•	Range filters (a ≤ x ≤ b, x < a, b < x): Custom range selections
+•	Not equal to (!=): Exclusion filters
+•	Top/Bottom N values (max N, min N): Show highest/lowest records
+Tab 4: Data Manipulation
+•	Extract Numerical Rows: Keep only numeric data
+•	Transpose: Swap rows and columns
+•	Encode Categorical: Convert text categories to numbers
+•	Replace Non-Numeric: Convert text to numbers
+•	Left/Inner Join: Combine datasets
+•	Truncate: Shorten text values
+•	Remove Duplicates: Eliminate duplicate rows
+•	Concatenate: Combine multiple columns
+•	Delete Non-Numeric/Numeric Columns: Remove specific column types
+•	Format As Time: Convert to time format
+•	Replace Numeric With Text: Convert numbers to text labels
+•	Remove Null Values: Clean missing data
+Tab 5: Manipulations Based on Filtering
+•	Column Comparisons: Compare values between columns
+•	Starts/Ends With: Text pattern matching
+•	Filter By Outliers: Focus on unusual values
+•	Column Equality/Non-equality: Compare two columns
+•	Contains/Not Contains: Text search filters
+•	Value Equals/Not Equals: Exact value matching
+•	Value Lengths: Filter by text length
+•	Advanced Filter: Access comprehensive filtering options
+Tab 6: Manipulate Columns
+•	Function (Col 1, Col 2): Apply mathematical operations between columns
+•	Function (Single Col): Apply transformations to individual columns
+•	Delete/Rename Col: Column management
+•	Delete Non-Numeric/Numeric: Remove specific data types
+•	Standardize Names: Clean up text formatting
+•	Autofill Col: Fill columns with values or sequences
+•	Remove Cols With Null Values: Clean incomplete columns
+Tab 7: Manipulate Column Values
+•	Remove Brackets: Clean special characters
+•	Upper/Lower/Title Case: Text case conversion
+•	Add/Remove Prefix/Suffix: Modify text beginnings/endings
+•	Remove Special Characters: Clean text data
+•	Strip Text: Remove extra spaces
+•	Insert Text: Add text at specific positions
+•	Extract Substrings: Select portions of text
+•	Split Text: Divide text by separators
+•	Replace Certain Text: Find and replace text
+Tab 8: Advanced Features
+•	Summary Cards: Quick data overview cards
+•	Analysis Report: Generate detailed reports
+•	Data Profile: Comprehensive data profiling
+•	Find Patterns: Discover hidden patterns
+•	Relationships: Analyze variable relationships
+•	Correlation Map: Visual relationship mapping
+•	Quality Check: Assess data quality
+•	Fill Missing Values: Intelligent imputation
+•	Validate Data: Check data integrity
+•	Find Anomalies: Detect unusual patterns
+•	AutoML Analysis: Automated machine learning
+•	Cross-Validation: Model validation
+•	Auto Segmentation: Automatic data grouping
+•	Compare Datasets: Data comparison tools
+•	Time Series Analysis: Temporal data analysis
+•	Smart Sampling: Intelligent data sampling
+3. Data Display Area
+The central workspace showing your data:
+Left Panel - INPUT DATA
+•	Displays your original/imported data
+•	Shows sheet names when working with Excel files
+•	Hide Original Data: Toggle visibility of original dataset
+•	Expand: Maximize workspace by hiding top toolbar
+Right Panel - OUTPUT DATA
+•	Shows results of your operations
+•	Displays filtered, transformed, or analyzed data
+•	Updates dynamically as you apply operations
+Data Table Controls:
+•	Set Index: Designate a column as row identifiers
+•	Significant Figures: Control number precision
+•	Editing Mode: Enable direct cell editing
+•	Reset After Each Operation: Toggle between cumulative and step-by-step processing
+•	Alternating Colors: Improve readability with striped rows
+•	Undo/Redo: Reverse or reapply actions
+•	Clear: Remove all data
+•	Set As Original: Save current state as new baseline
+•	Reset: Revert to original data
+•	To Postgres: Export to PostgreSQL database
+4. Editing Controls Panel
+When Editing Mode is enabled, additional controls appear:
+•	Reset: Undo all manual edits
+•	Undo/Redo: Step through edit history
+•	Export Data: Save edited dataset
+•	Add/Remove Rows/Columns: Modify data structure
+•	Rename Rows/Columns: Change labels
+•	Show: Display data in original format
+Key Features for Users
+Data Import Options
+1.	From Files: Import Excel (.xlsx, .xls) or CSV files
+2.	From Database: Direct PostgreSQL connection
+3.	Multiple Sheets: Handle Excel workbooks with multiple sheets
+4.	Example Data: Preloaded datasets for learning
+Data Cleaning & Preparation
+•	Remove duplicates, null values, and outliers
+•	Standardize text formatting
+•	Convert between data types
+•	Handle missing values intelligently
+Analysis & Insights
+•	Statistical summaries and distributions
+•	Correlation and relationship analysis
+•	Pattern detection and anomaly finding
+•	Automatic grouping and segmentation
+Visualization
+•	Bar charts, line graphs, box plots
+•	Correlation heatmaps
+•	Customizable plots with labels and styling
+Export Options
+•	Multiple formats: Excel, CSV, JSON, HTML, etc.
+•	Direct PostgreSQL export
+•	Comprehensive reports
+Workflow Guidance
+Getting Started
+1.	Click Import Data to load your dataset
+2.	Use Quick Scan to understand your data structure
+3.	Explore Data Analysis tab for basic operations
+Common Tasks
+Cleaning Data:
+1.	Use Remove Null Values to clean missing data
+2.	Apply Remove Duplicates to eliminate repeats
+3.	Use Standardize Names to clean text columns
+Analyzing Data:
+1.	Try Describe for statistical overview
+2.	Use Correlation Matrix to find relationships
+3.	Apply Group By and Sum for categorical summaries
+Visualizing Data:
+1.	Select Bar Graph or Box Plot from Data Analysis tab
+2.	Choose the column to visualize
+3.	Customize as needed
+Advanced Analysis:
+1.	Explore Advanced Features tab for machine learning
+2.	Use Auto Insights for automated discovery
+3.	Try Pattern Finder for hidden trends
+Tips for Effective Use
+1.	Start Simple: Begin with basic operations before advanced features
+2.	Use Undo/Redo: Experiment freely with undo support
+3.	Save Frequently: Export important results
+4.	Check Data Quality: Use Health Check before analysis
+5.	Explore Example Data: Learn features with provided samples
+Support & Learning
+•	Use Example Data to practice
+•	Each button has tooltips explaining its function
+•	Complex operations provide guided dialogs
+•	Error messages suggest corrective actions
 
