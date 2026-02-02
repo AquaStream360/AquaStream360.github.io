@@ -1,0 +1,131 @@
+AquaStream360 Network Attribute Viewer – User Guide
+________________________________________
+1. Overview
+The Network Attributes Viewer is an interactive visualization module within the AquaStream360 platform. It enables users to explore, compare, and analyze water network simulation results directly on a 2D network map.
+Instead of reviewing lengthy tables or reports, users can visually inspect how different scenarios, attributes, and time steps impact nodes and links across the entire network. This makes the viewer especially valuable for fast analysis, calibration, comparison, and informed decision-making.
+The module is fully integrated with AquaStream360 simulation outputs and supports both single-simulation results as well as multi-option comparisons.
+Access: The Attribute Network Viewer can only be accessed through the main application via the “Net Results” button after running a simulation, and it is also available within the Network Rapid Testing sub-application.
+
+________________________________________
+2. Why This Tool Is Important
+Traditional network analysis often relies on:
+•	Large spreadsheets
+•	Lengthy reports
+•	Manual comparison between scenarios
+•	Trial-and-error inspection of values
+The Attribute Network Viewer addresses these challenges by providing:
+•	Immediate visual feedback across the full network
+•	Side-by-side comparison of multiple simulation options
+•	Time-based analysis without regenerating reports
+•	Context-aware insights, showing where values occur spatially
+This enables users to:
+•	Understand system behavior faster
+•	Identify problem areas instantly
+•	Compare alternatives confidently
+•	Reduce reliance on long, static reports
+________________________________________
+3. What the Application Allows Users to Do
+With the Attribute Network Viewer, users can:
+•	View the full water network in an interactive 2D map
+•	Inspect node and link attributes directly on the network
+•	Compare multiple simulation scenarios at the same time
+•	Analyze how values change over time using a time-step control
+•	Hover over any element to see all relevant data instantly
+•	Toggle visibility of nodes, links, and labels
+•	Adjust visual settings such as node size, link width, and label font size
+•	Focus on specific attributes without rerunning simulations
+All analysis is read-only—the viewer does not modify the network or simulation data.
+________________________________________
+4. Supported Use Cases
+The tool is commonly used for:
+•	Network calibration and validation
+•	Scenario comparison (e.g., different design or operational options)
+•	Time-based behavior analysis
+•	Identifying spatial patterns or outliers
+•	Reviewing simulation results visually before committing changes
+•	Presenting results clearly to stakeholders
+________________________________________
+5. Application Layout
+Main Viewer Window
+•	Displays the interactive network map
+•	Supports zooming, panning, and resetting the view
+•	Shows nodes and links according to current settings
+Time Control Panel
+•	Allows users to select a simulation time step
+•	Updates all displayed values instantly
+•	Supports full simulation time ranges
+Attribute Selection (Multi-Option Mode)
+•	Dropdown menus for selecting node and link attributes
+•	Automatically updates the visualization when changed
+•	Enables comparison across multiple simulation options
+Control Panel
+•	Toggle nodes, links, and labels on or off
+•	Adjust node size
+•	Adjust link width
+•	Adjust label font size
+•	Show or hide the control panel as needed
+________________________________________
+6. Navigating the Network
+Users can interact with the network using simple mouse actions:
+•	Click & Drag: Pan across the network
+•	Mouse Wheel: Zoom in and out
+•	Double-Click: Reset the view to fit the entire network
+These interactions allow smooth navigation even for large networks.
+________________________________________
+7. Viewing Data and Popups
+When hovering over a node or link:
+•	A popup appears near the cursor
+•	The popup displays:
+o	Element name
+o	Current attribute values
+o	Scenario or option identifiers
+o	Time-step context
+Popups automatically reposition to stay visible on screen and update dynamically as the cursor moves.
+This allows users to inspect detailed values without leaving the map.
+________________________________________
+8. Time-Based Analysis
+The Time Control panel lets users:
+•	Move through simulation time steps
+•	Instantly update all displayed values
+•	Observe how conditions evolve over time
+•	Compare the same moment across multiple scenarios
+This is especially useful for identifying:
+•	Peak conditions
+•	Transient issues
+•	Time-sensitive behavior patterns
+________________________________________
+9. Multi-Option Comparison
+When multiple simulation results are loaded:
+•	Each option is displayed as a separate column in the data
+•	Hovering over elements shows values for all options at once
+•	Attribute selection applies across all options simultaneously
+This enables direct, spatial comparison without switching views or exporting data.
+________________________________________
+10. Visualization Controls
+Users can customize the display to suit their needs:
+•	Show / Hide Nodes
+•	Show / Hide Links
+•	Show / Hide Labels
+•	Adjust Node Size
+•	Adjust Link Width
+•	Adjust Label Font Size
+These controls help reduce clutter and focus attention on what matters most.
+________________________________________
+11. Safety and Data Integrity
+•	The viewer does not modify the network model
+•	The viewer does not alter simulation results
+•	All data shown is read-only
+•	Changes are visual and temporary
+This makes the tool safe for exploration, review, and presentation.
+________________________________________
+12. Summary
+The AquaStream360 Attribute Network Viewer is a useful visual analysis tool that transforms simulation results into intuitive, interactive insights.
+It allows users to:
+•	Analyze faster
+•	Compare scenarios more effectively
+•	Understand spatial and temporal behavior
+•	Reduce dependence on long reports
+•	Make better-informed decisions with confidence
+By combining clarity, speed, and safety, the Attribute Network Viewer plays a key role in modern network analysis within the AquaStream360 platform.
+________________________________________
+
