@@ -1,0 +1,144 @@
+User Guide: AquaStream360 Cost Calculator
+
+1. Introduction
+What is the Cost Calculator?
+The Cost Calculator is a tool  within AquaStream360 that helps users edit network elements cost data, estimate the capital and operational costs of water distribution networks. It enables budgeting, cost comparisons, long-term financial planning, and even environmental impact assessments for network materials.
+________________________________________
+2. Overview of the Cost Calculator
+What It Does
+The module allows users to:
+1.	Access and modify cost database for pipes, pumps, tanks, and valves
+2.	Automatically calculate overall network costs
+3.	Estimate greenhouse gas (GHG) emissions
+Supported Components
+•	Pipes: Different diameters and materials
+•	Pumps: Various power ratings
+•	Pressure Reducing Valves (PRVs): Various sizes
+•	Tanks: Different storage volumes
+•	Greenhouse Gas Emissions: Based on material types
+________________________________________
+3. Getting Started
+Launching the Module
+1.	Open AquaStream360 and select the Cost Calculator module
+2.	Load a water network model (.INP file)
+3.	Review default cost values
+4.	Customize costs if needed
+5.	Run the analysis
+First-Time Setup
+1.	Load your network model else an example network will be used
+2.	Explore default costs
+3.	Make adjustments to reflect local pricing
+4.	Calculate initial network costs
+5.	Export results for reference
+________________________________________
+4. Main Interface Components
+4.1 Cost Type Panel
+•	Select a component type: Pipes, Pumps, PRVs, Tanks, or GHG
+•	Active selection is highlighted for clarity
+•	Quickly switch between components to review or edit costs
+4.2 Main Data Table
+•	Displays component-specific cost details
+•	Editable cells for adjustments
+•	Columns vary depending on component type (diameter, volume, power, etc.)
+•	Automatic validation ensures numbers are reasonable
+4.3 Control Buttons
+•	Clear Table: Remove displayed data temporarily
+•	Restore Defaults: Reset to original values
+•	Import Network: Load a new network
+•	Show Network: Visualize the layout
+•	Calculate Cost: Compute total network cost
+•	Calculate GHG: Estimate greenhouse gas emissions
+•	Local Currency: Convert results to local currency
+•	Graph: Visualize cost trends
+4.4 Status & Information Panel
+•	Displays editing status, calculation results, and currency conversion updates
+________________________________________
+5. Cost Database Management
+5.1 Default Database
+•	Preloaded with industry-standard costs
+•	Includes pipes, pumps, PRVs, tanks, and GHG factors
+•	Covers common materials and sizes
+5.2 Customization
+•	Adjust costs to match local pricing or vendor quotes
+•	Click a table cell, enter new values, and changes are applied immediately
+•	Automatic checks ensure numbers are valid
+5.3 Database Operations
+•	Restore defaults if needed (cannot be undone)
+•	Database automatically backs up on closing the application
+•	Separate tables for each component type
+________________________________________
+6. Network Cost Analysis
+6.1 Calculating Costs
+1.	Load your network
+2.	Review and adjust costs
+3.	Click Calculate Cost
+4.	Results appear in a summary pop-up
+6.2 Understanding Results
+•	Shows costs for each component and total annualized expenditure
+•	Values represent yearly costs, including installation and maintenance
+•	Assumes default project lifespan and discount factors
+6.3 Currency Conversion
+•	Click Local Currency, enter exchange rate, and view converted totals
+•	Useful for local budgeting and reporting
+________________________________________
+7. Data Operations & Calculations
+Mathematical Tools
+•	Add/Subtract: Adjust all values by a fixed amount
+•	Multiply/Divide: Scale values by a factor
+•	Exponent: Apply power calculations
+•	Graph: Visualize cost trends
+Applications
+•	Adjust for inflation
+•	Convert currencies
+•	Test different scenarios quickly
+________________________________________
+8. Exporting & Sharing Results
+Formats
+•	Excel (.xlsx): Full report with formatting
+•	CSV (.csv): Quick table export
+•	Database: Optional export to PostgreSQL
+Locations
+•	Default: Desktop > Saved AquaStream Files
+•	Option to select custom folders or network drives
+File Management
+•	Overwrite warnings to prevent data loss
+•	Automatic date/time stamps for versioning
+________________________________________
+9. Greenhouse Gas (GHG) Analysis
+Purpose
+•	Estimate carbon footprint of network components
+•	Support sustainable design and regulatory compliance
+How to Run
+1.	Ensure network is loaded
+2.	Adjust GHG factors if needed
+3.	Click Calculate GHG
+4.	Results displayed in pop-up
+Use Cases
+•	Compare materials for low-carbon options
+•	Identify high-emission components
+•	Include results in environmental reports
+________________________________________
+10. Best Practices & Tips
+Database Management
+•	Keep costs updated for inflation and market changes
+•	Verify units are consistent
+•	Document assumptions
+Analysis Workflow
+1.	Load network
+2.	Review defaults
+3.	Customize costs
+4.	Calculate
+5.	Test scenarios
+6.	Export and document results
+Reporting
+•	Include date, network version, cost database version, and assumptions
+•	Show annual and total costs
+•	Compare different scenarios
+Common Pitfalls
+•	Mixing units (inches vs. meters)
+•	Using outdated exchange rates
+•	Forgetting to customize costs
+Advanced Features
+•	Network visualization to see costly components
+•	Bulk operations for rapid updates
+
