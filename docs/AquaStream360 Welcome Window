@@ -1,0 +1,434 @@
+AquaStream360 Welcome Window
+________________________________________
+1. What This Screen Is
+1.1 Primary Function and Design Philosophy
+The Welcome Window is the first screen that appears when you launch AquaStream360, a comprehensive water system analysis platform. From this single screen, users can access every major application and tool needed for network modeling, weather analysis, testing, calibration, water quality assessment, data visualization, and overall evaluation of water systems. This screen is designed to allow users to quickly access key features without launching the full application, providing a faster and more convenient workflow.
+
+1.2 Interface Structure and User Workflow Zones
+The window is organized into three vertical panels aligned with user intent: configuration, core operations, and specialized tool access.
+•	Left Panel: User Configuration and Session Management
+o	Purpose: Capture and persist user-specific information to tailor workflows, report generation, and module behavior across sessions.
+o	Components: Input fields for Country, City, Name, Profession, and Organization, accompanied by Save and Clear buttons. This ensures consistent personalization across all modules and submodules.
+•	Center Panel: Core Platform Portal
+o	Purpose: Provide direct access to the entire integrated AquaStream360 platform, encompassing advanced modeling, hydraulic and water quality analysis, GIS-based spatial analysis, and network simulation.
+o	Components:
+	A prominent launch area for the full AquaStream360 suite, reflecting the massive scale and integrated nature of its core functionality.
+	An overview panel describing platform capabilities, including multi-scale modeling, GIS mapping, scenario simulation, and data-driven decision support. This sets expectations for users about the platform’s breadth and power.
+•	Right Panel: Modular Tool Access Matrix
+o	Purpose: Offer single-click access to hundreds of specialized modules and utilities that extend the platform, including analytical, visualization, integration, and automation tools.
+o	Components: Categorized grid of supplementary-applications such as Net Calibrator, Data Analysis, 3D GeoViewer, Data Visualizer, Python Automation, Weather and Topography Integration, and Feedback. Each module operates as a robust subsystem capable of supporting complex workflows independently of the main launch.
+1.3 Ancillary Interface Elements
+•	Dynamic Header Banner: Horizontally scrolling display highlighting the platform’s core capabilities, latest updates, and strategic value proposition.
+•	Status Bar: Persistent footer showing system status, contextual guidance, and quick-reference links for ongoing tasks.
+
+________________________________________
+2. Complete Application Guide
+1. Water Distribution Engineering (Core Application Name)
+This core application represents a significant advancement in software designed for the modeling, analysis, and evaluation of water distribution networks. As a comprehensive platform, it integrates a wide array of functionalities to support engineers, planners, and operators in enhancing decision-making quality, analytical accuracy, operational efficiency, and contextual relevance throughout their workflow. The software’s design philosophy emphasizes automation and intuitive interaction, allowing users to focus on interpretation and strategic decisions rather than on complex tool configuration.
+Core Design and User Interaction
+AquaStream360 is built around a self-guided, interactive model that communicates with users primarily through visual cues and optional audio feedback. The interface employs extensive color-based indicators to highlight required actions, incomplete steps, and areas of relevance based on the user’s current objectives. Features are enabled by default, and interactions typically result in immediate action execution or clear guidance on prerequisite steps. This design significantly reduces the learning curve and operational overhead.
+Network-Driven and Geospatially Enabled Workflow
+All functionality within AquaStream360 is contingent upon a network model. The software automatically guides users to generate or import a network if none is present, ensuring a structured workflow. Simulation is the next critical step, with the system prompting users to run simulations to unlock the full suite of analytical and visualization features. Georeferencing is fundamental to advanced capabilities, and AquaStream360 simplifies this process dramatically. Users can georeference a network in seconds using coordinates of two known points or by interactive map selection, without requiring GIS expertise or external software. This spatial enablement underpins the platform’s advanced GIS and mapping functionalities.
+Modular Application Structure
+The software is organized into three tightly integrated main subsections: Modeling, Analysis, and Monitoring.
+a)	Modeling Section: Serving as the central hub, this section is far more than a model builder. It provides a comprehensive set of tools for network construction, modification, and evaluation. Key functionalities include:
+o	Network Construction & Import: Automated tools like the Network Builder can generate calibrated hydraulic models from diverse data sources (Excel, CSV, Shapefiles, CAD, databases). Manual drawing and tracing from images are also supported.
+o	Attribute & Operational Management: Users can define material libraries, perform bulk attribute edits, create time-based patterns, and set operational controls, curves, and performance thresholds.
+o	Advanced Calibration & Resilience Tools: Modules like the Net Calibrator automate model calibration against field data. The Resilience and Failure Analysis tools, including the detailed Pipe Failure Test popup, allow users to assess system robustness and component integrity.
+o	Zoning: Tools for creating and analyzing network zones (e.g., District Metered Areas) for pressure management and leakage control.
+o	Comprehensive Visualization: The section provides direct access to 2D/3D flow animations, pressure maps, and a vast array of graphical analysis plots.
+o	Results Management: A dedicated Simulation Results Page allows for filtering, statistical analysis, and export of hydraulic and quality results.
+b)	Analysis Section: This section focuses on advanced, systematic investigation and bulk modification of network elements. It is organized into specialized pages:
+o	Attribute Management: A powerful interface for viewing and applying bulk modifications to network elements based on conditions, lists, or topological features (e.g., critical bridges or articulation points).
+o	Performance Investigator: A sandbox environment for risk-free "what-if" scenario testing. Users can modify single or multiple elements, add new components like leaks or fire demands, and instantly see the impact on key performance indicators without altering the original network.
+o	Geospatial Analysis: A fully integrated GIS environment for building, editing, and analyzing networks directly on interactive maps. It includes tools for heatmaps, flow/pressure animations, buffer creation, and zone-based analysis.
+o	Disaster Analysis: Enables modeling of extreme events (pipe breaks, earthquakes, contamination, power outages) to assess system vulnerability and resilience under emergency conditions.
+o	Criticality & Resilience Analysis: Dedicated modules for identifying components whose failure has the greatest impact (Criticality) and for quantifying the system's overall ability to withstand and recover from disruptions using topological, hydraulic, and economic metrics.
+o	Changes Investigator: A comparison dashboard that automatically highlights differences between network states (e.g., before and after a modification), quantifying impacts on performance and affected population.
+c)	Monitoring Section: Designed for real-time and historical performance tracking, this module provides advanced monitoring capabilities and is under active development to expand its analytical and visualization features.
+________________________________________
+
+2. Net Calibrator
+The AquaStream360 Network Calibration Tool provides a specialized, sandboxed environment for safely testing, calibrating, and optimizing water distribution networks. It enables engineers to experiment with changes to pipes, pumps, junctions, and other network components without risking the integrity of the original master model.
+Core Purpose
+The tool functions as a controlled laboratory for water networks. Its primary objective is to support data-driven decision-making by allowing users to evaluate multiple "what-if" scenarios, identify optimal parameter values, and understand system sensitivities before implementing any permanent modifications. It bridges the gap between theoretical analysis and practical, real-world application.
+Structured Three-Phase Workflow
+1.	Define & Configure
+Users select the elements to test (e.g., pipes, pumps, junctions), choose specific elements or the entire category, and define the attributes to modify (e.g., diameter, roughness). Test conditions can be set as ranges (e.g., 100 mm to 300 mm) or target-based (e.g., nearest to a pressure of 25 m).
+2.	Simulate & Analyze
+With a single action, the tool generates and executes multiple simulation scenarios. Results are explored through a range of analytical views:
+o	Quick Analysis: Focused queries, such as identifying junctions where pressure falls below a set threshold in a specific scenario.
+o	Detailed Automated Analysis: Comprehensive reports, frequency distributions, and time-series comparisons based on the test scope.
+o	Visual Analysis: Charts and graphs highlighting trends and patterns across all scenarios.
+o	Attribute Network Viewer: Maps scenario results directly onto the network. Hovering over elements provides side-by-side comparisons of all outcomes, offering a clear visualization of parameter impacts across the system.
+3.	Apply & Decide
+Once the optimal scenario is identified, changes can be applied intentionally. All experimentation occurs on a temporary copy; the user must explicitly choose to update the original network, ensuring that permanent changes are deliberate and verified.
+Key Features and Advantages
+•	Risk-Free Sandbox: Experiments never alter the original network, allowing safe exploration.
+•	Intelligent Automation: Context-aware guidance, suggested default values, and automatically generated test ranges streamline scenario setup.
+•	Comparative Spatial Analysis: The Attribute Network Viewer transforms tabular results into a map-based comparison, facilitating rapid identification of how parameter changes affect pressures, flows, and network performance.
+•	Calibration-Ready: Supports model calibration by comparing simulated results against field-measured data, systematically identifying optimal parameter settings to enhance accuracy.
+Practical Applications
+•	Model Calibration: Adjust pipe roughness, demand multipliers, and other parameters to match observed sensor data.
+•	Design Optimization: Evaluate different pipe diameters or pump configurations to achieve performance standards efficiently.
+•	Sensitivity Analysis: Determine which parameters most influence network behavior, such as tank levels affecting downstream pressures.
+•	Emergency Planning: Simulate pipe failures, fire flows, and other contingencies to assess system vulnerability and resilience.
+
+________________________________________
+3. Rapid Testing
+This module is designed for water system engineers and technicians to analyze, test, and optimize water distribution networks without programming knowledge. Simply import your network model and explore scenarios through a visual, user-friendly interface.
+________________________________________
+1. Getting Started
+First-Time Setup
+1.	Import Your Network – Click Import Net (top-left) and select your EPANET .INP file.
+o	If no file is available, the app uses a built-in example network.
+2.	Main Dashboard – Your network data loads automatically, displaying:
+o	Table of network elements (pipes, junctions, tanks, etc.)
+o	Analysis report panel (right side)
+o	Control panel (left side)
+________________________________________
+2. Understanding the Interface
+Left Panel – Network Controls
+•	Element type dropdown: Choose Pipes, Junctions, Tanks, etc.
+•	Element Name dropdown: Select a specific element
+•	Attribute dropdown: Pick a property to modify (diameter, pressure, demand, etc.)
+•	Options table: Create different scenarios for testing
+Right Panel – Results & Reports
+•	Analysis Report: Detailed simulation results
+•	Export buttons: Save reports as PDF or HTML
+•	Expand/Collapse: Toggle report visibility
+Bottom Section – Action Buttons
+•	Run Simulation: Test modified network
+•	Graphical Tools: Generate charts and animations
+•	Export Options: Save network or data
+________________________________________
+3. Core Workflow – Testing Scenarios
+Step 1: Select What to Test
+1.	Choose Element type (e.g., Pipe)
+2.	Select a specific element
+3.	Select the attribute to change
+Step 2: Create Multiple Options
+1.	Set the number of variations (default: 10)
+2.	Enter Start Value (e.g., current diameter: 0.3)
+3.	Specify Increment value (e.g., 0.01)
+4.	Click AutoFill – The table populates automatically
+Step 3: Run the Analysis
+1.	Click Run Simulation and Report (red button)
+2.	Wait for processing – progress bar indicates status
+3.	View results in the Analysis Report panel
+Step 4: Compare Results
+•	Each table option becomes a scenario
+•	Reports compare all options side-by-side
+•	Critical metrics highlighted (pressure, water quality, etc.)
+________________________________________
+4. Advanced Features
+Graphical Comparison
+•	Bar charts or line graphs comparing options
+•	Visualize performance changes over time
+•	Export charts for presentations
+Animations
+•	Animated graphs showing scenario trends
+•	Dynamic visualization of patterns
+Deep Assessment
+•	Comprehensive tables for all network elements
+•	Detailed performance metrics for pipes and junctions
+Network Visualization
+•	Color-coded network layout
+•	Identify problem areas visually
+•	Compare different scenarios on the map
+Performance Testing & Calibration
+•	Test network against standards
+•	Identify calibration needs
+•	Optimize system performance
+Elementary Analysis (Links Only)
+•	Quick pipeline performance and headloss assessment
+________________________________________
+5. Exporting & Saving
+Save Your Work
+•	Export Net: Save as EPANET .INP
+•	Save All Options: Export scenarios to Excel
+•	Save PDF/HTML: Export reports
+Auto-Save Features
+•	Automatic network saving between sessions
+•	Temporary files stored in AquaStream Files folder
+________________________________________
+6. Practical Examples
+Example 1: Pipe Diameter Changes
+•	Element type: Pipe, Element name: Pipe-10, Attribute: Diameter
+•	Start Value: 0.3, Increment: 0.02, Options: 8
+•	Click AutoFill → Run Simulation → See effect on pressure and flow
+Example 2: Adjusting Tank Levels
+•	Element type: Tank, Attribute: Initial Level
+•	Create options with different levels → Run simulation → Analyze system pressure
+Example 3: Demand Pattern Testing
+•	Element type: Junction, Attribute: Demand Pattern
+•	Test scenarios → Identify peak demand impacts
+________________________________________
+7. Understanding Results
+Key Metrics
+•	Pressure: Maintain above minimum requirements
+•	Water Age: Ideally <24 hours
+•	Flow Rate: Volume through pipes
+•	Headloss: Pressure loss in pipes
+•	Demand: Consumption at network points
+Report Reading
+•	Green text: Normal operation
+•	Warnings: Potential issues
+•	Comparative tables: Scenario vs Scenario
+•	Time steps: Hourly analysis (0–23)
+________________________________________
+8. Tips & Best Practices
+For Accurate Results
+1.	Start with a valid EPANET .INP file
+2.	Use small increments initially
+3.	Run baseline network first
+4.	Focus on one change at a time
+Performance Tips
+•	Close other applications during large simulations
+•	Limit options (5–10) for faster results
+•	Significant Figures button controls decimal precision
+Troubleshooting
+•	No results? Check network import
+•	Missing elements? Verify .INP file
+•	Calculation errors? Use smaller increments
+•	Contact Support via “Contact Us”
+________________________________________
+9. Quick Reference
+Frequently Used Buttons
+•	Import Net: Load network
+•	Run Simulation: Execute current options
+•	AutoFill: Generate multiple scenarios quickly
+•	Graphical Comparison: Visualize results
+•	Export Net: Save modified network
+•	5 Decimals: Adjust numeric precision
+
+________________________________________
+4. Data Analysis
+
+Within this environment, the Datamaster module provides a comprehensive suite of tools for importing, cleaning, transforming, analyzing, and visualizing data in a single, intuitive interface. It allows users to generate insights, explore patterns, and produce professional outputs directly from their data.
+What Datamaster Does
+Datamaster serves as the central tool for managing all aspects of a dataset. It enables users to load data from multiple sources, prepare and clean it, perform analyses, visualize trends, and export results in a variety of formats. The module is designed to simplify workflows and make data exploration accessible to all users.
+Key Capabilities
+Datamaster includes many features, such as:
+•	Data Import and Management, which includes loading datasets from Excel, CSV, JSON, and database connections, handling multiple sheets in a single file, and restoring previous work sessions.
+•	Data Cleaning and Preparation, which includes removing duplicates, handling empty values, standardizing text formatting, converting data types, splitting and combining columns, and transposing rows and columns.
+•	Analysis and Insights, which includes generating descriptive statistics, exploring distributions, detecting unusual values, analyzing correlations, summarizing grouped data, and discovering patterns and anomalies.
+•	Visualization, which includes bar charts, line graphs, box plots, correlation heatmaps, and customizable charts for presenting data clearly.
+•	Advanced Analytics, which includes pattern detection, scenario testing, trend analysis, and automated suggestions to assist users in exploring their data.
+•	Workflow Controls, which include undo/redo history, direct editing of data with validation, setting processed data as a baseline, and managing multiple sheets or datasets simultaneously.
+•	Exporting and Sharing, which includes saving datasets and reports in formats such as Excel, CSV, JSON, and HTML, as well as generating comprehensive reports combining visualizations and statistical summaries.
+How It Can Be Useful
+Datamaster helps users to:
+•	Efficiently handle large and complex datasets, saving time and effort.
+•	Identify patterns, trends, and unusual data points quickly.
+•	Transform and prepare data for further analysis or reporting.
+•	Visualize data in meaningful ways to support decision-making and presentations.
+•	Generate structured and shareable reports that combine data insights with visual summaries.
+•	Automate repetitive tasks and multi-step workflows for consistency and efficiency.
+
+________________________________________
+
+
+5. Weather Application
+
+AquaStream360 Weather is an advanced software module designed to integrate weather intelligence with water resource management. It enables professionals to collect, process, analyze, and visualize historical and real-time weather data in conjunction with water demand information to support evidence-based operational and planning decisions.
+Primary Users
+•	Water resource managers
+•	Environmental scientists
+•	Agricultural planners
+•	Climate researchers
+•	Civil engineers
+•	Government agencies
+Core Benefits
+•	Seamless integration of NASA POWER historical weather data with local water usage
+•	Time-series and correlation analysis for demand forecasting
+•	Visualization and reporting of trends, patterns, and anomalies
+•	User-friendly interface with professional-grade export capabilities
+Key Modules and Capabilities
+1.	Weather Analysis Module
+o	Fetch and process historical satellite and ground measurements
+o	Perform statistical summaries, correlation studies, and trend identification
+o	Analyze temperature, solar radiation, humidity, wind, precipitation, atmospheric pressure, and evaporation rates
+2.	Current Weather Module
+o	Access real-time data via Open-Meteo (global) and OpenWeather (detailed)
+o	Compare live conditions across multiple locations
+o	Supports API key management and side-by-side visual analysis
+3.	Demand Analysis Module
+o	Analyze water demand in relation to weather patterns
+o	Monitor reservoir levels, storage, and consumption trends
+o	Import data from Excel, CSV, or databases, automatically aligning dates with weather records
+o	Generate correlation matrices to inform operational decisions
+Data Management
+•	Export and save projects in Excel, CSV, HTML, JSON, or databases
+•	Auto-save sessions and maintain organized, timestamped project directories
+•	Support for batch export and template reuse
+Visualization Tools
+•	Static charts: line graphs, bar charts, box plots, correlation heatmaps
+•	Dynamic visualizations: animated patterns, correlation evolution, zoom/pan, frame export
+•	Intelligent visualization broker recommends optimal chart types based on data characteristics
+Advanced Features
+•	Multi-variable weather-demand correlation analysis
+•	Outlier detection, seasonal decomposition, forecasting, and statistical significance testing
+________________________________________
+6. Python Tool
+What it does
+Provides advanced customization and automation:
+•	Write Python scripts for specialized calculations
+•	Automate repetitive analysis tasks
+•	Build custom data workflows
+•	Create advanced or non-standard visualizations
+•	Integrate external Python libraries
+When to use it
+For advanced analysis, automation, or custom workflows.
+________________________________________
+7. Data Visualizer
+What it does
+Transforms data into professional visual outputs:
+•	Create charts, graphs, and plots
+•	Build time-series visualizations
+•	Compare scenarios visually
+•	Export figures for reports and presentations
+•	Customize formatting and layout
+When to use it
+When presenting results or visually exploring analysis outcomes.
+________________________________________
+
+8. Topography Tools
+The Topographical Analysis Module is a professional terrain analysis tool designed for water infrastructure planning. It converts complex elevation data from Digital Elevation Models (DEMs) into actionable insights for network planning, pipeline routing, and construction feasibility assessment. By integrating water network models with real terrain, the module supports data-driven decisions, multi-dimensional visualization, and efficient infrastructure design.
+________________________________________
+Key Features
+1. Terrain Data Processing
+•	Import DEMs (GeoTIFF, ASCII Grid)
+•	Automatic calculations of slope, aspect, curvature, drainage
+•	Elevation extraction for single or multiple points
+2. Water Network Integration
+•	Overlay pipelines, pumps, valves, and tanks on terrain
+•	Generate elevation profiles along routes
+•	3D visualization of networks within realistic terrain
+3. Advanced Analysis Tools
+•	Slope distribution and terrain ruggedness for construction planning
+•	Drainage pattern recognition for stormwater management
+•	Earthwork volume calculations
+4. Multi-Format Visualization
+•	2D color-coded elevation maps and contour lines
+•	Interactive web maps with zoom/pan
+•	3D immersive terrain models with network overlays
+•	Comparative analysis of terrain features
+________________________________________
+Core Functionality
+•	DEM Loading: Automatic processing with statistics and visualization
+•	Terrain Visualization: Customizable color schemes, overlays, and opacity
+•	Elevation Extraction: Single point or batch coordinate export to CSV/Excel
+•	Analysis Tools: Hillshade, slope, contours, drainage patterns, construction difficulty
+Network-Terrain Analysis:
+•	Evaluate elevation profiles, slopes, and gravity-fed potential
+•	Optimize pump station placement and pipeline routing
+•	Assess construction access and feasibility
+________________________________________
+Data Export & Reporting
+•	Visualization Export: PNG, PDF (2D/3D maps, dashboards) at 300 DPI
+•	Data Export: Elevation extraction, statistics to CSV/Excel
+•	Reports: Terrain metrics (min/max/mean, slope, ruggedness, drainage) with engineering interpretations
+________________________________________
+Best Practices
+•	Ensure DEM CRS matches network coordinates
+•	Use appropriate DEM resolution for scale:
+o	Regional: 30–90 m
+o	Site: 1–10 m
+o	Detailed engineering: <1 m
+•	Workflow: Load DEM → visualize → analyze slopes/ruggedness → overlay network → extract elevations → generate reports
+Interpretation Guidelines:
+•	Slope: 0–2° flat, 2–5° gentle, 5–15° moderate, 15–30° steep, >30° very steep
+•	Elevation zones: valleys, lower/mid/upper slopes
+
+________________________________________
+9. 3D GeoViewer
+What it does
+Provides three-dimensional visualization:
+•	Display networks over terrain
+•	Visualize elevation impacts
+•	Explore spatial relationships in 3D
+•	Create presentation-ready 3D views
+When to use it
+For spatial analysis or when elevation plays a critical role.
+________________________________________
+10. Elementary Analysis
+What it does
+Focuses on detailed component-level evaluation:
+•	Analyze individual pipes, valves or pumps
+•	Calculate localized performance metrics
+•	Identify component-specific issues
+•	Generate detailed element-level reports
+When to use it
+When investigating or optimizing specific network components.
+________________________________________
+11. Net Economics
+
+As a core feature, the Cost Calculator allows users to set and edit the costs of network elements. This data is not saved to the network, stored locally in the computer, enabling users to evaluate costs for any network in future.
+Purpose
+The module helps estimate capital and operational costs of water distribution networks, supporting budgeting, cost comparisons, long-term financial planning, and environmental impact assessments.
+Key Benefits
+•	Standardized Costing: Uses preloaded default cost data.
+•	Customizable: Adjust rates for local conditions.
+•	Comprehensive Analysis: Covers pipes, pumps, valves, tanks, and greenhouse gas (GHG) emissions.
+•	Multi-Currency Support: Convert results to local currencies.
+•	Sustainability Insights: Evaluate environmental footprint of materials.
+Supported Components
+•	Pipes (various diameters and materials)
+•	Pumps (different power ratings)
+•	Pressure Reducing Valves (PRVs)
+•	Tanks (various storage volumes)
+•	Greenhouse Gas emissions based on material types
+Core Workflow
+1.	Load Network: Import an EPANET .INP file.
+2.	Edit Costs: Adjust preloaded values or input custom rates.
+3.	Calculate Costs: Compute total network and component-specific expenses.
+4.	Analyze GHG: Estimate carbon footprint for sustainability assessments.
+5.	Export Results: Save data locally or Export to Excel, CSV, or PDF formats.
+Interface Overview
+•	Cost Type Panel: Select and switch between Pipes, Pumps, PRVs, Tanks, or GHG.
+•	Main Data Table: Editable cost data with automatic validation.
+•	Control Buttons: Clear table, restore defaults, visualize network, calculate costs/GHG, convert currency, graph results.
+•	Status Panel: Displays calculation results, currency conversion, and editing status.
+Advanced Features
+•	Custom Cost Adjustment: Apply scaling, addition, multiplication, or exponent operations for scenario testing.
+•	Visualization: Graph cost trends, identify high-cost components, and visualize network cost distribution.
+•	Bulk Operations: Quickly update multiple elements.
+•	Network Integration: Overlay cost data onto water network visualizations for intuitive assessment.
+Best Practices
+•	Keep the cost database updated with current local prices.
+•	Validate units and exchange rates.
+•	Test multiple scenarios before finalizing budgets.
+•	Document assumptions, date, network version, and cost database version in reports.
+Output & Reporting
+•	Detailed cost summaries per component and total network expenditure.
+•	Annualized costs including installation and maintenance.
+•	Export formats: Excel, CSV, PDF, and optional PostgreSQL integration.
+Use Cases
+•	Budgeting and financial planning for water utilities.
+•	Cost comparison between network designs or materials.
+•	Environmental impact evaluation and GHG reporting.
+•	Scenario analysis for infrastructure upgrades and expansion.
+
+________________________________________
+12. Additional Notes & Platform Insights
+AquaStream360 is designed to help engineers, planners, and decision-makers address complex challenges in water distribution systems, including aging infrastructure, operational inefficiencies, non-revenue water, and climate variability. The platform integrates a wide range of tools to support sustainable planning, design, and operations, enabling evidence-based decision-making across the full lifecycle of water management. It is updated frequently, with monthly releases delivering new features, refinements, and workflow improvements.
+Automation and Scalability
+One of AquaStream360’s key strengths is its ability to automate and scale modeling processes. Large, complex hydraulic models — including city-wide or multi-network systems — can be constructed in seconds when input data is properly formatted. Automation reduces manual drawing and data entry, enabling integration of multiple GIS formats, spreadsheets, and other spatial data sources with minimal preprocessing. Elevation values for network nodes can be automatically assigned from DEM (Digital Elevation Model) data, streamlining the setup of gravity-fed networks.
+Persistent Network Context
+Example networks are provided to help users learn, experiment, or use as templates. Once a network is generated or imported in any module, it persists across the application: all other modules automatically use the same network context without requiring re-import, unless the user closes the session or selects a different network. This ensures seamless interoperability between modeling, analysis, monitoring, and visualization modules.
+Self-Guidance and Intuitive Interaction
+A core design principle is self-guidance and visual feedback. All buttons and features use descriptive labels, and modules rely heavily on status tips, pop-up notifications, tooltips, and red highlighting to communicate required actions or missing inputs. Buttons are enabled by default to encourage exploration. If a required action is incomplete, the software responds proactively:
+•	Clicking an analysis feature before generating a network highlights the entire input section in red for three seconds.
+•	Attempting to analyze results before running a simulation highlights the simulation button in red.
+•	If the section to be highlighted is not visible, a pop-up explains the missing action and prompts the user to generate a network or run a simulation before proceeding.
+This approach helps users understand dependencies between actions, reduces errors, and maintains flexibility in workflow.
+Comprehensive Reporting
+AquaStream360 generates automated reports that may extend to hundreds of pages, covering hydraulic performance, resilience and criticality metrics, topographical analysis, cost evaluations, and more. Reports combine tables, charts, and visual maps and can be exported in multiple formats, including PDF, HTML, GIS files, CAD drawings, and EPANET models.
+Water Quality and Weather Integration
+The platform supports water quality and contamination tracing, simulating contaminant movement, persistence times, and propagation across the network. Advanced weather integration links historical and real-time climatic data (e.g., NASA POWER) with network performance and demand trends, enabling climate-informed operational planning and forecasting.
+Monitoring Module
+Still under development, the Monitoring module will provide real-time network performance tracking, anomaly detection (such as leaks), and dynamic simulation capabilities.
+Undocumented Modules with Reliable Guidance
+Overall, AquaStream360 includes dozens of additional modules that are not fully documented in this guide. However, these modules are supported by robust in-application guidance systems, making them easy to use. Many are advanced enough to function as independent applications. All modules are accessible from the main application, and once a network is generated in the core Water Distribution Engineering module, every other module automatically recognizes and uses it. If no network is present, modules prompt users to import one. These additional modules provide specialized functionality, including advanced hydraulic simulations, scenario testing, detailed resilience analysis, multi-dimensional 3D terrain evaluation, water quality management, and custom automation via Python scripting.
+
