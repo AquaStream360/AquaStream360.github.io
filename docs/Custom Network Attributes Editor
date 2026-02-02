@@ -1,0 +1,157 @@
+User Guide: Custom Network Attributes Editor
+
+Overview
+The Custom Network Attributes Editor is a specialized pop-up window that allows you to configure essential pipe properties required for accurate network simulation and to add custom attributes to various network elements. This tool ensures that material specifications, environmental parameters, and user-defined data are properly defined before running simulations or analyses.
+________________________________________
+Window Layout
+The editor is divided into two main functional sections, with global action buttons at the bottom.
+________________________________________
+1. Required Custom Attributes Section (Left Side)
+Purpose:
+Configure mandatory pipe properties used in failure analysis and reliability simulations.
+Controls
+•	Pipe Name Dropdown
+Select an individual pipe from the network
+(default: “Select Pipe”)
+•	Apply to all pipes (Checkbox)
+Applies entered values to every pipe in the network
+•	Material Dropdown
+Select pipe material from predefined engineering materials
+•	Thickness Input
+Pipe wall thickness in meters
+(precision supported down to 0.001 mm)
+•	Age Input
+Pipe age in years
+•	Temperature Input
+Operating temperature in degrees Celsius (°C)
+•	Soil Corrosivity Dropdown
+Select surrounding environmental corrosivity level
+•	Save Provided Data To The Network
+Applies the configured data to the selected pipe(s)
+________________________________________
+2. Optional Custom Attributes Section (Right Side)
+Purpose:
+Extend the network model by adding custom user-defined attributes to any element type.
+Controls
+•	Element Type Dropdown
+Choose one of:
+o	Pipe
+o	Junction
+o	Tank
+o	Valve
+o	Pump
+o	Reservoir
+•	Apply to all [element type] (Checkbox)
+Applies the custom attribute to all elements of the selected type
+•	Element Name Dropdown
+Select a specific element (auto-populated based on element type)
+•	Optional Custom Attribute Dropdown
+o	Select an existing custom attribute
+o	OR type a new attribute name directly
+(spaces are automatically converted to underscores)
+•	Custom Attribute Value Field
+Enter the value associated with the custom attribute
+•	Data Type Radio Buttons
+o	Whole Number – Integer values
+o	Decimal Number – Floating-point values
+o	True / False – Boolean values
+o	Text – String values (default)
+•	Save Provided Data To The Network
+Saves the custom attribute to the selected element(s)
+________________________________________
+3. Action Buttons (Bottom Section)
+•	Apply Changes And Exit
+Saves all modifications and closes the editor
+•	Check Pipe Characteristics
+Opens a detailed view of pipe material properties
+•	Cancel And Close
+Exits the editor without saving any changes
+•	Undo All Edits
+Reverts all fields to their original values for the current session
+________________________________________
+Core Functionality
+________________________________________
+Setting Required Pipe Properties for Simulation
+Purpose:
+These properties are critical for accurate failure analysis simulations. If not explicitly set, the system will use placeholder defaults, which may reduce result accuracy.
+Procedure
+1.	Select Target Pipe(s)
+o	Choose a specific pipe from the Pipe Name dropdown
+o	OR enable Apply to all pipes
+2.	Configure Properties
+o	Select Material
+o	Enter Thickness
+o	Enter Age
+o	Enter Temperature
+o	Select Soil Corrosivity
+3.	Apply Changes
+o	Click Save Provided Data To The Network
+o	Changes are immediately stored in the network model
+o	A confirmation message appears upon success
+________________________________________
+Adding Custom Attributes to Network Elements
+Purpose:
+Add user-defined parameters for tracking, reporting, or specialized analyses.
+Procedure
+1.	Select Element Type
+o	Pipe, Junction, Tank, Valve, Pump, or Reservoir
+2.	Choose Scope
+o	Select a specific element
+o	OR enable Apply to all [element type]
+3.	Define Attribute
+o	Select an existing attribute
+o	OR type a new attribute name
+(automatic formatting applied)
+o	Choose the appropriate data type
+4.	Set Value
+o	Enter the attribute value
+o	Automatic conversion is applied based on selected data type
+o	Examples:
+	"true" → Boolean True
+	"3.14" → Decimal Number
+5.	Save Attribute
+o	Click Save Provided Data To The Network
+o	Attribute becomes immediately available for queries and simulations
+________________________________________
+Best Practices
+For Required Attributes
+•	Always configure all required properties before running simulations
+•	Select realistic engineering materials
+•	Use accurate thickness, age, and temperature values
+•	Use Apply to all pipes for consistent network-wide assumptions
+For Custom Attributes
+•	Use clear and descriptive names
+•	Select the correct data type before entering values
+•	Verify attributes appear correctly in queries and reports
+•	Keep naming conventions consistent across the model
+________________________________________
+Important Notes
+•	Default Values: Placeholder values are used if required attributes are not set
+•	Simulation Impact: Required attributes directly influence failure analysis results
+•	Immediate Persistence: All saved data is written directly to the network model
+•	Undo Scope: “Undo All Edits” only affects the current editor session
+•	Dependency: An active network model is required for this editor to function
+________________________________________
+Troubleshooting
+•	No Pipe Selected
+The system prompts for selection if “Apply to all pipes” is unchecked
+•	Invalid Values
+Warnings appear if values cannot be converted to the selected data type
+•	Network Errors
+The editor closes automatically if the network becomes unavailable
+•	Attribute Conflicts
+Core system attributes may be protected and cannot be overridden
+________________________________________
+Quick Reference
+Action	Steps
+Set pipe material	Select pipe → Choose material → Save
+Apply to all pipes	Check “Apply to all pipes” → Configure → Save
+Add custom attribute	Select element → Define attribute → Set value → Save
+Undo changes	Click “Undo All Edits”
+Save and exit	Click “Apply Changes And Exit”
+Exit without saving	Click “Cancel And Close”
+	
+________________________________________
+
+This editor ensures your network model is simulation-ready while providing the flexibility needed for advanced analysis and custom data tracking. Always configure required attributes before running failure analysis simulations for optimal accuracy.
+
