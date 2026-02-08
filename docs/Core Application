@@ -1447,19 +1447,100 @@ Visual Indicators:
 
 Performance Investigator Section (Page 2 in the Analysis Tab)
 
+Overview
+________________________________________
+The Performance Investigator: Design Freedom with Engineering Insight
+Being a designer means having the freedom to explore multiple options, evaluate their effectiveness, and make informed decisions. In engineering—particularly in water distribution and hydraulic network design—this ability to understand the consequences of each design choice is critical, yet often underestimated.
+This is one of the most powerful sections of AquaStream360, and one that is rarely talked about.
+In real-world networks, engineers frequently need to understand what happens when they:
+•	Add a pipe, valve, pump, or source
+•	Modify an element’s attributes
+•	Expand an existing network
+•	Introduce a leak or operational change
+The key questions are always the same:
+What changes? Where does it change? How much does it change? And when does it change?
+Whether the concern is pressure, flow rate, hydraulic head, or water quality, these questions define good engineering design.
+This is where AquaStream360 truly shines.
+________________________________________
+The Performance Investigator
+AquaStream360 includes a dedicated module called The Performance Investigator, designed specifically for network impact analysis and design exploration.
+It brings together:
+•	Advanced graphics
+•	Integrated GIS capabilities
+•	Data analysis tools
+•	Machine learning support
+Together, these capabilities transform AquaStream360 from a static modeling tool into a dynamic decision-support environment.
+________________________________________
+Four Modes to Investigate Network Performance
+1. Single-Attribute Change Tracking
+Users can modify a single attribute of a single element—such as pipe diameter, pump characteristics, or tank elevation—and immediately track how that change affects:
+•	Other network elements
+•	A specific customer or demand point
+•	Any selected target element
+This analysis can be carried out:
+•	At a specific simulation time, or
+•	Across the entire simulation period
+Impacts on pressure, flow, head, or water quality are quantified and clearly visualized.
+________________________________________
+2. Multi-Option Attribute Evaluation (Parametric Analysis)
+Engineers can define a list or range of possible values for a single attribute and evaluate each option systematically.
+For each option, AquaStream360 will:
+•	Run a full simulation
+•	Analyze and store the results
+•	Track how performance changes propagate through the network
+•	Repeat the process automatically for all options
+The outcome is a clear comparison showing how much, where, and when each option affects the system—making design trade-offs explicit and defensible.
+________________________________________
+3. Bulk Edit Impact Analysis
+Designers can apply coordinated changes across multiple elements simultaneously, for example:
+•	Setting all tank diameters to 15 m
+•	Increasing all tank diameters by 2 m
+•	Increasing all pipe diameters by 15 mm
+•	Applying multiple elevation-change scenarios to all nodes
+AquaStream360 evaluates:
+•	What is affected
+•	How it is affected
+•	When the impact occurs
+This enables rapid assessment of large-scale design assumptions or policy-level changes.
+________________________________________
+4. Network Expansion and Failure Scenarios
+The Performance Investigator supports both growth planning and risk assessment.
+Engineers can analyze:
+•	Addition of new pipes, sources, or infrastructure
+•	Network extensions and capacity upgrades
+•	Failure scenarios such as leaks, pipe bursts, or valve closures
+It becomes immediately clear:
+•	Which parts of the network are impacted
+•	How severe the impact is
+•	How far effects propagate spatially and temporally
+This insight is essential for resilience analysis and system planning.
+________________________________________
+Results and Visualization
+After any investigation, users simply click Answer.
+Results can be returned as:
+•	Tabular datasets
+•	Single-value performance metrics
+They can be further contextualized by:
+•	Number of affected consumers
+•	Number and type of impacted assets
+•	Magnitude and duration of performance deviations
+Results can be exported as reports or visualized directly on the GIS map and comparative graphs, making them ideal for technical review, design iteration, and stakeholder communication.
+________________________________________
+
+
 
 CRITICAL PROTECTION: All investigations use TEMPORARY COPIES of your network. Your original network remains completely unchanged. This enables risk-free exploration of scenarios.
 INTERFACE COMPONENTS
 RADIO BUTTON SELECTION (Left Side)
-Five radio buttons control which investigation line is active. Clicking a radio button activates its corresponding investigation line.
+Five radio buttons control which investigation line is active. Clicking a radio button activates its corresponding investigation line. Note: The fifth radio button is hidden and used internally to deactivate all investigation lines if no network exists or simulation cannot run.
 RADIO BUTTON FUNCTIONS:
-1.	Top Button → Activates Investigation Line 1
-2.	Second Button → Activates Investigation Line 2
-3.	Third Button → Activates Investigation Line 3
-4.	Fourth Button → Activates Investigation Line 4
+1.	Top Button → Activates Investigation Line 1: Single-Attribute Change Tracking
+2.	Second Button → Activates Investigation Line 2: Multi-Option Attribute Evaluation (Parametric Analysis)
+3.	Third Button → Activates Investigation Line 3: Bulk Edit Impact Analysis
+4.	Fourth Button → Activates Investigation Line 4: Network Expansion and Failure Scenarios
 
 INVESTIGATION LINES (Center Upper Section)
-Four horizontal lines representing different scenario types. Only the line corresponding to the selected radio button is active.
+Four horizontal lines represent different types of scenarios. Only the line corresponding to the selected radio button is active.
 ________________________________________
 INVESTIGATION LINE 1: Single Element Modification
 SCENARIO STRUCTURE: Change one attribute of one element and see the effect
