@@ -32,17 +32,17 @@ AquaStream360 offers a broad set of features dedicated for network engineering. 
 
 ---
 
-## Hydraulic Simulation Capabilities
 
-Simulation represents one component of the broader hydraulic functionality within the platform; however, it constitutes a computationally sophisticated capability that provides a level of analytical detail and modeling precision substantially beyond that of standard basic modeling;  
+## Hydraulic & Water Quality Simulation
 
-1. **AquaPulse (In-House Simulator):** A transient simulation engine capable of modeling water hammer, pump trips, valve operations, and surge propagation. It tracks pressure envelopes and potential cavitation, reflecting phenomena typically modeled only by high-end commercial tools.  
-2. **Environmental and Material Modeling (In-House Simulator):** Accounts for environmental and operational context, e.g., soil chemistry, pipe aging, operating conditions, and other factors affecting infrastructure performance. Performs structural integrity and risk analysis, enabling assessment of pipe stresses, structural performance of network components, failure probabilities, and burst risks.  
-3. **Monitoring (In Development):** Leverages the platform’s simulation and analysis outputs to provide real-time system performance evaluation, predictive assessment, and early detection of operational risks.  
-4. **Foundational Hydraulic Simulations:** **EPANET-style** steady-state and extended-period analyses for baseline network hydraulics.  
-5. **WNTR Integration:** Resilience assessments, leak simulations, and failure scenario analyses.  
+Simulation is one component among several hydraulic capabilities the software offers; however, it represents a multi-capability, extensive functionality within integrated engineering workflows. AquaStream360 does not rely on a single solver but instead provides a multi-engine framework to address diverse analytical requirements:
 
-**Supports all EPANET and WNTR simulations.**
+1. **AquaPulse Simulator (Custom Simulator):** A transient simulation engine capable of modeling water hammer, pump trips, valve operations, and surge propagation, including pressure envelopes and potential cavitation.  
+2. **Network Integrity Simulator (Custom Simulator):** Models the influence of environmental and operational factors, such as soil chemistry, pipe aging, and operating conditions, on network integrity. It assesses pipe stresses, structural performance, failure probabilities, and overall system robustness.    
+3. **Foundational and Extended Simulations:** Supports all EPANET and WNTR simulations
+
+- **Water Quality Dynamics:** Advanced visualization of contaminant propagation, persistence, and transport under varying operational conditions, available both graphically and within GIS-integrated maps.  
+- **Incident Tracing:** Enables tracing of contaminants throughout the network to evaluate affected zones and perform scenario-based investigations, supporting risk assessment and operational planning.
 
 ---
 
