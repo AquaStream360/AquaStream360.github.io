@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <meta name="google-site-verification" content="i-5AjW7rr7JahpXmh--39h6sHm5X4fvTQjoqpnqds60" />
 <meta name="google-site-verification"      content="Tu__Gbjsa5rr8qtIcHVsDdUyUIgVS3D18NN859Vf6Q8" />
     <meta charset="UTF-8">
@@ -853,51 +852,115 @@
                 <a href="#download" class="cta-button">Download Beta Version</a>
                 <a href="#gallery" class="secondary-button">View Software Images</a>
                 <a href="#video-demo" class="secondary-button">Watch A Video</a>
-                <button id="technicalDetailsBtn" class="secondary-button">Technical Details</button>
             </div>
         </div>
     </section>
 
-    <section class="about">
-        <div class="container">
-            <h2>Introducing AquaStream360</h2>
-            <p>AquaStream360 is an engineering software application designed to help water utilities digitize and enhance the management of water distribution systems, providing the digital foundation needed to adopt and leverage the benefits of technologically assisted practices. It offers automated capabilities that simplify modeling, enable extensive analysis, and facilitate scenario-based simulations to investigate problems, explore solutions, and test them, thereby providing insights that allow utilities to evaluate potential interventions, assess options, and implement informed strategies to optimize operations and maintenance decisions.</p>
-            <p>In today’s context of increasing water scarcity, utilities can use these insights to understand system performance, anticipate potential risks, and develop adaptive strategies to mitigate the impacts of operational, environmental, and infrastructural challenges, such as inefficiencies, water losses, water quality risks, and service disruptions—ultimately enhancing resilience, reliability, and long-term sustainability.</p>
-
-            <div class="acronym">
-                <h3>Designed For:</h3>
-                <ul>
-            <li><strong>Modeling & Simulation</strong> – Supports automated model generation from raw data stored across diverse formats—including Microsoft Excel, databases, GIS files, and more. Also enables model creation from schematic images and drawings that lack extractable attributes.</li>
-          
-            <li><strong>Automated Analysis & Report Generation</strong> — The software’s analysis capabilities are vast and extensive, forming the bulk of AquaStream360. Users can evaluate and analyze numerous performance indicators, including hydraulics, system resilience, criticality, disaster simulations, water quality, and many others. The software provides advanced performance data analysis and visualization capabilities, communicating insights through summaries, reports, graphs, tables, color mapping, and 2D/3D animations, among others. Some analyses and reports are 100% automated and can be triggered with a single action, generating comprehensive outputs with network plots, graphs, tables, summaries, and contextual narratives to support design, optimization, decision-making, and stakeholder communication.</li>
-
-          <li><strong>Geospatial Analysis</strong> —  Offers  several GIS capabilities, including a dedicated GIS environment that provides all core modeling functions, eliminates the need for manual input of coordinates (including element lengths if not provided), and allows users to edit network features, create and analyze zones, and analyze results, among many other features. Additional capabilities include georeferencing, flow animations in 2D and 3D, advanced topographical analysis in 2D and 3D with automatic extraction and assignment of elevations from DEMs, and multiple mapping modules tailored for different purposes throughout the software, etc. Several tile formats are supported, and no installation is needed.</li>
-
-            <li><strong>Performance Investigation & Optimization</strong> – Offer numerous network testing features that allows utilities to enhance operational efficiency, reduce losses, and fine-tune system behavior under varied conditions.</li>
-
-            <li><strong>Resilience Analytics</strong> – Facilitates in-depth assessment of uncertainty, risk, and criticality to improve decision-making confidence and prioritize interventions across the network. Allows utilities to identify key vulnerabilities and high-impact elements, enabling them to proactively strengthen weak points, reduce service disruptions, and ensure long-term system resilience.</li>
-
-            <li><strong>Climatic Data Integration</strong> – Uses NASA's global climate datasets to fetch and analyze historical weather and environmental data for any location on Earth—enabling <strong>Climate Resilience Planning</strong>, <strong>Simulation of Weather Impacts on System Performance</strong>, and analyzing the influence of weather on <strong>Water Demand</strong> and <strong>Water Availability</strong>.</li>
-
-
-            <li><strong>Scalable Data Analytics</strong> —  Offers high-performance processing capabilities, even for large datasets, enabling the software to analyze, display, and manage tabular data such as simulation results and network data. AquaStream360 also includes a dedicated, general-purpose, automated sub-application specifically for processing and visualizing large datasets, capable of handling millions of rows for automated analysis, conditional data processing, anomaly detection, and predictive insights with efficiency and precision. The software supports reading and processing spreadsheet data, including multiple Excel sheets. This functionality can be useful for preparing and cleaning input data, as well as for analyzing output data such as simulation results and weather data.</li>
-
+<section class="about" style="font-size: 0.9rem;">
+    <div class="container">
+        <h2 style="font-size: 1.8rem;">Introducing AquaStream360</h2>
         
-        </ul>
+        <p style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">AquaStream360 is an integrated software platform built to help utilities modernize and enhance the management of water distribution systems. It brings together several capabilities that simplify infrastructure digitization and contextualize the planning, design, operation, maintenance, and performance of water distribution systems to support and guide effective decision-making. The software offers built-in geospatial analysis, topographical analysis, data science, environmental, and hydraulic modeling capabilities, specifically designed for both interactive and automated workflows. Using these capabilities, AquaStream360 provides highly automated features and a flexible array of functions that empower users to model, analyze, calibrate, and optimize water distribution networks efficiently, while contextualizing their impacts through relatable, visually interpretable outputs.</p>
+
+        <div class="acronym">
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Network Engineering Capabilities</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Water network engineering is the central focus of AquaStream360. The software provides an extensive suite of tools to support the full lifecycle of a water distribution network. Each tool is designed to offer a rich set of features, combining automation, self-guided workflows, and intuitive interaction to deliver maximum depth and breadth. Other independent tools (e.g., topographical analysis) complement this core functionality. These capabilities operate within an integrated workflow, progressing from digital construction and model building to operational analysis, strategic performance evaluation, and resilience planning. A few of these capabilities include:</p>
+
+            <div style="margin-top: 1.5rem;">
+                <h4 style="font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;">1. Digital Construction & Model Building</h4>
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Flexible Model Creation:</strong> Construct and modify water network models manually, via schematic images, or directly within a GIS environment.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Automated Network Construction:</strong> Generates hydraulic models from raw structured survey data, uses robust data cleaning modules to prepare and validate integrity and connectivity before constructing the network, ensuring minimum standards for model topographical accuracy.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Integrated Editing:</strong> Supports interactive editing, bulk editing, or automated editing and importation of attributes from any supported file. Crucial for automatically generated networks, which may lack certain attributes or contain default values. Users can seamlessly update network attributes and topology, maintaining synchronization between the digital twin and the physical infrastructure.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h4 style="font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;">2. Hydraulic & Water Quality Simulation</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">Simulation is one component among several hydraulic capabilities the software offers; however, it represents a multi-capability, extensive functionality within integrated engineering workflows. AquaStream360 provides a multi-engine framework to address diverse analytical requirements:</p>
+                
+                <p style="font-size: 0.9rem; font-weight: 500; margin-top: 0.75rem; margin-bottom: 0.25rem;">1. Advanced Custom Simulators:</p>
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 2rem; margin-bottom: 0.75rem;">
+                    <li style="margin-bottom: 0.25rem;">A transient simulation engine capable of modeling water hammer, pump trips, valve operations, and surge propagation, including pressure envelopes and potential cavitation.</li>
+                    <li style="margin-bottom: 0.25rem;">A network integrity simulation engine that models the influence of environmental and operational factors, such as soil chemistry, pipe aging, and operating conditions, on network integrity. It assesses pipe stresses, structural performance, failure probabilities, and overall system robustness.</li>
+                </ul>
+                
+                <p style="font-size: 0.9rem; font-weight: 500; margin-top: 0.5rem; margin-bottom: 0.25rem;">2. Foundational and Extended Simulations:</p>
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 2rem; margin-bottom: 0.75rem;">
+                    <li style="margin-bottom: 0.25rem;">Supports all EPANET and WNTR simulations.</li>
+                </ul>
+                
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Water Quality Dynamics:</strong> Advanced animations of contaminant propagation, persistence, and transport under varying operational conditions, available both graphically and within GIS-integrated maps.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Incident Tracing:</strong> Enables tracing of contaminants throughout the network to evaluate affected points, quantify the impacts, and perform scenario-based investigations, supporting risk assessment and operational planning.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h4 style="font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;">3. Strategic Performance & Resilience</h4>
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Scenario Testing:</strong> Simulate network modifications, operational interventions, or emergency responses in a risk-free digital environment.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Climate & Demand Adaptation:</strong> Integrate historical or forecasted climate data to assess impacts on water availability, demand patterns, and network performance.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Criticality Assessment:</strong> Identify vulnerable components and assess system robustness to guide capital improvement decisions.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Failure Modeling:</strong> Model extreme events—such as pipe bursts, leaks, or contamination incidents—to develop and refine mitigation strategies.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h4 style="font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;">4. Calibration & Validation</h4>
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Calibration Module:</strong> Set operating conditions, run scenarios, and automatically evaluate deviations between model predictions and field data, helping identify configurations that closely match actual network performance.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Continuous Evaluation:</strong> Iteratively refine models for improved accuracy, ensuring that all planning and operational decisions are based on a validated representation of the network.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 1rem;">Output, Reporting & Visualization</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">AquaStream360 provides extensive analytical capabilities for the examination of water distribution networks. Each analysis generates rich, context-sensitive outputs that facilitate the interpretation of complex datasets, providing insights that may not be readily apparent from raw data alone.</p>
+                
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Advanced Visualization:</strong> Supports comprehensive 2D and 3D graphics, GIS-integrated visualizations (including 2D and 3D with building overlays), interactive analytical dashboards, structured tables, maps, and dynamic 2D/3D animations. These features enable detailed exploration of network parameters and operational states.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Advanced Automated Reporting:</strong> A dedicated functionality enables the generation of comprehensive, network-wide reports with integrated graphics, structured tables, analytical summaries, and analysis-specific content assembled automatically.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Module-Specific Reporting:</strong> Many analytical modules and scenario-testing tools (including the Calibrator) include dedicated reporting features—separate from graphics—supporting scenario comparisons, automated insights, and tailored outputs for operational or planning purposes.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Flexible Export Capabilities:</strong> The platform provides extensive export compatibility, enabling datasets, models, visualizations, and reports to be saved in multiple standardized file formats, thereby facilitating interoperability with external analytical tools and software environments.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 1rem;">Other Main Complementary Capabilities</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">These modules operate as standalone applications launched from the AquaStream360 welcome screen.</p>
+                
+                <ul style="font-size: 0.9rem; list-style-type: disc; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;">
+                        <strong style="font-size: 1rem;">Topographical Analysis –</strong> An advanced visualization tool that supports DEM-based 3D topographical analysis and automated terrain assessment. Enables display of networks in 3D overlaid on actual topography, contour mapping, and elevation profile generation. Integrates GIS mapping and provides 2D rich graphics and analytical insights for planning and operational assessment. Can access previously loaded networks or import new ones for visualization. This tool focuses on visual representation and analysis; it does not perform hydraulic or structural modeling.
+                    </li>
+                    <li style="margin-bottom: 1rem;">
+                        <strong style="font-size: 1rem;">Python Code Environment –</strong> A built-in environment for executing Python scripts for advanced data analysis and visualization. While its automated influence on other modules is still under development, it reliably executes Python code and allows custom computations, data manipulation, and specialized analytical workflows using numerous pre-installed scientific libraries. Users can leverage AquaStream360's high-performance, large-scale graphics to visualize processed datasets.
+                    </li>
+                    <li style="margin-bottom: 1rem;">
+                        <strong style="font-size: 1rem;">Scalable Data Processing & Analytics Tool –</strong> A high-performance, general-purpose, spreadsheet-like application for both manual and automated manipulation, processing, or analysis of large tabular datasets. It can be applied to any dataset, including raw network survey data, offering greater flexibility and robustness than the data cleaning functions used during automated network generation by the main application. Supports anomaly detection, predictive analytics, and high-speed, large-scale graphical visualization for millions of rows efficiently. It is also ideal for analyzing simulation outputs if imported. Supports Excel, CSV, and PostgreSQL inputs.
+                    </li>
+                    <li style="margin-bottom: 1rem;">
+                        <strong style="font-size: 1rem;">Climatic Data Integration –</strong> Integrates NASA's global climate datasets for historical and environmental analysis worldwide. Users can access daily weather data for any location dating back over 30 years. Supports climate-informed planning, assessment of weather impacts on system performance, and evaluation of water availability and demand patterns. Offers high-speed, large-scale graphics for visualization and analysis of weather datasets. Includes tools for filtering, analyzing, and applying advanced ML-driven simulations to evaluate the influence of multiple weather parameters on network performance metrics (e.g., water consumption, reservoir levels). Simulations are only executed where reliable correlations exist between climate inputs and performance attributes. This semi-general-purpose capability can analyze the influence of weather on any attribute when relevant data is provided, and its simulations, automations, and reports can operate in context-specific analyses.
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
 
     <section class="features">
         <div class="container">
-            <h2><span class="magic-text">Features at a Glance</span></h2>
+            <h2><span class="magic-text">Overall Features at a Glance</span></h2>
             <ul class="features-list">
                 <li><i class="fas fa-cogs"></i> Automated Modeling Capabilities</li>
                 <li><i class="fas fa-project-diagram"></i> Extensive Network Analysis</li>
                 <li><i class="fas fa-map-marked-alt"></i> Automated GIS Capabilities</li>
                 <li><i class="fas fa-shield-alt"></i> Resilience Analysis</li>
                 <li><i class="fas fa-cloud-sun-rain"></i> Weather Pattern Analysis</li>
-                <li><i class="fas fa-chart-bar"></i> Robust Data Analysis and Visualization</li>
+                <li><i class="fas fa-chart-bar"></i> High Perfomance Data Processing Capabilities</li>
                 <li><i class="fas fa-tachometer-alt"></i> Network Performance Monitoring</li>
                 <li><i class="fas fa-user-check"></i> User-Friendly Interface</li>
             </ul>
@@ -1345,58 +1408,9 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.disabled = false;
         }, 1500);
     });
+
    
 
-
-  
-
 </script>
-
-
-
-
-    <div id="technicalModal" class="legal-modal">
-    <div class="legal-modal-content" style="max-width: 900px; max-height: 80vh; overflow-y: auto;">
-        <span class="close-legal-modal" onclick="closeTechnicalModal()">&times;</span>
-        <h3>Technical Details</h3>
-        <div id="technicalContent" style="line-height: 1.6; color: #d1d5ff; padding: 10px;">
-        <!-- README content will go here -->
-        </div>
-    </div>
-    </div>
-    
-
-
-    <script>
-  document.getElementById('technicalDetailsBtn').addEventListener('click', function() {
-    const modal = document.getElementById('technicalModal');
-    const content = document.getElementById('technicalContent');
-
-    fetch('README.md')
-    .then(response => response.text())
-    .then(text => {
-        content.innerHTML = marked(text); // converts Markdown to HTML
-    })
-    .catch(err => {
-        content.textContent = "Error loading technical details.";
-        console.error(err);
-    });
-
-    modal.style.display = 'flex';
-  });
-
- 
-  function closeTechnicalModal() {
-    document.getElementById('technicalModal').style.display = 'none';
-  }
-
-  document.getElementById('technicalModal').addEventListener('click', function(e) {
-    if (e.target.id === 'technicalModal') {
-      closeTechnicalModal();
-    }
-  });
-</script>
-
-
 </body>
 </html>
