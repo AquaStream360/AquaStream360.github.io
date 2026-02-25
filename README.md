@@ -28,7 +28,7 @@ AquaStream360 offers a broad set of features dedicated for network engineering. 
 - **Comparative Analysis:** Automatically compare multiple network states or scenarios.  
 - **Climate-Informed Analysis and Forecasting:** Incorporates climate and hydrological data (auto-fetched from NASA) to support planning, brings into context the influence of climate in network performance and water consumption, laying a foundation for informed decision-making. Advanced ML-driven simulation capabilities allow users to run "what-if" scenarios by adjusting input weather parameters interactively and receive outputs instantly.  
 - **Advanced Automated Calibration Tool:** Set conditions, run scenarios, and automatically evaluate trends and values that closely match actual network performance.  
-- **Calibrator Tool:** Computational evaluation engine for network modeling. Define operating conditions, simulate scenarios, measure deviations, rank alternatives, and identify optimal configurations. Generates structured, real-time analytical reports, integrating data from multiple modules for network-wide insight.
+- **Calibrator Tool:** Computational evaluation for network modeling. Define operating conditions, simulate scenarios, measure deviations, rank alternatives, and identify optimal configurations. Generates structured, real-time analytical reports, integrating data from multiple modules for network-wide insight.
 
 ---
 
