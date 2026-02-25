@@ -17,7 +17,7 @@ AquaStream360 combines robust manual workflows and automated capabilities, givin
 AquaStream360 offers a broad set of features dedicated for network engineering. A few of these capabilities include:
 
 - **Integrated Modeling & Analysis:** Construct, modify, simulate, and evaluate water networks.  
-- **Automated Network Building:** Generate calibrated hydraulic models from raw structured survey data or several file formats; import attributes for any element from dozens of sources (Excel, CSV, Shapefiles, and more).  
+- **Automated Network Building:** Generate hydraulic models for existing networks from structured survey data or multiple file formats (supports dozens of sources, including Excel, CSV, Shapefiles, and more).
 - **Visualization:** 2D/3D flow animations, advanced animations, pressure maps, graphical analysis, animated flow paths, and animated contaminant movement within the network.  
 - **Water Quality Simulation:** Simulate urban water quality conditions, contaminant propagation, decay, persistence, and transport under varying operational states.  
 - **Contamination Analysis, Tracing & Automated Investigation:** Trace the movement of contaminants through the network, investigate source and spread patterns, evaluate affected zones, assess likely impacts of contamination events, and perform automated analysis to support advanced investigations, scenario-based contamination assessment, and planning against water quality incidents.  
