@@ -62,6 +62,3 @@ This ensures every analysis is visually rich, analytically meaningful, and conte
 
 ---
 
-## Update Policy
-
-AquaStream360 is updated frequently, including new features, refinements, and workflow improvements.
