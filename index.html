@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <meta name="google-site-verification" content="i-5AjW7rr7JahpXmh--39h6sHm5X4fvTQjoqpnqds60" />
 <meta name="google-site-verification"      content="Tu__Gbjsa5rr8qtIcHVsDdUyUIgVS3D18NN859Vf6Q8" />
     <meta charset="UTF-8">
@@ -852,6 +853,7 @@
                 <a href="#download" class="cta-button">Download Beta Version</a>
                 <a href="#gallery" class="secondary-button">View Software Images</a>
                 <a href="#video-demo" class="secondary-button">Watch A Video</a>
+                <button id="technicalDetailsBtn" class="secondary-button">Technical Details</button>
             </div>
         </div>
     </section>
@@ -1343,9 +1345,58 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.disabled = false;
         }, 1500);
     });
-
    
 
+
+  
+
 </script>
+
+
+
+
+    <div id="technicalModal" class="legal-modal">
+    <div class="legal-modal-content" style="max-width: 900px; max-height: 80vh; overflow-y: auto;">
+        <span class="close-legal-modal" onclick="closeTechnicalModal()">&times;</span>
+        <h3>Technical Details</h3>
+        <div id="technicalContent" style="line-height: 1.6; color: #d1d5ff; padding: 10px;">
+        <!-- README content will go here -->
+        </div>
+    </div>
+    </div>
+    
+
+
+    <script>
+  document.getElementById('technicalDetailsBtn').addEventListener('click', function() {
+    const modal = document.getElementById('technicalModal');
+    const content = document.getElementById('technicalContent');
+
+    fetch('README.md')
+    .then(response => response.text())
+    .then(text => {
+        content.innerHTML = marked(text); // converts Markdown to HTML
+    })
+    .catch(err => {
+        content.textContent = "Error loading technical details.";
+        console.error(err);
+    });
+
+    modal.style.display = 'flex';
+  });
+
+ 
+  function closeTechnicalModal() {
+    document.getElementById('technicalModal').style.display = 'none';
+  }
+
+  document.getElementById('technicalModal').addEventListener('click', function(e) {
+    if (e.target.id === 'technicalModal') {
+      closeTechnicalModal();
+    }
+  });
+</script>
+
+
 </body>
 </html>
