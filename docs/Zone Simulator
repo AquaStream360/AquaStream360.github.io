@@ -1,0 +1,2549 @@
+# Zone Simulator - Complete User Manual
+## Master Guide to Boundary Optimization and Analysis in Water Networks
+
+
+# PART 1: GETTING ORIENTED
+
+## 1.1 What Is This Application?
+
+**Zone Simulator** is a tool for water network engineers to control which pipes connect different pressure zones. When you have a water network divided into zones (pressure zones, district metered areas, etc.), the pipes that cross from one zone to another are called **boundary pipes**. 
+
+Your job: Decide which of these boundary pipes should be **OPEN** (allowing water to flow between zones) and which should be **CLOSED** (isolating zones from each other).
+
+**The entire application exists to help you make and visualize these decisions.**
+
+### 1.1.1 Why This Matters
+
+In real water networks:
+- Open boundaries allow water to move between zones
+- Closed boundaries create isolation (for pressure management, water quality, emergencies)
+- Too many open boundaries = zones aren't really separate
+- Too few open boundaries = risk of isolating areas with no backup supply
+
+This tool lets you simulate different configurations before implementing them in the field.
+
+---
+
+## 1.2 The Main Window - What Everything Is
+
+When the application opens, you see this layout:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ [🔽 Filter] [Interactive] [Nodes●] [Links○] [Pressure▼] [📋] [🎨] [❓]    │  ← UPPER TOOLBAR
+├───────────────┬────────────────────────────────────────────────┬─────────────┤
+│               │                                                │             │
+│ LEFT CONTROL  │                                                │ RIGHT PANEL │
+│ PANEL         │           NETWORK VISUALIZATION                │ (Hidden     │
+│               │                                                │  until you  │
+│ • Dashboard   │   • Dark blue = regular pipes                  │  click 📋)  │
+│ • Strategy    │   • Green thick = OPEN boundaries              │             │
+│ • Connection  │   • Red thick = CLOSED boundaries              │ • Sortable  │
+│ • Actions     │   • Colored blobs = zones                      │   table     │
+│               │   • Pink dashed = filtered elements            │ • Export    │
+│               │   • Gold dots = animation                      │   buttons   │
+│               │                                                │ • Row click │
+│               │                                                │   highlights│
+└───────────────┴────────────────────────────────────────────────┴─────────────┘
+```
+
+### 1.2.1 Upper Toolbar Components (Left to Right)
+
+| Component | What It Does |
+|-----------|--------------|
+| **🔽 Filter Elements** | Dropdown menu to highlight specific element types (pipes, pumps, junctions, etc.) in pink dashed lines |
+| **Interactive Links Mode** | Checkbox that enables/disables clicking on pipes to manually open/close them |
+| **Nodes / Links radio** | Switch between viewing node data or link (pipe) data in tables and colormaps |
+| **Attribute dropdown** | Choose which attribute (pressure, flow, diameter, etc.) to display |
+| **📋 Table button** | Opens/closes the right panel with sortable data table |
+| **🎨 Colormap button** | Colors nodes by the selected attribute (blue=low to purple=high) |
+| **❓ Help button** | Opens this guide |
+
+### 1.2.2 Left Control Panel Sections (Top to Bottom)
+
+1. **NETWORK DASHBOARD** - Real-time statistics about your network
+2. **BOUNDARY STRATEGY** - Controls that define what counts as a boundary pipe
+3. **CONNECTION MANAGEMENT** - Controls for automatically selecting which boundaries stay open
+4. **ACTIONS** - Buttons that DO things (simulate, animate, save, etc.)
+
+### 1.2.3 Network Visualization Area
+
+This is where your network is drawn. What you see depends on which layers are active:
+
+**Always present:**
+- Dark blue lines = all pipes in your network
+
+**Conditional (turn on/off):**
+- Green thick lines = OPEN boundary pipes
+- Red thick lines = CLOSED boundary pipes
+- Colored polygons = zone boundaries (each zone different color)
+- Pink dashed lines = filtered/highlighted elements
+- Gold moving dots = flow animation
+- White labels with numbers = flow values on pipes
+- Colored dots at nodes = colormap visualization
+
+### 1.2.4 Right Panel (Hidden Until Opened)
+
+Appears when you click **📋 Table**. Contains:
+- Sort controls for the table
+- Data table with current attribute values
+- Export buttons (CSV and Excel)
+- Click any row to highlight that element on the map
+
+---
+
+## 1.3 Understanding Colors - The Visual Language
+
+The application uses a consistent color coding system:
+
+| Color | What It Represents |
+|-------|---------------------|
+| **Dark Blue (thin)** | Regular pipe (not a boundary between zones) |
+| **Green (thick)** | OPEN boundary pipe - water can flow through |
+| **Red (thick)** | CLOSED boundary pipe - no flow |
+| **Yellow (thick)** | Pipe currently being hovered over (Interactive Mode) |
+| **Pink (dashed)** | Filtered/highlighted elements (from Filter menu) |
+| **Gold dots** | Animation showing flow direction and movement |
+| **Zone polygon colors** | Different colors = different zones (user-defined) |
+| **Colored nodes** | Colormap values (blue=lowest, purple=highest) |
+
+**Important:** Green and red ONLY appear on pipes that are boundaries. Regular pipes (not between zones) stay dark blue regardless.
+
+---
+
+# PART 2: CORE CONCEPTS
+
+## 2.1 What Is a Boundary Pipe?
+
+A **boundary pipe** is any pipe that connects two different zones OR connects a zone to an unassigned area.
+
+### 2.1.1 Examples
+
+```
+Scenario 1: Pipe between Zone A and Zone B
+[Zone A] -----pipe----- [Zone B]  →  This IS a boundary pipe
+
+Scenario 2: Pipe within Zone A
+[Zone A] -----pipe----- [Zone A]  →  NOT a boundary pipe
+
+Scenario 3: Pipe from Zone A to unassigned area
+[Zone A] -----pipe----- [No Zone] →  IS a boundary IF you've checked "Include outside"
+                                    NOT a boundary IF unchecked
+```
+
+### 2.1.2 Why This Matters
+
+Only boundary pipes can be opened or closed. Regular pipes (within zones) are always open and cannot be changed in this tool. The application only lets you control the connections BETWEEN zones.
+
+---
+
+## 2.2 Open vs Closed - What It Means
+
+**Open boundary (green)** = Water can flow through this pipe between zones
+**Closed boundary (red)** = No flow through this pipe (hydraulically isolated)
+
+When you change a pipe from green to red, you're telling the simulation: "Treat this pipe as closed." When you change from red to green: "This pipe is now open."
+
+### 2.2.1 What Happens When You Close a Boundary
+
+1. That specific pipe no longer carries flow between zones
+2. Water must find alternative paths (if any exist)
+3. If you close ALL boundaries between two zones, those zones become completely isolated from each other
+4. Pressures and flows throughout the network may change
+
+---
+
+## 2.3 The Two Ways to Control Boundaries
+
+You can control boundaries in TWO completely different ways. Understand both.
+
+### 2.3.1 Method 1: Manual Control (Interactive Mode)
+
+You click directly on pipes to toggle them open/closed.
+
+**How to use:**
+1. Check **"Interactive Links Mode"** in the upper toolbar
+2. Hover over any pipe to see its name and current value
+3. Click a GREEN pipe → turns RED (closed)
+4. Click a RED pipe → turns GREEN (open)
+5. Click a DARK BLUE pipe → shows attribute popup (not a boundary, can't toggle)
+
+**Best for:** Fine-tuning, testing specific pipes, overriding automatic selections
+
+### 2.3.2 Method 2: Automatic Selection (Control Panel)
+
+You set rules, and the computer automatically selects which pipes to open.
+
+**How to use:**
+1. Configure **Boundary Strategy** (what counts as a boundary)
+2. Configure **Connection Management** (how to choose which ones open)
+3. The application applies your rules to EVERY zone pair
+4. Changes happen instantly when you modify controls
+
+**Best for:** Systematic analysis, optimization, ensuring consistency
+
+### 2.3.3 They Work Together
+
+You can:
+- Use automatic selection to get a baseline configuration
+- Switch to Interactive Mode to manually override specific pipes
+- The dashboard updates in real-time as you make changes
+
+---
+
+## 2.4 The Selection Algorithm - How Automatic Choice Works
+
+When you use automatic selection, here's EXACTLY what happens:
+
+```
+STEP 1: Identify ALL boundary pipes based on your strategy settings
+        (include outside? include valves? include pumps?)
+
+STEP 2: Group these pipes by zone pair
+        (all pipes between ZoneA and ZoneB go together)
+        (all pipes between ZoneA and ZoneC go together)
+        (all pipes between ZoneB and ZoneC go together)
+        etc.
+
+STEP 3: For EACH group (each zone pair):
+        
+        a) Sort the pipes by your selected attribute
+           - If "Highest": largest values first
+           - If "Lowest": smallest values first
+        
+        b) Take the top N pipes (N = your spin box value)
+           - If N=1: take the single best pipe
+           - If N=2: take the two best pipes
+           - If N=0: take none (close all)
+        
+        c) Mark these pipes to be OPEN
+        
+        d) Mark ALL OTHER pipes in this group to be CLOSED
+
+STEP 4: Apply all changes at once
+        (green = marked open, red = marked closed)
+```
+
+### 2.4.1 Concrete Example
+
+**Zone Pair: "Downtown" and "Uptown"**  
+**Your settings:** Keep 2 connections, prioritize by Diameter (Highest)
+
+Available pipes between these zones:
+
+| Pipe Name | Diameter (mm) | Current Status |
+|-----------|---------------|----------------|
+| P-101 | 300 | ? |
+| P-102 | 250 | ? |
+| P-103 | 400 | ? |
+| P-104 | 150 | ? |
+
+**Step 1: Sort by Diameter (Highest first)**
+1. P-103 (400mm) - BEST
+2. P-101 (300mm) - 2nd BEST
+3. P-102 (250mm) - 3rd
+4. P-104 (150mm) - 4th
+
+**Step 2: Take top 2**
+- P-103 = OPEN
+- P-101 = OPEN
+- P-102 = CLOSED
+- P-104 = CLOSED
+
+**Result:** You keep the two largest diameter pipes, close the smaller ones.
+
+### 2.4.2 If You Selected "Lowest" Instead
+
+**Sort by Diameter (Lowest first):**
+1. P-104 (150mm) - BEST (smallest)
+2. P-102 (250mm) - 2nd BEST
+3. P-101 (300mm) - 3rd
+4. P-103 (400mm) - 4th
+
+**Take top 2:**
+- P-104 = OPEN
+- P-102 = OPEN
+- P-101 = CLOSED
+- P-103 = CLOSED
+
+**Result:** You keep the two smallest diameter pipes.
+
+### 2.4.3 Key Insight
+
+The selection happens INDEPENDENTLY for each zone pair. If you have 5 zone pairs and set "keep 2 connections," you'll end up with up to 10 open boundaries total (2 per pair), not 2 total across the whole network.
+
+---
+
+# PART 3: DETAILED CONTROL PANEL REFERENCE
+
+## 3.1 NETWORK DASHBOARD
+
+This section shows real-time statistics. It updates automatically whenever you change anything.
+
+### 3.1.1 What Each Number Tells You
+
+```
+NETWORK METRICS
+• Total Pipes:      1,247     ← All pipes in your model (including non-boundaries)
+• Boundary Pipes:   86        ← Pipes identified as boundaries (can be opened/closed)
+  ├─ Zone↔Zone:     62        ← Boundaries between two named zones
+  └─ Zone↔Outside:  24        ← Boundaries connecting a zone to unassigned area
+
+CONNECTIVITY
+• Zone Pairs:       8         ← Unique combinations of zones (ZoneA|ZoneB, ZoneA|ZoneC, etc.)
+• Avg Connections:  10.75     ← Average open boundaries per zone pair (86 ÷ 8 = 10.75)
+• Redundancy:       High      ← Interpretation: <1.5=Low, 1.5-3=Medium, >3=High
+
+NODE DISTRIBUTION
+• Inside Zones:     845       ← Nodes located within drawn zone polygons
+• Outside Zones:    203       ← Nodes not in any zone
+```
+
+### 3.1.2 How to Use This Information
+
+**High redundancy (>3 avg)** : You have many connections between zones. You can probably close some without causing isolation problems.
+
+**Low redundancy (<1.5 avg)** : Zones are barely connected. Be careful closing boundaries - you might completely isolate a zone.
+
+**Many outside nodes**: Consider whether you should include outside boundaries (check that box) or ignore them.
+
+**Zone↔Zone vs Zone↔Outside**: If you have many outside connections but have them excluded, you're not seeing the full picture.
+
+---
+
+## 3.2 BOUNDARY STRATEGY - Four Critical Checkboxes
+
+These four checkboxes determine what even COUNTS as a boundary pipe. Get these wrong and you'll be working with the wrong set of pipes.
+
+### 3.2.1 "Include boundaries with unassigned areas"
+
+**What it does:**
+- **UNCHECKED (default)** : Only pipes with BOTH ends in defined zones count as boundaries
+- **CHECKED**: Also counts pipes with ONE end in a zone and ONE end in unassigned area
+
+**Visual representation:**
+```
+UNCHECKED:
+Zone A ──── Zone B  →  ✓ Boundary
+Zone A ──── Zone A  →  ✗ Not boundary (same zone)
+Zone A ──── Outside →  ✗ Not boundary (ignored)
+
+CHECKED:
+Zone A ──── Zone B  →  ✓ Boundary
+Zone A ──── Zone A  →  ✗ Not boundary (same zone)
+Zone A ──── Outside →  ✓ Now a boundary
+Zone B ──── Outside →  ✓ Now a boundary
+```
+
+**When to check:**
+- You want complete hydraulic isolation analysis
+- Your network has significant peripheral areas
+- You're studying how zones connect to the rest of the system
+
+**When to uncheck:**
+- You only care about inter-zone connections
+- Outside areas are irrelevant to your study
+- You want to simplify and focus on core zone interactions
+
+**Real-world example:** A city with defined pressure zones but also outlying areas. Checked = including pipes to the outskirts. Unchecked = only pipes between downtown zones.
+
+### 3.2.2 "Show zone boundaries on map"
+
+**What it does:**
+- Toggles the colored zone polygons ON/OFF
+- Does NOT affect boundary identification, only visualization
+
+**When to check (show polygons):**
+- You're learning the zone layout
+- You need to see which zone is which
+- You're presenting to someone unfamiliar with the zones
+
+**When to uncheck (hide polygons):**
+- You're focused on pipe details
+- Polygons are obscuring small pipes
+- You're using animation (animations look cleaner without polygons)
+- You're using colormap (node colors show better without polygons underneath)
+
+### 3.2.3 "Hide closed boundaries"
+
+**What it does:**
+- **UNCHECKED**: Shows ALL boundaries (green=open, red=closed)
+- **CHECKED**: Shows ONLY open boundaries (green), hides all red pipes completely
+
+**Visual comparison:**
+```
+UNCHECKED (Show everything):     CHECKED (Hide closed):
+[Green]──Open    Visible         [Green]──Open    Visible
+[Red]────Closed  Visible         [Red]────Closed  INVISIBLE
+[Green]──Open    Visible         [Green]──Open    Visible
+[Red]────Closed  Visible         [Red]────Closed  INVISIBLE
+```
+
+**When to uncheck (show all):**
+- You need to see where closed boundaries ARE
+- You're reviewing your work
+- You want the complete picture
+
+**When to check (hide closed):**
+- You only care about what's STILL open
+- You want to de-clutter the view
+- You're checking if any connections remain between zones
+- You're using Interactive Mode and only want to see available open pipes
+
+**Power user tip:** Use this with Interactive Mode. Hide closed boundaries, then click the remaining green pipes to close them one by one. As you close each pipe, it disappears from view - giving you instant visual feedback that you've eliminated that connection.
+
+### 3.2.4 "Reset before applying"
+
+**What it does:**
+- **CHECKED**: Before applying new automatic selections, CLOSE ALL boundaries first, THEN open the newly selected ones
+- **UNCHECKED**: Keep current open boundaries, ADD newly selected ones to them
+
+**When to check (reset first):**
+- You want a clean slate
+- You're experimenting with different strategies
+- You want to ensure results are ONLY from current settings
+
+**When to uncheck (preserve existing):**
+- You've manually opened some pipes you want to keep
+- You're building up connections incrementally
+- You want to ADD to current configuration, not replace it
+
+**Example:** You manually opened 3 pipes. Then you set automatic to keep 2 per pair.
+- If CHECKED: Your 3 manual opens get CLOSED, only automatic selections remain
+- If UNCHECKED: Your 3 manual opens stay OPEN, automatic selections ADD to them
+
+---
+
+## 3.3 CONNECTION MANAGEMENT - Automatic Selection Controls
+
+This section is where you tell the computer HOW to choose which boundaries stay open.
+
+### 3.3.1 "Open connections between zone pair" Spin Box
+
+**What it does:** Sets how many pipes to keep OPEN for EACH zone pair
+
+**Values:**
+- **0**: Close ALL boundaries between zones (complete isolation)
+- **1**: Keep ONE pipe open between each zone pair (minimal connection)
+- **2**: Keep TWO pipes open (redundancy)
+- **3+**: Keep multiple pipes open (high redundancy)
+
+**The label underneath** changes to tell you what your setting means:
+- 0 → "Complete isolation"
+- 1 → "Single connection"
+- 2+ → "X connections (redundant)"
+
+**Important:** This is PER ZONE PAIR, not total. If you have 5 zone pairs and set to 2, you'll have up to 10 open boundaries.
+
+### 3.3.2 Link Type Filters (Pipes/Valves/Pumps)
+
+**What they do:** Determine which types of links can be considered boundaries
+
+**Each checkbox:**
+- **Pipes**: Standard pipelines (usually checked)
+- **Valves**: Control valves (usually checked)
+- **Pumps**: Pump stations (sometimes unchecked)
+
+**Why you might uncheck pumps:**
+- Pump stations are expensive to turn off/on
+- Pumps may be critical and shouldn't be considered for closing
+- You want to analyze pipe-only connections
+
+**Why you might uncheck valves:**
+- Valves are easier to operate than pipe closure
+- You're only interested in permanent boundary pipes
+
+**How it works:** The application identifies boundaries ONLY from checked types. If a pipe is a boundary but you have "Pumps" unchecked and it's a pump, it won't appear as a boundary at all.
+
+### 3.3.3 "Prioritize by" Dropdown
+
+**What it does:** Selects which attribute to use when sorting pipes for selection
+
+**Options include (depends on your network data):**
+- **length** - Physical pipe length
+- **diameter** - Pipe diameter
+- **roughness** - Pipe roughness coefficient  
+- **flowrate** - Flow through pipe (after simulation)
+- **velocity** - Flow velocity
+- **headloss** - Energy loss
+- And any other numeric attributes in your model
+
+**Important:** Only attributes with numeric data appear. If an attribute has all missing values, it won't be in the list.
+
+### 3.3.4 Highest/Lowest Buttons
+
+**What they do:** Determine whether you keep pipes with the LARGEST values or SMALLEST values
+
+**Highest button:**
+- Keeps pipes with BIG numbers
+- Examples: largest diameter, longest length, fastest flow
+
+**Lowest button:**
+- Keeps pipes with SMALL numbers
+- Examples: smallest diameter, shortest length, slowest flow
+
+**Why choose one over the other:**
+
+| If you prioritize by... | And choose Highest... | And choose Lowest... |
+|-------------------------|----------------------|----------------------|
+| Diameter | You keep the biggest pipes (main feeders) | You keep the smallest pipes (service connections) |
+| Length | You keep the longest pipes (major crossings) | You keep the shortest pipes (direct connections) |
+| Flow | You keep the busiest pipes | You keep the quietest pipes |
+| Velocity | You keep the fastest pipes | You keep the slowest pipes |
+| Headloss | You keep pipes with most energy loss | You keep efficient pipes (low loss) |
+
+### 3.3.5 Complete Selection Example
+
+Let's walk through a complete scenario:
+
+**Your network has:**
+- 3 zones: North, South, East
+- Various boundary pipes between them
+
+**Your settings:**
+- "Include outside" = CHECKED
+- Link types = All checked
+- Open connections = 2
+- Prioritize by = diameter
+- Selection = Highest
+- Reset before applying = CHECKED
+
+**What happens:**
+
+```
+Step 1: Identify ALL boundaries
+        - Pipes between North-South
+        - Pipes between North-East
+        - Pipes between South-East
+        - Pipes from North to outside
+        - Pipes from South to outside
+        - Pipes from East to outside
+
+Step 2: For North-South pair:
+        - List all boundary pipes between them
+        - Sort by diameter (largest first)
+        - Take top 2 → mark OPEN
+        - All others → mark CLOSED
+
+Step 3: For North-East pair:
+        - Same process, independent
+        - Top 2 by diameter → OPEN
+        - Rest CLOSED
+
+Step 4: For South-East pair:
+        - Same process
+
+Step 5: For North-Outside:
+        - Same process (outside treated as a "zone" for grouping)
+
+Step 6: For South-Outside:
+        - Same process
+
+Step 7: For East-Outside:
+        - Same process
+
+Step 8: Apply all changes
+        - Close everything first (because Reset checked)
+        - Then open the selected ones
+```
+
+**Result:** Each zone pair (including outside) has exactly 2 open boundaries, specifically the 2 largest diameter pipes for that pair. All other boundaries are closed.
+
+---
+
+## 3.4 ACTION BUTTONS - What They Actually Do
+
+### 3.4.1 Primary Actions
+
+**"Open all" button**
+- **What it does:** Sets EVERY boundary pipe to OPEN (green)
+- **When to use:** Starting point, want maximum connectivity, resetting to baseline
+- **Effect on dashboard:** Open count = total boundaries
+
+**"Close all (Boundaries)" button**
+- **What it does:** Sets EVERY boundary pipe to CLOSED (red)
+- **When to use:** Testing complete isolation, starting fresh for automatic selection
+- **Effect on dashboard:** Open count = 0
+
+### 3.4.2 Secondary Actions
+
+**"⚡ Simulate" button**
+- **What it does:** Runs EPANET hydraulic simulation with current boundary settings
+- **What happens behind the scenes:**
+  1. Takes current open/closed configuration
+  2. Runs full hydraulic analysis
+  3. Calculates flows, pressures, velocities, etc.
+  4. Stores results in node_attributes and link_attributes
+  5. Updates flow values for animation
+  6. Populates tables and colormap data
+- **When to click:** 
+  - Immediately after loading (first thing you should do)
+  - After any significant boundary changes
+  - Before exporting data or creating reports
+  - Before animation (animation needs flow data)
+- **If simulation fails:** Falls back to random flows (still works for visualization)
+
+**"▶️ Animate" button**
+- **What it does:** Starts/stops flow animation on open boundaries
+- **What you see:**
+  - Gold dots appear on green (open) pipes
+  - Dots move along pipe in flow direction
+  - Speed is optimized for visibility
+  - Dots wrap around (reach end, reappear at start)
+  - Direction = positive flow (forward), negative flow (backward)
+- **What happens when you click:**
+  - First click: Animation starts
+  - Second click: Animation stops, dots disappear
+- **Important behavior:**
+  - Animation automatically stops if you change boundaries
+  - Zone polygons temporarily hide during animation (for clarity)
+  - Only open boundaries show animation
+  - Zero-flow pipes have stationary or no dots
+
+**"💧 Show Boundary Flow Values" button**
+- **What it does:** Toggles numeric flow labels on/off for open boundaries
+- **What you see:**
+  - White labels with black text appear at pipe midpoints
+  - Format: "0.1234 m³/s" (units from your model)
+  - Only appears on GREEN (open) boundaries
+- **Click behavior:**
+  - First click: Labels appear
+  - Second click: Labels disappear
+  - Button text toggles between "Show" and "Remove"
+- **When to use:**
+  - Need exact flow numbers for reporting
+  - Want to compare flows visually
+  - Before exporting data to verify values
+
+**"💾 Save" button**
+- **What it does:** Saves current boundary configuration and closes window
+- **What gets saved:** Which pipes are open vs closed
+- **What happens after:** Returns to main application with your settings
+- **When to click:** You're done and want to keep your work
+
+**"❌ Cancel" button**
+- **What it does:** Closes window WITHOUT saving
+- **What gets discarded:** All open/closed changes you made
+- **When to click:** You changed your mind, made a mistake, want to start over
+
+---
+
+# PART 4: UPPER TOOLBAR IN DETAIL
+
+## 4.1 "🔽 Filter Elements" Dropdown Menu
+
+This menu lets you highlight specific element types.
+
+### 4.1.1 Menu Structure
+
+```
+┌─────────────────────────────┐
+│ 🔗 Link Types               │ ← Section header (not clickable)
+│   🚰 Pipes                  │ ← Click to highlight pipes
+│   ⚡ Pumps                  │ ← Click to highlight pumps
+│   🔧 Valves                 │ ← Click to highlight valves
+├─────────────────────────────┤
+│ ⬤ Node Types                │ ← Section header
+│   ⬤ Junctions              │ ← Click to highlight junctions
+│   🌊 Reservoirs             │ ← Click to highlight reservoirs
+│   🏭 Tanks                  │ ← Click to highlight tanks
+├─────────────────────────────┤
+│ ✕ Clear All Filters         │ ← Click to remove highlighting
+└─────────────────────────────┘
+```
+
+### 4.1.2 What Happens When You Select
+
+1. The selected element type appears as **pink dashed lines**
+2. Only ONE type can be highlighted at a time (selecting new one clears previous)
+3. "Clear All Filters" removes all pink highlighting
+4. If no elements of that type exist, you get a message: "No X in network"
+
+### 4.1.3 Use Cases
+
+**Highlight pipes:** See all pipelines at once
+**Highlight pumps:** Quickly locate pump stations
+**Highlight valves:** Find control valves
+**Highlight junctions:** See all connection points
+**Highlight reservoirs:** Identify water sources
+**Highlight tanks:** Find storage facilities
+
+### 4.1.4 Important Notes
+
+- Filtering is ONLY visual - doesn't affect boundaries or selections
+- Pink dashed lines appear ON TOP of regular network
+- Works even with other layers active
+- Great for orientation in large networks
+
+---
+
+## 4.2 "Interactive Links Mode" Checkbox
+
+This enables/disables direct manipulation of the network.
+
+### 4.2.1 When CHECKED (ON)
+
+**Mouse hover:**
+- Move mouse over any pipe
+- Pipe highlights in YELLOW
+- Status bar (bottom-ish) shows: "PipeName: CurrentValue Units"
+- If boundary: also shows current status (open/closed)
+
+**Mouse click:**
+- Click on GREEN pipe → turns RED (closed)
+- Click on RED pipe → turns GREEN (open)
+- Click on DARK BLUE pipe → popup appears with ALL attributes for that pipe
+- Dashboard updates instantly
+
+**Visual feedback:**
+- Yellow highlight on hover
+- Immediate color change on click
+- Status bar updates
+
+### 4.2.2 When UNCHECKED (OFF)
+
+- Hover does nothing (no yellow highlight)
+- Click does nothing
+- Status bar empty
+
+### 4.2.3 Power User Techniques
+
+**Technique 1: Manual override**
+1. Run automatic selection to get baseline
+2. Turn on Interactive Mode
+3. Click specific pipes you want to override
+4. Automatic selections remain, but your clicks take precedence
+
+**Technique 2: Progressive closing**
+1. Check "Hide closed boundaries"
+2. Turn on Interactive Mode
+3. Click green pipes one by one
+4. Each click makes pipe disappear (since it's now closed and hidden)
+5. Continue until desired configuration
+
+**Technique 3: Network exploration**
+1. Turn on Interactive Mode
+2. Hover to identify pipes
+3. Click non-boundary pipes to see their attributes
+4. Learn your network without changing anything
+
+---
+
+## 4.3 Nodes/Links Radio Buttons
+
+These determine what kind of data you're viewing in tables and colormaps.
+
+**"Nodes" selected:**
+- Tables show node data (junctions, reservoirs, tanks)
+- Colormap colors NODES
+- Row clicks highlight NODES on map
+
+**"Links" selected:**
+- Tables show link data (pipes, pumps, valves)
+- Colormap (coming soon) will color LINKS
+- Row clicks highlight LINKS on map
+
+---
+
+## 4.4 Attribute Dropdown
+
+Selects which attribute to display in tables and colormaps.
+
+**Options come from:**
+- Node attributes (if Nodes selected)
+- Link attributes (if Links selected)
+- Populated by simulation results
+
+**Common attributes:**
+- pressure
+- demand
+- elevation
+- flowrate
+- velocity
+- headloss
+- diameter
+- length
+
+**If empty:** Run simulation (⚡ Simulate) to generate data
+
+---
+
+## 4.5 "📋 Table" Button
+
+Opens/closes the right panel with sortable data table.
+
+### 4.5.1 When You First Click
+
+1. Right panel slides open
+2. Table appears with current attribute data
+3. Sort controls become visible
+4. Export buttons enable
+
+### 4.5.2 Table Features
+
+**Sorting:**
+- Click column headers to sort ascending/descending
+- OR use "Sort by" dropdown and Ascending/Descending radios
+- Sorted instantly
+
+**Row interaction:**
+- Click any row → that element highlights on map
+- Node highlight: yellow dot with label
+- Link highlight: pink dashed line with label
+- Helps you find specific elements
+
+**Data display:**
+- Alternating row colors
+- Negative values in red (useful for flow direction)
+- Column widths auto-adjust
+- Last column stretches to fill
+
+### 4.5.3 Export Buttons
+
+**"📥 Export CSV"**
+- Saves table as comma-separated values file
+- Opens file dialog to choose location
+- Compatible with Excel, Python, any data tool
+- Filename defaults to attribute name
+
+**"📊 Export Excel"**
+- Saves as Excel spreadsheet
+- Requires openpyxl (install if missing)
+- Formatted with headers and data
+- Opens in Excel directly
+
+### 4.5.4 Closing the Table
+
+- Click "📋 Table" again
+- OR click "Hide Table" button that appears
+- Panel closes, data cleared
+
+---
+
+## 4.6 "🎨 Colormap" Button
+
+Colors nodes by selected attribute value.
+
+### 4.6.1 How It Works
+
+1. Takes current attribute (from dropdown)
+2. Divides values into 5 equal ranges (quantiles)
+3. Assigns color to each node based on its range
+4. Displays colored nodes on map
+5. Opens legend popup showing ranges
+
+### 4.6.2 Color Scale
+
+| Range | Color | Meaning |
+|-------|-------|---------|
+| 0-20% | Blue | Lowest values |
+| 20-40% | Orange | Low-medium |
+| 40-60% | Green | Medium |
+| 60-80% | Red | High-medium |
+| 80-100% | Purple | Highest values |
+
+### 4.6.3 Legend Popup
+
+When you apply colormap, a separate window appears showing:
+- Attribute name
+- Exact value ranges for each color
+- Units of measurement
+
+The popup:
+- Positions itself to the right of main window
+- Can be moved/resized
+- Closing it removes the colormap
+
+### 4.6.4 Interactive Colormap
+
+If Interactive Mode is ON:
+- Hover over colored nodes → popup shows exact value
+- Great for identifying specific high/low points
+
+### 4.6.5 When to Use
+
+**Pressure colormap:** Spot low-pressure areas (blue) vs high-pressure (purple)
+**Demand colormap:** Identify high-consumption nodes
+**Elevation colormap:** Understand terrain effects
+**Flow colormap:** See which nodes have high flow
+
+### 4.6.6 Clearing Colormap
+
+- Close the legend popup
+- OR apply another colormap (replaces previous)
+- OR click 🎨 again with different attribute
+
+---
+
+## 4.7 "❓ Help" Button
+
+Opens this guide. You're reading it now.
+
+---
+
+# PART 5: INTERACTIVE MODE DEEP DIVE
+
+## 5.1 Complete Description of Interactive Behavior
+
+When you check "Interactive Links Mode," the application changes fundamentally.
+
+### 5.1.1 Mouse Hover - Detailed
+
+**What happens:**
+1. Mouse position tracked continuously
+2. Application calculates distance to every pipe midpoint
+3. Finds closest pipe
+4. If within threshold (2% of view width), highlights it YELLOW
+5. Updates status bar with pipe information
+
+**Status bar format:**
+- For boundary pipes: "PipeName (Boundary) - Current Status - Value Units"
+- For regular pipes: "PipeName - Value Units"
+- If no attribute: just pipe name
+
+**Visual feedback:**
+- Yellow line appears (thicker than normal)
+- Overrides any other coloring temporarily
+- Disappears when mouse moves away
+
+### 5.1.2 Mouse Click - Detailed
+
+**Case 1: Click on GREEN boundary pipe**
+1. Pipe status toggles to CLOSED
+2. Color changes from green to red
+3. Dashboard updates (open count decreases)
+4. If "Hide closed boundaries" is checked, pipe disappears
+5. Animation stops (if running)
+
+**Case 2: Click on RED boundary pipe**
+1. Pipe status toggles to OPEN
+2. Color changes from red to green
+3. Dashboard updates (open count increases)
+4. If previously hidden, reappears
+5. Animation stops (if running)
+
+**Case 3: Click on DARK BLUE pipe (non-boundary)**
+1. Popup dialog appears
+2. Shows ALL available attributes for that pipe
+3. Includes data from simulation if available
+4. Useful for inspection without changes
+
+**Case 4: Click on empty space**
+- Nothing happens
+
+### 5.1.3 Real-time Updates
+
+Every click triggers:
+- Dashboard statistics refresh
+- Open count recalculates
+- Zone pair counts update
+- Redundancy indicator updates
+- Visualization redraws if needed
+
+---
+
+## 5.2 Interactive Mode Strategies
+
+### 5.2.1 Strategy: Progressive Isolation
+
+**Goal:** Gradually reduce connections until reaching target
+
+**Steps:**
+1. Start with "Open all" (all green)
+2. Check "Hide closed boundaries" (see only open)
+3. Turn on Interactive Mode
+4. Click green pipes one by one
+5. Each click makes pipe disappear
+6. Watch dashboard open count decrease
+7. Stop when reaching desired number
+
+**Advantage:** Visual focus on remaining open pipes only
+
+### 5.2.2 Strategy: Selective Override
+
+**Goal:** Keep automatic selection but override specific pipes
+
+**Steps:**
+1. Configure automatic selection (attributes, rules)
+2. Let it apply (opens/closes pipes)
+3. Turn on Interactive Mode
+4. Click any pipe you disagree with to toggle it
+5. Your manual changes persist
+6. Can continue adjusting automatic settings later
+
+**Advantage:** Best of both worlds - systematic plus manual fine-tuning
+
+### 5.2.3 Strategy: Network Exploration
+
+**Goal:** Learn your network
+
+**Steps:**
+1. Turn on Interactive Mode
+2. Hover over pipes to identify them
+3. Click non-boundary pipes to see their data
+4. Use with colormap to see attribute distributions
+5. Click table rows to locate elements
+
+**Advantage:** No changes made, pure inspection
+
+---
+
+## 5.3 Interactive Mode Limitations
+
+- Only boundary pipes can be toggled
+- Clicks on regular pipes only show info
+- Changes lost if not saved
+- Animation resets when clicking
+- Hover only works within view (not on hidden pipes)
+
+---
+
+# PART 6: VISUALIZATION LAYERS MANAGEMENT
+
+## 6.1 Complete Layer Reference
+
+| Layer | Visual | Control | Default |
+|-------|--------|---------|---------|
+| Base network | Dark blue lines | Always on | Always on |
+| Zone polygons | Colored blobs | "Show zone boundaries" | On |
+| Open boundaries | Green thick lines | Automatic when boundaries exist | On |
+| Closed boundaries | Red thick lines | "Hide closed boundaries" | On |
+| Hover | Yellow thick line | Interactive Mode | Off |
+| Filter highlight | Pink dashed | Filter menu | Off |
+| Animation | Gold dots | "Animate" button | Off |
+| Flow labels | White text boxes | "Show Flow Values" | Off |
+| Colormap | Colored nodes | "Colormap" button | Off |
+| Selection highlight | Yellow dot/label | Table row click | Off |
+
+## 6.2 Layer Interactions
+
+### 6.2.1 What Overrides What
+
+When multiple layers compete for the same pipe:
+
+**Priority order (highest to lowest):**
+1. Hover (yellow) - temporary, overrides everything
+2. Filter highlight (pink) - overrides boundary colors
+3. Animation dots - appear on top of lines
+4. Boundary colors (green/red) - normal state
+5. Base network (dark blue) - default
+
+### 6.2.2 What Hides What
+
+**When "Hide closed boundaries" is ON:**
+- Red pipes completely invisible
+- They don't appear in hover detection
+- They don't count for hover (can't hover what you can't see)
+
+**When zone polygons are OFF:**
+- Colored blobs disappear
+- Zone boundaries still exist logically
+- Zone labels also disappear
+
+**During animation:**
+- Zone polygons auto-hide (cleaner view)
+- Returns when animation stops
+
+### 6.2.3 Layer Combinations That Work Well
+
+**Combination 1: Full analysis view**
+- Base network
+- Zone polygons (ON)
+- Boundaries (both colors, show all)
+- Flow labels (OFF)
+- Animation (OFF)
+- Colormap (OFF)
+
+**Combination 2: Clean flow view**
+- Base network
+- Zone polygons (OFF)
+- Boundaries (hide closed = ON)
+- Animation (ON)
+- Flow labels (OFF)
+- Colormap (OFF)
+
+**Combination 3: Data exploration**
+- Base network
+- Zone polygons (OFF)
+- Boundaries (hide closed = ON or OFF as needed)
+- Animation (OFF)
+- Flow labels (ON)
+- Colormap (ON)
+
+**Combination 4: Element hunting**
+- Base network
+- Zone polygons (OFF)
+- Boundaries (OFF via hide all? not possible)
+- Filter highlight (ON)
+- All others OFF
+
+---
+
+## 6.3 Layer Management Best Practices
+
+### 6.3.1 Start Simple
+
+Begin with only:
+- Base network
+- Zone polygons
+- Boundaries (both colors)
+
+Add layers only as needed.
+
+### 6.3.2 One Dynamic Layer at a Time
+
+Avoid having multiple moving/changing layers simultaneously:
+- Don't run animation with flow labels (too cluttered)
+- Don't run animation with colormap (competing attention)
+- Don't use filter highlight with hover (pink vs yellow confusion)
+
+### 6.3.3 Use "Hide Closed Boundaries" Strategically
+
+- ON when you want to see only active connections
+- OFF when you need to locate closed pipes
+- Toggle back and forth to compare
+
+### 6.3.4 Clear Filters When Done
+
+Pink dashed lines persist until cleared. Use "Clear All Filters" when you're done with element hunting.
+
+---
+
+# PART 7: STEP-BY-STEP WORKFLOWS
+
+## 7.1 Workflow: Initial Setup and First Look
+
+**Goal:** Understand your network before making changes
+
+```
+Step 1: Run simulation
+    ↓
+    Click ⚡ Simulate
+    ↓
+    Wait for completion (may take a few seconds)
+    ↓
+    (If fails, you'll get random flows - still workable)
+
+Step 2: Review dashboard
+    ↓
+    Look at left panel top
+    ↓
+    Note total boundaries, zone pairs
+    ↓
+    Check redundancy level
+
+Step 3: Orient yourself
+    ↓
+    Zone polygons should be ON (default)
+    ↓
+    Identify each zone color
+    ↓
+    Note which zones are adjacent
+
+Step 4: Examine boundaries
+    ↓
+    Green and red lines are boundaries
+    ↓
+    Count roughly how many between each zone
+    ↓
+    Compare to dashboard numbers
+
+Step 5: Check some values
+    ↓
+    Turn on Interactive Mode
+    ↓
+    Hover over boundaries to see flows
+    ↓
+    Click a few non-boundary pipes to see attributes
+
+Step 6: Initial assessment complete
+    ↓
+    You now understand your network
+    ↓
+    Ready to start modifying
+```
+
+## 7.2 Workflow: Automatic Selection Optimization
+
+**Goal:** Find optimal number of connections per zone pair
+
+```
+Step 1: Set baseline
+    ↓
+    Click "Close all" (start from zero)
+    ↓
+    Verify open count = 0
+
+Step 2: Choose your priority
+    ↓
+    Decide what matters: diameter? length? flow?
+    ↓
+    Select that attribute from dropdown
+    ↓
+    Choose Highest or Lowest
+
+Step 3: Start with minimal connections
+    ↓
+    Set spin box to 1
+    ↓
+    Watch what happens
+    ↓
+    See which pipes open (green)
+
+Step 4: Check redundancy
+    ↓
+    Look at dashboard "Avg Connections"
+    ↓
+    Currently = 1.0
+    ↓
+    Note zone pairs count
+
+Step 5: Increment
+    ↓
+    Increase to 2
+    ↓
+    Watch new pipes appear
+    ↓
+    Avg Connections now = 2.0
+
+Step 6: Continue incrementing
+    ↓
+    Try 3, 4, etc.
+    ↓
+    Observe which pipes added at each step
+    ↓
+    Note when no more boundaries available for some pairs
+
+Step 7: Evaluate each level
+    ↓
+    At each step, ask:
+    - Is this enough redundancy?
+    - Are important pipes included?
+    - Any problematic pipes still open?
+
+Step 8: Make final choice
+    ↓
+    Select the number that works best
+    ↓
+    May combine with manual overrides next
+```
+
+## 7.3 Workflow: Manual Fine-Tuning After Automatic
+
+**Goal:** Adjust automatic results with manual overrides
+
+```
+Step 1: Run automatic selection
+    ↓
+    Configure and apply your chosen settings
+    ↓
+    Let it open/close boundaries
+
+Step 2: Review results
+    ↓
+    Look at the pattern
+    ↓
+    Identify any pipes you disagree with
+
+Step 3: Enable Interactive Mode
+    ↓
+    Check "Interactive Links Mode"
+
+Step 4: Make overrides
+    ↓
+    Find a pipe you want to close (green but shouldn't be)
+    ↓
+    Click it → turns red
+    ↓
+    Find a pipe you want to open (red but should be)
+    ↓
+    Click it → turns green
+
+Step 5: Verify changes
+    ↓
+    Dashboard updates automatically
+    ↓
+    Check new open count
+    ↓
+    Ensure no zone pair dropped to zero
+
+Step 6: Run simulation again (optional)
+    ↓
+    Click ⚡ Simulate
+    ↓
+    See how flows changed with your overrides
+
+Step 7: Animate to verify
+    ↓
+    Click ▶️ Animate
+    ↓
+    Watch flow directions
+    ↓
+    Ensure everything makes sense
+
+Step 8: Save if satisfied
+    ↓
+    Click 💾 Save
+```
+
+## 7.4 Workflow: Complete Isolation Testing
+
+**Goal:** Test what happens if zones are completely separated
+
+```
+Step 1: Save current configuration (optional)
+    ↓
+    If you want to come back, note current open count
+    ↓
+    Or just proceed (can always cancel without saving)
+
+Step 2: Set to zero
+    ↓
+    Set spin box to 0
+    ↓
+    Or click "Close all"
+    ↓
+    Verify all boundaries red
+
+Step 3: Check for isolation
+    ↓
+    Look at dashboard:
+    - Open count = 0
+    - Avg Connections = 0
+    - Redundancy = None
+
+Step 4: Run simulation
+    ↓
+    Click ⚡ Simulate
+    ↓
+    See what happens with no inter-zone flow
+
+Step 5: Examine results
+    ↓
+    Open table (📋)
+    ↓
+    Check pressures in each zone
+    ↓
+    Are they sustainable?
+    ↓
+    Any zone with no source?
+
+Step 6: Animate (optional)
+    ↓
+    Animation won't show much (no open boundaries)
+    ↓
+    But confirms no cross-zone flow
+
+Step 7: Decide
+    ↓
+    Is complete isolation viable?
+    ↓
+    If yes, save configuration
+    ↓
+    If no, restore previous or start over
+```
+
+## 7.5 Workflow: Creating Report Visualizations
+
+**Goal:** Generate visuals for reports or presentations
+
+```
+Step 1: Run simulation
+    ↓
+    Click ⚡ Simulate (ensures latest data)
+
+Step 2: Choose visualization type
+    ↓
+    Option A: Flow map
+        - Hide zone polygons
+        - Hide closed boundaries (optional)
+        - Click ▶️ Animate
+        - Capture screenshot with moving dots
+    
+    Option B: Attribute distribution
+        - Select Nodes
+        - Choose attribute (pressure, demand, etc.)
+        - Click 🎨 Colormap
+        - Legend popup appears
+        - Adjust window to show both map and legend
+        - Capture screenshot
+    
+    Option C: Data table
+        - Select Nodes or Links
+        - Choose attribute
+        - Click 📋 Table
+        - Sort by interesting column
+        - Export to Excel (📊)
+        - Or screenshot table
+
+    Option D: Boundary configuration
+        - Show zone polygons
+        - Show all boundaries (uncheck hide closed)
+        - Ensure clear green/red contrast
+        - Add flow labels (💧) if desired
+        - Capture screenshot
+
+Step 3: Export data
+    ↓
+    For table: Export CSV or Excel
+    ↓
+    For map: Use screenshot tool
+    ↓
+    For numbers: Note key values
+
+Step 4: Document settings
+    ↓
+    Note your configuration:
+    - How many open per pair
+    - Which attribute prioritized
+    - Highest or Lowest
+    - Any manual overrides
+```
+
+## 7.6 Workflow: Comparing Multiple Scenarios
+
+**Goal:** Compare different configurations systematically
+
+```
+Step 1: Establish baseline
+    ↓
+    Configure Scenario A
+    ↓
+    Note open count, avg connections
+    ↓
+    Run simulation
+    ↓
+    Export table as "Scenario_A.csv"
+    ↓
+    Take screenshot
+
+Step 2: Modify to Scenario B
+    ↓
+    Change one variable (e.g., increase connections)
+    ↓
+    Or change priority attribute
+    ↓
+    Run simulation again
+    ↓
+    Export "Scenario_B.csv"
+
+Step 3: Compare visually
+    ↓
+    Toggle between scenarios
+    ↓
+    Note which pipes changed
+    ↓
+    Check dashboard differences
+
+Step 4: Compare data
+    ↓
+    Open both exported CSVs
+    ↓
+    Compare key metrics
+    ↓
+    Create comparison table
+
+Step 5: Document
+    ↓
+    Record which scenario is better
+    ↓
+    Why it's better
+    ↓
+    Save preferred configuration
+```
+
+## 7.7 Workflow: Troubleshooting Unexpected Results
+
+**Goal:** Fix when something doesn't look right
+
+```
+Symptom: No boundaries appear at all
+    ↓
+    Check 1: "Include outside" checkbox
+    ↓
+    Check 2: Link type filters (pipes/valves/pumps all checked?)
+    ↓
+    Check 3: Do you have multiple zones?
+    ↓
+    Check 4: Run simulation anyway (may populate)
+
+Symptom: Too many boundaries
+    ↓
+    Check: Are you including outside when you shouldn't?
+    ↓
+    Check: Link type filters including everything?
+    ↓
+    Consider: Maybe you really do have that many
+
+Symptom: Animation shows no dots
+    ↓
+    Check: Did you run simulation? (⚡)
+    ↓
+    Check: Are there any open boundaries (green)?
+    ↓
+    Check: Do those boundaries have flow? (zero flow = no dots)
+
+Symptom: Table empty
+    ↓
+    Check: Run simulation first
+    ↓
+    Check: Selected correct Nodes/Links
+    ↓
+    Check: Attribute has data
+
+Symptom: Can't click pipes
+    ↓
+    Check: Is Interactive Mode ON?
+    ↓
+    Check: Are you clicking on boundaries? (only boundaries toggle)
+
+Symptom: Colormap not showing
+    ↓
+    Check: Did you select Nodes? (Links coming soon)
+    ↓
+    Check: Run simulation
+    ↓
+    Check: Attribute has data
+
+Symptom: Export to Excel fails
+    ↓
+    Check: Do you have openpyxl installed?
+    ↓
+    Fix: pip install openpyxl (contact IT)
+    ↓
+    Alternative: Use CSV export instead
+```
+
+---
+
+# PART 8: DETAILED BUTTON REFERENCE
+
+## 8.1 Complete Button Descriptions
+
+### Left Panel Buttons
+
+**"Open all"**
+- **Location:** Actions section, top row left
+- **Action:** Opens EVERY boundary pipe
+- **Result:** All boundaries become green
+- **Use when:** Starting point, resetting to maximum connectivity
+- **Caveat:** Does NOT run simulation - just changes status
+
+**"Close all (Boundaries)"**
+- **Location:** Actions section, top row right
+- **Action:** Closes EVERY boundary pipe
+- **Result:** All boundaries become red
+- **Use when:** Testing isolation, starting fresh
+- **Caveat:** Does NOT run simulation
+
+**"⚡ Simulate"**
+- **Location:** Actions section, middle row left
+- **Action:** Runs EPANET simulation
+- **Result:** Populates all attribute data, calculates flows
+- **Use when:** First thing after loading, after major changes
+- **Takes:** A few seconds (depends on network size)
+- **Fallback:** If fails, uses random flows
+
+**"▶️ Animate"**
+- **Location:** Actions section, middle row right
+- **Action:** Toggles flow animation
+- **Result:** Gold dots move along open boundaries
+- **Use when:** Want to see flow patterns visually
+- **Toggles:** Click once to start, again to stop
+- **Auto-stop:** Stops if you change boundaries
+
+**"💧 Show Boundary Flow Values"**
+- **Location:** Actions section, third row (full width)
+- **Action:** Toggles numeric labels on open boundaries
+- **Result:** Numbers appear on green pipes
+- **Use when:** Need exact flow values on map
+- **Toggles:** Click to show, click again to hide
+
+**"💾 Save"**
+- **Location:** Actions section, bottom row left
+- **Action:** Saves configuration and closes
+- **Result:** Returns to main app with your settings
+- **Use when:** Done and want to keep work
+- **Color:** Green button
+
+**"❌ Cancel"**
+- **Location:** Actions section, bottom row right
+- **Action:** Closes without saving
+- **Result:** Discards all changes
+- **Use when:** Made mistake, changed mind
+- **Color:** Red button
+
+### Upper Toolbar Buttons
+
+**"🔽 Filter Elements"**
+- **Location:** Far left of upper toolbar
+- **Action:** Opens dropdown menu
+- **Menu items:** Pipes, Pumps, Valves, Junctions, Reservoirs, Tanks, Clear All
+- **Result:** Selected elements highlight in pink dashed lines
+- **Use when:** Need to locate specific element types
+
+**"Interactive Links Mode" checkbox**
+- **Location:** Next to Filter button
+- **Action:** Enables/disables mouse interaction
+- **When ON:** Hover highlights, clicks toggle boundaries
+- **When OFF:** Mouse does nothing
+- **Use when:** Want to manually control pipes
+
+**Nodes/Links radio**
+- **Location:** Middle of upper toolbar
+- **Action:** Switches between node data and link data
+- **Affects:** Table contents, colormap target, attribute dropdown
+- **Use when:** Switching analysis focus
+
+**Attribute dropdown**
+- **Location:** Right of radio buttons
+- **Action:** Selects which attribute to display
+- **Options:** Populated from simulation results
+- **Affects:** Table data, colormap values
+- **Use when:** Changing what data you're viewing
+
+**"📋 Table" button**
+- **Location:** Right of attribute dropdown
+- **Action:** Opens/closes right panel table
+- **When closed:** Opens table with current attribute
+- **When open:** Closes table
+- **Use when:** Need sortable data, want to export
+
+**"🎨 Colormap" button**
+- **Location:** Next to Table button
+- **Action:** Applies colormap to nodes
+- **Result:** Nodes colored by attribute value, legend appears
+- **Use when:** Want to see spatial patterns
+- **Note:** Currently nodes only (links coming)
+
+**"❓ Help" button**
+- **Location:** Far right of upper toolbar
+- **Action:** Opens this help guide
+- **Result:** You're reading it
+- **Use when:** Forgot what something does
+
+---
+
+## 8.2 Button States and Indicators
+
+**Animate button text changes:**
+- When stopped: "▶️ Animate"
+- When running: "Animating...⏳"
+
+**Flow Values button text changes:**
+- When labels hidden: "💧 Show Boundary Flow Values"
+- When labels shown: "💧 Remove Boundary Flow Values"
+
+**Table button text changes:**
+- When panel hidden: "📋 Table"
+- When panel shown: "Hide Table"
+
+**Filter button** has dropdown indicator (▼) showing it's a menu
+
+**Save/Cancel** have distinct colors (green/red) for quick identification
+
+---
+
+# PART 9: TABLES AND DATA MANAGEMENT
+
+## 9.1 Understanding the Results Table
+
+### 9.1.1 Table Structure
+
+When you click 📋 Table, you see:
+
+```
+┌─────────────────────────────────────────────┐
+│ Sort by: [Dropdown▼]  (●)Asc (○)Desc       │ ← Sort controls
+├─────────────────────────────────────────────┤
+│ Element        |  Pressure  |  Demand  | ...│ ← Headers
+├─────────────────────────────────────────────┤
+│ J-101          |    52.3    |   0.15   |    │ ← Data rows
+│ J-102          |    48.7    |   0.22   |    │
+│ J-103          |    55.1    |   0.08   |    │
+│ ...                                          │
+├─────────────────────────────────────────────┤
+│ [📥 Export CSV]  [📊 Export Excel]           │ ← Export buttons
+└─────────────────────────────────────────────┘
+```
+
+### 9.1.2 Sorting
+
+**Method 1: Click column headers**
+- First click: Sort ascending (A→Z, small→large)
+- Second click: Sort descending (Z→A, large→small)
+- Third click: Remove sort (original order)
+
+**Method 2: Use sort controls**
+- Select column from "Sort by" dropdown
+- Choose Ascending or Descending radio
+- Table sorts immediately
+
+### 9.1.3 Row Selection
+
+Click any row → element highlights on map:
+- **Nodes**: Yellow dot appears at node location
+- **Links**: Pink dashed line appears on pipe
+- Label appears with element name
+- Useful for finding specific elements
+
+### 9.1.4 Visual Features
+
+- Alternating row colors (light gray/white) for readability
+- Negative values in RED (helps spot reverse flows)
+- Column widths auto-adjust to content
+- Last column stretches to fill width
+
+---
+
+## 9.2 Exporting Data
+
+### 9.2.1 CSV Export
+
+**What you get:**
+- Comma-separated values file
+- First row = column headers
+- Subsequent rows = data
+- No formatting, just raw numbers
+
+**How to use:**
+1. Click "📥 Export CSV"
+2. Choose save location
+3. Default filename: "AttributeName.csv"
+4. Click Save
+
+**Best for:**
+- Importing into Excel
+- Loading into Python/R for analysis
+- Sharing raw data
+- Archiving results
+
+### 9.2.2 Excel Export
+
+**What you get:**
+- Excel workbook (.xlsx)
+- Formatted with headers
+- Data in columns
+- Auto-sized columns
+
+**Requirements:**
+- openpyxl library must be installed
+- If missing, you'll get error message
+
+**How to use:**
+1. Click "📊 Export Excel"
+2. Choose save location
+3. Default filename: "AttributeName.xlsx"
+4. Click Save
+
+**Best for:**
+- Reports
+- Presentations
+- Further analysis in Excel
+- Sharing with non-technical stakeholders
+
+### 9.2.3 Export Tips
+
+- Export BEFORE making major changes to save baseline
+- Export different attributes separately
+- Use descriptive filenames (not just default)
+- CSV is more universally compatible than Excel
+
+---
+
+## 9.3 Table Data vs Map Data
+
+The table shows what's in the simulation results. The map shows the network geometry. They're linked:
+
+- Table rows correspond to map elements
+- Clicking row highlights that element
+- Sorting doesn't affect map, only table order
+- Filtering map doesn't affect table (separate)
+
+---
+
+# PART 10: COLORMAP DEEP DIVE
+
+## 10.1 How Colormap Works Internally
+
+When you click 🎨 Colormap:
+
+```
+Step 1: Get all values for selected attribute
+        (from node_attributes dictionary)
+
+Step 2: Remove any NaN/missing values
+        (nodes with no data are skipped)
+
+Step 3: Sort remaining values
+        (smallest to largest)
+
+Step 4: Divide into 5 equal groups (quantiles)
+        Group 1: lowest 20% of values
+        Group 2: next 20%
+        Group 3: middle 20%
+        Group 4: next 20%
+        Group 5: highest 20%
+
+Step 5: Assign colors
+        Group 1 → Blue
+        Group 2 → Orange
+        Group 3 → Green
+        Group 4 → Red
+        Group 5 → Purple
+
+Step 6: For each node:
+        Find its value
+        Determine which group it falls in
+        Color node with that group's color
+
+Step 7: Create legend popup
+        Show each color with its value range
+        Include units
+```
+
+## 10.2 Why Quantiles?
+
+Using 5 equal groups (quantiles) ensures:
+- Each color represents roughly the same number of nodes
+- Visual distribution is balanced
+- Outliers don't skew the entire map
+- Easy to see patterns
+
+**Alternative would be equal intervals** (e.g., 0-10, 10-20, etc.) but that can result in all nodes being one color if values are clustered.
+
+## 10.3 Reading a Colormap
+
+### 10.3.1 Color Meaning
+
+| Color | Meaning | Example |
+|-------|---------|---------|
+| Blue | Lowest 20% | Low pressure areas |
+| Orange | 20-40% | Below average |
+| Green | 40-60% | Average |
+| Red | 60-80% | Above average |
+| Purple | 80-100% | High values |
+
+### 10.3.2 Spotting Patterns
+
+**Clusters of same color** indicate areas with similar values:
+- Blue cluster = consistently low area
+- Purple cluster = consistently high area
+
+**Gradients** across the network show trends:
+- Blue to purple across network = increasing values
+- Patchy colors = no clear pattern
+
+**Isolated different colors** highlight outliers:
+- Single purple node in sea of blue = unusually high value
+- Single blue node in purple area = unusually low value
+
+### 10.3.3 Examples
+
+**Pressure colormap:**
+- Blue areas = low pressure (maybe high elevation or distant from source)
+- Purple areas = high pressure (maybe low elevation or near pumps)
+- Sharp boundaries = pressure zones or pressure reducing valves
+
+**Demand colormap:**
+- Purple nodes = high water users (industrial, commercial)
+- Blue nodes = low users (residential, vacant)
+- Patterns show consumption centers
+
+**Elevation colormap:**
+- Purple = high elevation
+- Blue = low elevation
+- Shows terrain clearly
+
+## 10.4 Interactive Colormap
+
+With Interactive Mode ON:
+- Hover over colored nodes
+- Popup shows exact value
+- Great for identifying specific high/low points
+
+## 10.5 Colormap Limitations
+
+- Currently only works for NODES (Links coming in future)
+- Requires simulation data (run ⚡ first)
+- Hidden if legend closed (intentional)
+- May be slow for very large networks (thousands of nodes)
+
+---
+
+# PART 11: ANIMATION DEEP DIVE
+
+## 11.1 How Animation Works
+
+When you click ▶️ Animate:
+
+```
+Step 1: Collect all OPEN boundaries (green pipes)
+
+Step 2: For each open boundary:
+        - Get its start point (x1,y1)
+        - Get its end point (x2,y2)
+        - Calculate flow direction from simulation
+        - Create a moving dot
+
+Step 3: Position dots initially:
+        - Random positions along each pipe
+        - (Not all starting at same place)
+
+Step 4: Start timer (updates every ~100ms)
+
+Step 5: Each timer tick:
+        - Move each dot along its pipe
+        - Distance moved = speed × direction
+        - If dot reaches end, wrap to start
+        - Redraw all dots at new positions
+
+Step 6: Continue until stopped
+```
+
+## 11.2 What Animation Shows
+
+**Flow direction:**
+- Dots move from start node to end node = positive flow
+- Dots move from end node to start node = negative flow
+- This matches flow direction from simulation
+
+**Flow presence:**
+- Moving dots = flow > 0
+- Stationary or no dots = zero flow
+- Speed doesn't indicate flow magnitude (just visualization)
+
+**Connectivity:**
+- Which boundaries are actually carrying water
+- Paths water takes between zones
+
+## 11.3 Animation Behavior Details
+
+**Dot appearance:**
+- Gold color (#FFD700)
+- Small circles with black outline
+- Visible against all backgrounds
+
+**Movement:**
+- Smooth continuous motion
+- Wraps around (reaches end, reappears at start)
+- Multiple dots per pipe (if multiple positions active)
+
+**Auto-stop events:**
+- Changing any boundary (click or automatic)
+- Closing the application
+- Clicking Animate button again
+
+**Performance:**
+- Optimized for thousands of pipes
+- Uses vectorized operations (no per-pipe loops)
+- Should be smooth even on large networks
+
+## 11.4 Using Animation Effectively
+
+### 11.4.1 Before Animating
+
+1. **Run simulation** (⚡) - animation needs flow data
+2. **Set your boundaries** - only open pipes animate
+3. **Hide zone polygons** - cleaner view (happens automatically)
+4. **Consider hiding closed boundaries** - focus on active pipes
+
+### 11.4.2 While Animating
+
+- Watch overall flow patterns
+- Note which boundaries carry flow
+- See if flow direction matches expectations
+- Identify zero-flow boundaries (no dots)
+
+### 11.4.3 After Animating
+
+- Click again to stop
+- Zone polygons reappear
+- Can make changes and restart
+
+## 11.5 Animation Limitations
+
+- Only shows open boundaries (green)
+- Speed is fixed (not adjustable)
+- No indication of flow magnitude (just presence/direction)
+- Stops automatically on any change
+
+---
+
+# PART 12: FLOW LABELS DEEP DIVE
+
+## 12.1 What Flow Labels Show
+
+When you click 💧 Show Boundary Flow Values:
+
+- White labels with black text appear
+- Positioned at midpoint of each OPEN boundary
+- Format: "0.1234 m³/s" (units from your model)
+- Only on GREEN pipes (open boundaries)
+
+## 12.2 Label Details
+
+**Appearance:**
+- White background with black text
+- Green border (matches pipe color)
+- Semi-transparent background (200/255 alpha)
+- Automatically sized to fit text
+
+**Positioning:**
+- Exactly halfway between pipe endpoints
+- May overlap if pipes are close
+- Can be moved by dragging (if supported)
+
+**Content:**
+- Flow value with 6 decimal places
+- Units from your network's unit system
+- Example: "0.045678 m³/s"
+
+## 12.3 When to Use Flow Labels
+
+**Good times to show labels:**
+- Need exact numbers for reporting
+- Comparing flows between pipes
+- Before exporting data
+- When numbers are more important than map clarity
+
+**Times to hide labels:**
+- During animation (too much visual noise)
+- When pipes are very close together (labels overlap)
+- When you just need patterns, not exact values
+- Before taking clean screenshots
+
+## 12.4 Label Management
+
+**Toggle behavior:**
+- First click: Show labels
+- Second click: Hide labels
+- Button text changes to indicate current state
+
+**Persistence:**
+- Labels remain until you hide them
+- Survive boundary changes? (No - they update)
+- Survive simulation runs? (Yes, with new values)
+
+---
+
+# PART 13: FILTERING ELEMENTS DEEP DIVE
+
+## 13.1 Complete Filter Reference
+
+### 13.1.1 Link Type Filters
+
+| Filter | What It Highlights | Visual |
+|--------|-------------------|--------|
+| **Pipes** | All pipeline elements | Pink dashed lines |
+| **Pumps** | All pump stations | Pink dashed lines |
+| **Valves** | All control valves | Pink dashed lines |
+
+### 13.1.2 Node Type Filters
+
+| Filter | What It Highlights | Visual |
+|--------|-------------------|--------|
+| **Junctions** | All pipe connection points | Pink dashed lines at node locations? (Actually highlights connecting pipes) |
+| **Reservoirs** | All水源 (water sources) | Pink dashed lines on connected pipes |
+| **Tanks** | All storage tanks | Pink dashed lines on connected pipes |
+
+### 13.1.3 Clear All Filters
+
+Removes ALL pink highlighting from the map.
+
+## 13.2 How Filtering Actually Works
+
+When you select "Pipes":
+
+```
+1. Get list of all pipe names from network
+2. Find all links in link_data that are in that list
+3. Create a mask: link_data.index.isin(pipe_names)
+4. Extract those links
+5. Plot them as pink dashed lines
+6. Remove any previous highlight layer
+```
+
+For node types (junctions, reservoirs, tanks):
+
+```
+1. Get list of node names of that type
+2. Find ALL pipes that have EITHER end node in that list
+3. Highlight those pipes in pink
+```
+
+So selecting "Junctions" highlights all pipes connected to any junction (which is almost all pipes). This is less useful than link-type filters.
+
+## 13.3 Strategic Use of Filters
+
+### 13.3.1 Best Uses
+
+**Pipes filter:** See all pipelines (useful for orientation)
+
+**Pumps filter:** Quickly locate all pump stations
+- Important for identifying where pressure boosts occur
+- Check if any pumps are on boundaries
+
+**Valves filter:** Find all control valves
+- Critical for isolation analysis
+- Valves on boundaries are especially important
+
+**Tanks filter:** Locate storage
+- See which zones have tanks
+- Check tank connectivity
+
+### 13.3.2 Less Useful Filters
+
+**Junctions filter:** Highlights almost everything - too broad
+
+**Reservoirs filter:** Usually few in number, but highlights all connected pipes
+
+### 13.3.3 Combining with Other Features
+
+1. **Filter + Interactive Mode:**
+   - Filter to pumps
+   - Turn on Interactive Mode
+   - Hover to identify each pump
+
+2. **Filter + Table:**
+   - Filter to valves
+   - Open table for valves
+   - Click rows to locate each valve
+
+3. **Filter + Boundaries:**
+   - Filter to pumps
+   - See which pumps are on boundaries
+   - Decide whether to include pumps in boundary selection
+
+---
+
+# PART 14: KEYBOARD SHORTCUTS REFERENCE
+
+## 14.1 Available Shortcuts
+
+| Key | Action | Context |
+|-----|--------|---------|
+| **Enter** | Apply current boundary configuration | Any time |
+| **Return** | Same as Enter | Any time |
+| **Esc** | Cancel and close (same as ❌ Cancel) | Any time |
+| **H** | Open this help | Any time (when window focused) |
+
+## 14.2 Why So Few Shortcuts
+
+The application is designed for mouse interaction primarily. The main actions (clicking pipes, setting controls) are inherently mouse-based. The few keyboard shortcuts available are for universal actions.
+
+## 14.3 Focus Requirements
+
+- Shortcuts only work when the application window is active (has focus)
+- If you click into a text field or control, keyboard may be captured there
+- Press Esc to exit dialogs/popups first
+
+---
+
+# PART 15: ERROR MESSAGES AND WHAT THEY MEAN
+
+## 15.1 Common Error Messages
+
+### "Simulation Failed"
+
+**What happened:** EPANET simulator crashed or returned error
+
+**Why it happens:**
+- Network model has issues (disconnected, invalid parameters)
+- Missing required data
+- Boundary configuration creates impossible hydraulics
+
+**What the app does:** Falls back to random flows for visualization
+
+**What you should do:**
+- Check your network model in original EPANET
+- Try with different boundary configuration
+- If random flows work for visualization, continue (but results aren't real)
+
+### "No Attribute" warning
+
+**What happened:** You tried to apply automatic selection without choosing an attribute
+
+**Why it happens:** "Prioritize by" dropdown was empty or not selected
+
+**What you should do:** Select an attribute from the dropdown
+
+### "No Data" message
+
+**What happened:** Table or colormap tried to show data that doesn't exist
+
+**Why it happens:** 
+- You haven't run simulation
+- Selected attribute has no values for current element type
+
+**What you should do:** Run simulation (⚡ Simulate) first
+
+### "No Boundaries" message
+
+**What happened:** You tried to open/close boundaries but none exist
+
+**Why it happens:**
+- Your zones might not actually have pipes between them
+- "Include outside" is unchecked and all boundaries involve outside
+- Link type filters exclude all boundary pipes
+
+**What you should do:** Check your boundary strategy settings
+
+### "No Elements" message
+
+**What happened:** You tried to filter a type that doesn't exist
+
+**Why it happens:** Your network has no pumps, no valves, etc.
+
+**What you should do:** Nothing - the filter just won't work
+
+### "Missing Dependency" (Excel export)
+
+**What happened:** openpyxl not installed
+
+**Why it happens:** Excel export requires external library
+
+**What you should do:** 
+- Install openpyxl: `pip install openpyxl`
+- Or use CSV export instead
+
+### "Export Failed"
+
+**What happened:** Could not write file
+
+**Why it happens:**
+- Permission issues (can't write to that folder)
+- Disk full
+- File locked by another program
+
+**What you should do:** Try different location, close other programs
+
+---
+
+## 15.2 Warnings vs Errors
+
+**Warnings** (yellow triangle style):
+- Don't stop the application
+- Inform you of fallback behavior
+- Example: "Simulation Failed" warning
+
+**Errors** (red X style):
+- May stop current operation
+- Require user action
+- Example: "Export Failed" error
+
+**Information** (blue i style):
+- Just letting you know something
+- No action required
+- Example: "No Boundaries" info
+
+---
+
+# PART 16: ADVANCED TOPICS
+
+## 16.1 Understanding the Selection Algorithm Edge Cases
+
+### 16.1.1 What Happens When a Zone Pair Has Fewer Boundaries Than Your Setting?
+
+**Example:** You set "keep 3 connections" but only 2 boundaries exist between Zone A and Zone B
+
+**Result:** Both boundaries open. The algorithm can't open 3 when only 2 exist.
+
+**Dashboard shows:** Avg Connections may be less than your setting for that pair
+
+### 16.1.2 What Happens When Attributes Are Missing?
+
+**Example:** You prioritize by "flowrate" but some pipes have missing flow data
+
+**Result:** Pipes with missing data are sorted to the end (treated as lowest values)
+
+**If using Highest:** They'll never be selected (since they're at bottom)
+**If using Lowest:** They might be selected (since they're effectively zero)
+
+### 16.1.3 What Happens When Multiple Pipes Have Same Value?
+
+**Example:** Three pipes all have exactly 300mm diameter, you want top 2
+
+**Result:** The algorithm picks two arbitrarily (whichever appear first in data). There's no tie-breaking rule beyond data order.
+
+### 16.1.4 What Happens with "Outside" When Included?
+
+"Outside" is treated as a zone for grouping purposes. So you get groups like:
+- ZoneA|Outside
+- ZoneB|Outside
+- ZoneC|Outside
+
+Each group gets its own selection independently.
+
+## 16.2 Performance Characteristics
+
+### 16.2.1 What Affects Performance
+
+| Factor | Impact | Typical |
+|--------|--------|---------|
+| Number of pipes | Linear scaling | 1-10k pipes fine |
+| Number of zones | Minor impact | <100 zones fine |
+| Animation | Moderate | Dots for each open boundary |
+| Colormap | Moderate | Colors each node |
+| Table display | Minor | Just showing data |
+
+### 16.2.2 Performance Tips
+
+- For very large networks (>10k pipes), consider:
+  - Turning off animation when not needed
+  - Closing unused boundaries (fewer green pipes)
+  - Hiding zone polygons (reduces drawing)
+  - Using filters sparingly
+
+- The application uses vectorized operations (NumPy) for speed
+- Most operations are O(n) or better
+- Should feel responsive for typical water networks
+
+## 16.3 Data Flow and Persistence
+
+### 16.3.1 What Data Exists Where
+
+**Network data (always there):**
+- Pipe names, node names
+- Coordinates
+- Lengths, diameters (if in model)
+
+**Simulation data (after ⚡):**
+- Flows, pressures, velocities
+- Node demands, heads
+- Stored in node_attributes and link_attributes
+
+**Boundary data (current session):**
+- open_mask (which boundaries are open)
+- boundary_mask (which pipes ARE boundaries)
+- Not saved until you click 💾
+
+### 16.3.2 What Gets Saved
+
+When you click 💾 Save, the application returns:
+- The open_mask (open/closed status)
+- Back to calling application
+
+It does NOT save:
+- Simulation results
+- Current view settings
+- Table data
+
+### 16.3.3 What Gets Discarded on Cancel
+
+Everything:
+- All open/closed changes
+- Any manual overrides
+- Current configuration
+
+---
+
+# PART 17: TROUBLESHOOTING GUIDE
+
+## 17.1 Quick Fixes for Common Problems
+
+### Problem: No green or red pipes visible
+
+**Quick fix checklist:**
+- [ ] Run simulation (⚡ Simulate)
+- [ ] Check "Include boundaries with unassigned areas"
+- [ ] Verify you have multiple zones
+- [ ] Check link type filters (all checked?)
+- [ ] Look for any boundaries at all in dashboard
+
+### Problem: Animation shows no dots
+
+**Quick fix checklist:**
+- [ ] Run simulation (⚡ Simulate)
+- [ ] Verify you have open boundaries (green pipes)
+- [ ] Check that flows aren't zero
+- [ ] Try toggling animation off/on
+
+### Problem: Can't click pipes
+
+**Quick fix checklist:**
+- [ ] Check "Interactive Links Mode" is ON
+- [ ] Are you clicking on a boundary pipe? (only boundaries toggle)
+- [ ] Try hovering first to confirm pipe is detected
+
+### Problem: Table empty
+
+**Quick fix checklist:**
+- [ ] Run simulation (⚡ Simulate)
+- [ ] Check Nodes/Links selection
+- [ ] Try different attribute
+- [ ] Verify data exists in dashboard
+
+### Problem: Colormap not appearing
+
+**Quick fix checklist:**
+- [ ] Select "Nodes" (not Links)
+- [ ] Run simulation (⚡ Simulate)
+- [ ] Choose attribute with data
+- [ ] Check legend popup didn't open behind main window
+
+### Problem: Export to Excel fails
+
+**Quick fix checklist:**
+- [ ] Install openpyxl: `pip install openpyxl`
+- [ ] Try CSV export instead
+- [ ] Check write permissions for folder
+
+### Problem: Application slow
+
+**Quick fix checklist:**
+- [ ] Turn off animation
+- [ ] Hide zone polygons
+- [ ] Close table panel
+- [ ] Remove colormap
+- [ ] Clear filters
+
+### Problem: Boundaries not updating
+
+**Quick fix checklist:**
+- [ ] Did you click Apply? (automatic selections need apply)
+- [ ] For interactive: Is mode ON?
+- [ ] Check dashboard to confirm changes
+
+### Problem: Can't see zone polygons
+
+**Quick fix checklist:**
+- [ ] Check "Show zone boundaries" is checked
+- [ ] Are you in animation? (polygons auto-hide during animation)
+- [ ] Stop animation to restore
+
+---
+
+## 17.2 When All Else Fails
+
+**Nuclear option 1: Reset everything**
+1. Click "Close all"
+2. Click "Open all" 
+3. Run simulation
+4. Start over
+
+**Nuclear option 2: Cancel and restart**
+1. Click ❌ Cancel
+2. Reopen application
+3. Start fresh
+
+**Nuclear option 3: Check network file**
+- The problem might be in your original network model
+- Open in EPANET, verify it works there
+- Then reload in this application
+
+---
+
+# PART 18: GLOSSARY OF TERMS
+
+| Term | Definition |
+|------|------------|
+| **Boundary pipe** | A pipe that connects two different zones OR connects a zone to unassigned area |
+| **Open boundary** | A boundary pipe that allows flow (green) |
+| **Closed boundary** | A boundary pipe that does NOT allow flow (red) |
+| **Zone** | A user-defined area (pressure zone, DMA, etc.) drawn as polygon |
+| **Zone pair** | Two zones that share at least one boundary pipe |
+| **Node** | A point in the network (junction, reservoir, tank) |
+| **Link** | A connection between nodes (pipe, pump, valve) |
+| **Attribute** | A property of nodes or links (pressure, flow, diameter, etc.) |
+| **Simulation** | Hydraulic calculation that determines flows and pressures |
+| **Animation** | Moving dots showing flow direction on open boundaries |
+| **Colormap** | Colored nodes showing attribute distribution |
+| **Interactive Mode** | Mode where hovering and clicking on pipes works |
+| **Quantile** | Equal-sized groups of data (used for colormap) |
+| **Mask** | Internal representation of which pipes are boundaries/open |
+| **Dashboard** | Top section of left panel showing statistics |
+
+---
+
+# PART 19: QUICK REFERENCE CARD
+
+## 19.1 One-Line Summary of Each Control
+
+### Left Panel
+
+| Control | One-Line Summary |
+|---------|------------------|
+| Dashboard | Shows current network statistics |
+| Include outside | Whether pipes to unassigned areas count as boundaries |
+| Show zone boundaries | Toggle zone polygons on/off |
+| Hide closed boundaries | Show only green pipes, hide red |
+| Reset before applying | Close everything first, then open selections |
+| Open connections spin | How many pipes to keep open per zone pair |
+| Pipes/Valves/Pumps | Which link types can be boundaries |
+| Prioritize by dropdown | Which attribute to use for selection |
+| Highest/Lowest | Keep largest or smallest values |
+| Open all | Open every boundary pipe |
+| Close all | Close every boundary pipe |
+| ⚡ Simulate | Run hydraulic simulation |
+| ▶️ Animate | Start/stop flow animation |
+| 💧 Show Flow Values | Show/hide numeric labels on open boundaries |
+| 💾 Save | Keep changes and close |
+| ❌ Cancel | Discard changes and close |
+
+### Upper Toolbar
+
+| Control | One-Line Summary |
+|---------|------------------|
+| 🔽 Filter | Highlight element types in pink |
+| Interactive Mode | Enable clicking/hovering on pipes |
+| Nodes/Links | Switch between node and link data |
+| Attribute dropdown | Choose which data to display |
+| 📋 Table | Open/close sortable data table |
+| 🎨 Colormap | Color nodes by attribute value |
+| ❓ Help | Open this guide |
+
+## 19.2 Color Quick Reference
+
+| Color | Meaning |
+|-------|---------|
+| Dark blue | Regular pipe (not boundary) |
+| Green | OPEN boundary pipe |
+| Red | CLOSED boundary pipe |
+| Yellow | Hovered pipe |
+| Pink dashed | Filtered elements |
+| Colored blobs | Zones |
+| Gold dots | Animation |
+| Colored nodes | Colormap values |
+
+---
+
+# PART 20: CONCLUSION
+
+## 20.1 You Now Know Everything
+
+This guide has covered:
+
+- What the application does and why
+- Every control and what it does
+- How automatic selection works internally
+- How to use Interactive Mode
+- All visualization layers and how to manage them
+- Complete workflows for common tasks
+- Troubleshooting for when things go wrong
+- Detailed reference for every feature
+
+## 20.2 Key Principles to Remember
+
+1. **Green = open, Red = closed** - everything else helps you decide
+2. **Run simulation first** - all data comes from there
+3. **Manage layers** - only show what you need
+4. **Interactive Mode for manual** - click pipes to toggle
+5. **Automatic selection for systematic** - set rules, let it work
+6. **Dashboard shows results** - watch numbers change
+7. **Save when done** - or cancel to discard
+
+## 20.3 Final Tips
+
+- Start simple, add complexity as needed
+- Use "Hide closed boundaries" to focus on active connections
+- Animation helps understand flow patterns
+- Tables help find specific values
+- Colormaps reveal spatial patterns
+- Interactive Mode lets you override anything
+
+**You now have complete mastery of the Zone Simulator. Go analyze some networks!**
+
+---
+
+*End of Complete User Manual*
