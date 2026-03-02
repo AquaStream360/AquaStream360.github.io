@@ -1,287 +1,230 @@
 ________________________________________
-ZONE SIMULATOR
-Complete User Guide
+ZONE SIMULATOR – COMPLETE USER GUIDE
+Design, Optimize, and Test Zone Configurations
 ________________________________________
-Part 1 – Introduction
-1.1 Overview
-Zone Simulator is a tool designed to manage hydraulic connectivity between pressure zones in a water distribution network.
-In zoned systems (e.g., pressure zones, district metered areas), pipes that connect one zone to another are classified as boundary pipes. These pipes determine whether water can flow between adjacent zones.
-The purpose of this application is to allow engineers to determine which boundary pipes remain:
-•	Open – allowing hydraulic flow between zones
-•	Closed – isolating zones from one another
-The system provides both automatic rule-based selection and manual interactive control.
+PART 1: WHAT THIS TOOL IS FOR
+1.1 Purpose – Read This First
+You are designing zone boundaries for a water network. You must decide which pipes should connect zones and which should separate them.
+This tool allows you to:
+•	DESIGN different zone connection configurations
+•	OPTIMIZE which pipes remain open based on your priorities
+•	TEST your designs by running hydraulic simulations
+•	SEE THE IMPACT immediately through visualization
+Think of this as a design workspace where you can experiment with configurations, evaluate the results, refine your approach, and save the solutions that perform best.
 ________________________________________
-1.2 Visual Representation
-The network is displayed using standardized color coding:
-Visual Element	Meaning
-Dark blue thin lines	Regular pipes (not boundaries)
-Green thick lines	Open boundary pipes
-Red thick lines	Closed boundary pipes
-Blue thick lines	Hovered pipe
-Pink dashed lines	Filtered/highlighted elements
-Colored polygons	Pressure zones
-Gold dots	Flow direction animation
-Colored nodes	Attribute-based colormap
+1.2 What You Are Actually Doing
+You are not simply analyzing an existing system. You are actively designing how zones connect.
+You control:
+•	Which pipes serve as open connections between zones
+•	Which pipes are closed to create separation
+•	How many connections each zone pair should have
+•	Whether to keep the largest, smallest, shortest, or highest-flow pipes
+•	How the hydraulic behavior changes when you modify the design
+Every change is a design decision, and the system immediately shows you the hydraulic consequences.
 ________________________________________
-Part 2 – Interface Overview
-2.1 Main Window Layout
-The application window consists of three primary areas:
-1.	Left Control Panel
-o	Network Dashboard
-o	Boundary Strategy
-o	Connection Management
-o	Action Buttons
-2.	Central Network Visualization Panel
-o	Displays pipes, nodes, and zones
-o	Shows color-coded boundary status
-o	Displays animation and highlighting
-3.	Right Data Panel (Optional)
-o	Opened using the Table button
-o	Contains sortable network data
-o	Includes export functions
+PART 2: THE DESIGN PROCESS
+2.1 The Design Workflow
+Step 1 – Start with your base network
+(Zones are already defined.)
+Step 2 – Design a configuration
+•	Manually open or close pipes
+•	OR use automated rules to generate a configuration
+Step 3 – Test your design
+•	Run a simulation (⚡ Simulate)
+•	Review flows, pressures, and velocities
+Step 4 – Evaluate results
+•	Watch flow animation (▶️ Animate)
+•	Display numeric values (💧 Show Values)
+•	Review detailed data (📋 Table)
+•	Visualize patterns (🎨 Colormap)
+Step 5 – Refine your design
+•	Adjust rules or manually override selections
+•	Test again
+Step 6 – Save your final design
+•	Click 💾 Save to preserve the configuration
 ________________________________________
-2.2 Upper Toolbar Components
-Component	Function
-Filter Dropdown	Highlights specific element types
-Interactive Mode	Enables manual clicking of pipes
-Nodes / Links Selector	Switches data context
-Attribute Dropdown	Selects display attribute
-Table Button	Opens/closes data panel
-Colormap Button	Colors nodes by value
-Help Button	Opens user guide
+2.2 Design Decisions You Control
+Decision	How You Control It
+Which pipes qualify as boundaries	Boundary Strategy options
+Number of connections per zone pair	Connections control
+Which attribute determines priority	“Prioritize by” dropdown
+Keep largest or smallest values	Highest / Lowest selection
+Manual overrides	Interactive Mode (click pipes)
 ________________________________________
-Part 3 – Core Concepts
-3.1 Definition of a Boundary Pipe
-A boundary pipe is defined as a pipe that:
-•	Connects two different zones, OR
-•	Connects a zone to an unassigned area (if enabled)
-Example Scenarios
-Scenario	Boundary?
-Pipe between Zone A and Zone B	Yes
-Pipe within Zone A	No
-Pipe between Zone A and outside area	Optional (depends on settings)
+PART 3: THE INTERFACE – DESIGN WORKSPACE
+3.1 Main Window Layout
+The workspace includes:
+•	Upper Toolbar – Design and review tools
+•	Left Design Panel – Configuration controls
+•	Central Visualization Area – Real-time design display
+•	Results Panel (optional) – Data review and export
 ________________________________________
-3.2 Open vs. Closed Status
-Open Boundary (Green)
-•	Flow permitted between zones
-•	Hydraulic continuity maintained
-Closed Boundary (Red)
-•	No flow between zones
-•	Hydraulic isolation created
-Closing all boundary pipes between two zones results in full hydraulic separation.
+3.2 Role of Each Section
+Section	Role in Design Process
+Dashboard	Displays current design metrics
+Boundary Strategy	Defines which pipes can be part of the design
+Connection Management	Automated configuration tools
+Actions	Test, visualize, and save
+Visualization Panel	Displays open/closed boundaries and results
 ________________________________________
-3.3 Boundary Control Methods
-3.3.1 Manual Control (Interactive Mode)
-Users manually toggle boundary pipes.
-Procedure:
-1.	Enable Interactive Links Mode
-2.	Hover over a pipe to view details
-3.	Click:
-o	Green pipe → becomes Red (closed)
-o	Red pipe → becomes Green (open)
-o	Dark blue pipe → attribute popup (not toggleable)
-Dashboard statistics update automatically.
+PART 4: DESIGNING WITH AUTOMATED TOOLS
+4.1 Automated Design Logic
+For each pair of zones:
+1.	The system identifies all pipes connecting the two zones.
+2.	Pipes are sorted by your selected priority attribute.
+3.	The number of pipes you specify remains open.
+4.	If “Highest” is selected, the largest values remain open.
+5.	If “Lowest” is selected, the smallest values remain open.
+6.	All others are closed.
+This generates a complete zone configuration instantly.
 ________________________________________
-3.3.2 Automatic Control (Rule-Based)
-Users define selection rules in the left panel:
-1.	Define boundary criteria
-2.	Choose number of open connections per zone pair
-3.	Select prioritization attribute
-4.	Choose Highest or Lowest values
-The system automatically selects which pipes remain open.
+4.2 Example – Designing for Redundancy
+Goal: Each zone pair should have three connections, prioritizing the largest diameter pipes.
+Settings:
+•	Open connections = 3
+•	Prioritize by = Diameter
+•	Selection = Highest
+•	Reset before applying = Enabled
+Result: The three largest pipes for each zone pair remain open.
 ________________________________________
-3.3.3 Combined Approach
-Automatic baseline selection may be manually overridden. Manual changes persist unless reset is selected.
+4.3 Example – Designing for Isolation
+Goal: Completely isolate two zones.
+Settings:
+•	Open connections = 0
+Result: No open connections exist between the selected zone pair.
 ________________________________________
-Part 4 – Left Panel Detailed Reference
+4.4 Example – Designing for Efficiency
+Goal: Keep only the shortest connections.
+Settings:
+•	Prioritize by = Length
+•	Selection = Lowest
+•	Open connections = 1
+Result: Only the shortest pipe remains open between each zone pair.
 ________________________________________
-4.1 Network Dashboard
-Displays real-time statistics:
-Network Metrics
-Metric	Description
-Total Pipes	All pipes in model
-Boundary Pipes	Pipes identified as boundaries
-Zone↔Zone	Boundaries between two zones
-Zone↔Outside	Boundaries to unassigned areas
-Connectivity
-Metric	Description
-Zone Pairs	Unique zone combinations
-Average Connections	Open boundaries per zone pair
-Redundancy Level	Low (<1.5), Medium (1.5–3), High (>3)
-Node Distribution
-Metric	Description
-Inside Zones	Nodes located within zones
-Outside Zones	Nodes not assigned to zones
+4.5 Mixed Design Approach
+1.	Use automated tools to generate a baseline.
+2.	Enable Interactive Mode.
+3.	Manually override specific pipes.
+4.	Test and refine.
+This approach combines efficiency and engineering judgment.
 ________________________________________
-4.2 Boundary Strategy Settings
-4.2.1 Include Boundaries with Unassigned Areas
-•	Unchecked (default): Only Zone↔Zone pipes count
-•	Checked: Zone↔Outside pipes included
-Use when analyzing full network connectivity.
+PART 5: DESIGNING MANUALLY
+5.1 Interactive Mode
+When Interactive Mode is enabled:
+•	Hover over pipes to identify them.
+•	Click a green pipe to close it.
+•	Click a red pipe to open it.
+•	Dark blue pipes are not boundaries and cannot be toggled.
+The dashboard updates immediately as you modify the design.
 ________________________________________
-4.2.2 Show Zone Boundaries on Map
-Displays colored zone polygons.
-Recommended for:
-•	Presentations
-•	Learning zone layout
-Disable for clearer pipe visualization.
+5.2 Manual Design Strategies
+Start from All Open
+•	Click “Open all.”
+•	Close selected pipes manually.
+Start from All Closed
+•	Click “Close all.”
+•	Open selected pipes manually.
+Hide Closed Boundaries
+•	Enable “Hide closed boundaries.”
+•	Only open pipes remain visible.
 ________________________________________
-4.2.3 Hide Closed Boundaries
-•	Unchecked: Show open and closed boundaries
-•	Checked: Show only open boundaries
-Useful for reducing visual clutter.
+PART 6: TESTING YOUR DESIGNS
+6.1 Running a Simulation
+Click ⚡ Simulate to test your current configuration.
+The system calculates:
+•	Flow in every pipe
+•	Pressure at every node
+•	Velocity and headloss
+Results are based entirely on your open/closed design.
+Run a simulation:
+•	After major design changes
+•	Before saving
+•	When comparing alternatives
+If the simulation fails, adjust the configuration. The network may be hydraulically disconnected or overly restricted.
 ________________________________________
-4.2.4 Reset Before Applying
-•	Checked: Close all boundaries before applying new rules
-•	Unchecked: Add new selections to existing configuration
+6.2 Visual Testing Tools
+Animation (▶️ Animate)
+Shows:
+•	Flow direction
+•	Active flow paths
+•	Which pipes carry flow
+Flow Values (💧 Show Values)
+Displays exact numerical flow values on open pipes.
+Data Table (📋 Table)
+Allows:
+•	Sorting by any attribute
+•	Identifying extreme values
+•	Clicking rows to highlight elements
+•	Exporting results
+Colormap (🎨 Colormap)
+Colors nodes by attribute values, helping you quickly identify pressure or demand patterns.
 ________________________________________
-4.3 Connection Management
-4.3.1 Open Connections per Zone Pair
-Defines number of open pipes between each zone pair.
-Value	Meaning
-0	Complete isolation
-1	Single connection
-2+	Redundant connections
-Important: Applied per zone pair.
+6.3 What to Evaluate
+•	Are pressures acceptable across all zones?
+•	Are flows balanced?
+•	Are any pipes overloaded?
+•	Is redundancy sufficient?
+•	Are any zones under-supplied?
 ________________________________________
-4.3.2 Link Type Filters
-Users may include or exclude:
-•	Pipes
-•	Pumps
-•	Valves
-This allows targeted analysis.
+PART 7: OPTIMIZING YOUR DESIGN
+Optimization means improving the design to meet specific goals.
+Goal	Strategy
+Minimize cost	Fewer, smaller open pipes
+Maximize redundancy	More, larger connections
+Improve pressure	Increase connections
+Create isolation	Reduce connections to zero
+Balance flow	Adjust prioritization rules
+Use an iterative process:
+1.	Design
+2.	Simulate
+3.	Evaluate
+4.	Adjust
+5.	Repeat
+Continue until performance meets your objectives.
 ________________________________________
-4.3.3 Prioritization Attribute
-Users select a numeric attribute such as:
-•	Diameter
-•	Length
-•	Flowrate
-•	Velocity
-•	Headloss
-•	Roughness
+PART 8: SEEING THE IMPACT OF YOUR DESIGN
+Every design adjustment provides immediate feedback:
+•	Pipes change color when toggled.
+•	Dashboard metrics update instantly.
+•	Simulation reveals hydraulic consequences.
+Monitor:
+•	Average connections
+•	Redundancy level
+•	Pressure distribution
+•	Flow distribution
+Your design choices directly affect network behavior.
 ________________________________________
-4.3.4 Highest vs. Lowest Selection
-•	Highest: Selects largest attribute values
-•	Lowest: Selects smallest attribute values
-Example: If prioritizing diameter and selecting Highest, the largest diameter pipes remain open.
+PART 9: SAVING YOUR DESIGN
+9.1 Save
+Click 💾 Save to:
+•	Preserve your open/closed configuration
+•	Return to the main application with this design applied
+Simulation results are not permanently stored; they can be rerun at any time.
 ________________________________________
-4.4 Action Buttons
-Button	Function
-Open All	Opens all boundary pipes
-Close All	Closes all boundary pipes
-Simulate	Runs hydraulic simulation
-Animate	Displays flow direction
-Show Flow Values	Displays numeric values
-Save	Applies changes
-Cancel	Discards changes
+9.2 Cancel
+Click ❌ Cancel to discard all changes made during the session.
 ________________________________________
-Part 5 – Upper Toolbar Reference
-5.1 Filter Dropdown
-Highlights selected element types in pink.
-Categories:
-•	Pipes
-•	Pumps
-•	Valves
-•	Junctions
-•	Reservoirs
-•	Tanks
-Only one category may be highlighted at a time.
+PART 10: COLOR REFERENCE
+Color	Meaning
+Dark blue (thin)	Not a boundary pipe
+Green (thick)	Open boundary
+Red (thick)	Closed boundary
+Yellow	Hovered pipe
+Pink dashed	Filtered element
+Colored polygons	Zones
+Gold dots	Flow animation
+Colored nodes	Colormap values
 ________________________________________
-5.2 Interactive Mode
-Enables direct clicking and hover feedback.
-Disabled mode prevents all manual interaction.
+Final Summary
+Zone Simulator is a design and optimization environment for configuring pressure zone connectivity.
+It enables you to:
+•	Experiment with alternative boundary strategies
+•	Test hydraulic performance immediately
+•	Optimize redundancy and efficiency
+•	Validate isolation strategies
+•	Save finalized configurations
+Every configuration can be simulated instantly, allowing you to make informed, data-driven design decisions.
 ________________________________________
-5.3 Nodes / Links Selector
-Determines data context:
-Mode	Effect
-Nodes	Table shows node data
-Links	Table shows link data
-________________________________________
-5.4 Attribute Dropdown
-Selects attribute for:
-•	Table display
-•	Colormap visualization
-If empty, run simulation first.
-________________________________________
-5.5 Table Panel
-Features:
-•	Sort by clicking column headers
-•	Manual sort controls
-•	Row click → highlights element
-•	Export to CSV or Excel
-•	Negative values shown in red
-________________________________________
-5.6 Colormap
-Applies 5-class equal distribution coloring to nodes:
-Color	Range
-Blue	Lowest 20%
-Orange	20–40%
-Green	40–60%
-Red	60–80%
-Purple	Highest 20%
-Legend displays numeric ranges.
-________________________________________
-Part 6 – Standard Workflows
-________________________________________
-6.1 First-Time Use
-1.	Click Simulate
-2.	Review dashboard
-3.	Choose manual or automatic control
-4.	Animate flow if needed
-5.	Review data table
-6.	Save changes
-________________________________________
-6.2 Manual-Only Workflow
-1.	Enable Interactive Mode
-2.	Click pipes to open/close
-3.	Monitor dashboard
-4.	Save
-________________________________________
-6.3 Automatic Workflow
-1.	Configure Boundary Strategy
-2.	Select prioritization attribute
-3.	Choose Highest/Lowest
-4.	Set number of connections
-5.	Review results
-6.	Save
-________________________________________
-6.4 Pressure Mapping
-1.	Run simulation
-2.	Select Nodes
-3.	Choose Pressure
-4.	Apply Colormap
-5.	Review legend
-________________________________________
-6.5 Data Export
-1.	Run simulation
-2.	Open Table
-3.	Select attribute
-4.	Export to CSV or Excel
-________________________________________
-Part 7 – Troubleshooting
-7.1 Common Issues
-Issue	Solution
-No boundaries visible	Check inclusion settings
-No animation	Run simulation
-Cannot click pipes	Enable Interactive Mode
-Empty table	Run simulation
-Colormap inactive	Select Nodes
-________________________________________
-7.2 Error Messages
-Message	Meaning
-Simulation Failed	
-No Attribute	Select attribute
-No Data	Run simulation
-No Boundaries	No matching pipes
 
-________________________________________
-Quick Reference Summary
-•	Always run Simulate first
-•	Use Automatic Mode for baseline selection
-•	Use Interactive Mode for manual adjustments
-•	Use Colormap for pressure visualization
-•	Use Table Panel for analysis and export
-•	Save when finished
-________________________________________
-End of User Guide
+
 
