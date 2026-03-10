@@ -246,7 +246,7 @@ Practical Considerations:
 
 ________________________________________
 Conclusion
-The Water Quality Investigator provides powerful tools for understanding water movement and quality in distribution systems.
+The Water Quality Investigator provides powerful tools for understanding water movement and quality in distribution systems.  
 
 Key capabilities:
 •	✓ Contamination route tracking
@@ -255,3 +255,179 @@ Key capabilities:
 •	✓ Spatial visualization
 •	✓ Detailed statistical analysis
 ✓ Exportable results for reporting
+
+
+
+
+
+
+
+🚰 Contamination Investigator In Focus
+________________________________________
+AquaStream360 - Contamination Source Investigator
+
+________________________________________
+What This Application Does
+Contamination Investigator is an analysis tool in the water quality investigator in AquaStream360 that helps you trace contamination through water distribution networks. It allows you to:
+•	Predict how contamination spreads from entry points
+•	Find where contamination came from based on detection points
+•	Analyze multiple sources simultaneously for complex contamination events
+The application uses simulation to model water quality and trace contaminant pathways through your network.
+________________________________________
+Main Interface Overview
+The interface is split into two main sections:
+Left Panel - Controls
+Contains all settings, mode selection, and analysis controls:
+•	Analysis Mode dropdown - Choose what you want to analyze
+•	Find Sources Settings - Configure nodes and timesteps
+•	Detection Points list - Manage multiple points
+•	RUN ANALYSIS button - Execute the analysis
+•	Export Table Data - Save results to CSV/Excel/JSON
+•	Show/Hide Data Table - Toggle results visibility
+Right Panel - Visualization
+•	Network Plot - Interactive map of your water network
+•	Results Table - Detailed numerical results (toggle on/off)
+________________________________________
+Analysis Modes
+Mode 1: Forward Trace (Predict Spread)
+Predict how contamination spreads from a single entry point.
+When to use:
+You know where contamination entered and want to see which areas will be affected over time.
+How to use:
+1.	Select "Forward Trace (Predict spread)" from the dropdown
+2.	Choose the Entry Node from the dropdown or click a node on the plot
+3.	Set the Analysis Timestep to see contamination at different times
+4.	Click RUN ANALYSIS
+What you'll see:
+•	Green marker: Your entry point
+•	Red pipes: Contaminated pipes at selected timestep
+•	Table: List of affected nodes with trace percentages
+________________________________________
+Mode 2: Forward Trace From Multiple Entry Points
+Analyze combined impact from several contamination sources.
+When to use:
+Multiple contamination entry points exist, and you want to see their combined effect.
+How to use:
+1.	Select "Forward Trace From Multiple Entry Points"
+2.	Add entry points by clicking nodes on the plot (or use the Add button)
+o	Click a node once → adds to entry points (green marker appears)
+o	Click the same node again → removes it
+3.	Add at least 2 entry points
+4.	Set the Analysis Timestep
+5.	Click RUN ANALYSIS
+What you'll see:
+•	Green markers: All entry points
+•	Red pipes: Combined contaminated network
+•	Table: Each node's average influence from all entry points
+________________________________________
+Mode 3: Find Entry Points (Trace Backwards)
+Identify possible contamination sources based on a detection.
+When to use:
+You detected contamination at a specific node and want to find where it might have come from.
+How to use:
+1.	Select "Find Entry Points (Trace backwards)"
+2.	Choose the Detection Node where contamination was found
+3.	Set the Detection Timestep (when it was detected)
+4.	Check/uncheck Advanced Investigation:
+o	ON (default): Runs detailed contribution analysis for each possible source
+o	OFF: Shows only which nodes are upstream
+5.	Click RUN ANALYSIS
+What you'll see:
+•	Red marker: Your detection point
+•	Green pipes: All possible upstream paths
+•	With Advanced ON: Contribution percentages for each possible source
+•	With Advanced OFF: List of upstream nodes
+________________________________________
+Mode 4: Multi-Source Inversion
+Analyze multiple detection points to identify common sources.
+When to use:
+Contamination detected at several locations, and you want to find sources that could explain all detections.
+How to use:
+1.	Select "Multi-Source Inversion (Multiple detections)"
+2.	Add detection points by clicking nodes on the plot
+o	Click to add, click again to remove
+o	Each detection point appears in the list
+3.	Add at least 2 detection points
+4.	Set the Detection Timestep (same for all points)
+5.	Click RUN ANALYSIS
+What you'll see:
+•	Red markers: All detection points
+•	Green pipes: Upstream network common to all detections
+•	Table: Ranked list of possible sources by frequency of appearance
+________________________________________
+Interactive Features
+Plot Interaction
+•	Hover over any node → Shows node name in status bar
+•	Click a node → Selects it (behavior depends on mode)
+o	Forward mode: Sets entry node
+o	Find Sources mode: Sets detection node
+o	Multi-point modes: Toggles addition/removal
+Table Interaction
+•	Click Show/Hide Data Table to view numerical results
+•	Click any table row → Zooms to that node on the plot
+•	Table updates automatically with each analysis
+Point Management
+•	Add button: Add points via dialog box
+•	Remove button: Remove selected point from list
+•	Clear button: Remove all points
+________________________________________
+Understanding Results
+Forward Trace Results
+•	Trace % - Percentage of contaminant reaching each node
+•	Higher values = greater contamination
+Multi-Entry Results
+•	Combined Impact (%) - Average influence from all entry points
+•	Individual columns show each entry point's contribution
+Backward Trace Results
+•	Contribution % - How much each source contributes to detection
+•	Higher = more likely source
+Multi-Source Results
+•	Appearances - How many detection points connect to this source
+•	Higher frequency = more likely common source
+________________________________________
+Exporting Data
+1.	Click Export Table Data
+2.	Choose file location and format:
+o	CSV (.csv) - Spreadsheet compatible
+o	Excel (.xlsx) - Excel format
+o	JSON (.json) - For programming/analysis
+________________________________________
+Timesteps Explained
+The simulation runs in discrete timesteps (typically 1-hour intervals).
+•	Timestep 0: Initial state
+•	Higher timesteps: Later times in the simulation
+•	Use the spin box to explore contamination at different times
+________________________________________
+Visual Legend
+Color	Element	Meaning
+Green node	Entry/Source	Where contamination entered
+Red node	Detection	Where contamination found
+Green pipes	Upstream	Possible contamination paths
+Red pipes	Affected	Contaminated pipes
+Yellow highlight	Hover	Currently hovered node
+Blue nodes	Normal	Unaffected network
+________________________________________
+Tips & Best Practices
+1.	Start simple - Use single-point modes first to understand the network
+2.	Use plot clicking - Much faster than dropdown selection
+3.	Toggle table off/on - Hide table to see more of the network
+4.	Export important results - Data doesn't persist after closing
+5.	Advanced Investigation - Keep ON for detailed analysis, OFF for quick exploration
+6.	Multiple points - Click nodes to toggle add/remove (no duplicates)
+7.	Zoom in/out - Use mouse wheel to explore dense networks
+________________________________________
+Troubleshooting
+"No results" after running
+•	Ensure at least one point is selected
+•	For multi-point modes, need at least 2 points
+Plot doesn't update
+•	Check if table is hiding the view
+•	Try toggling table off/on
+Can't click nodes
+•	Make sure you're in the right mode
+•	Click directly on blue nodes
+Export fails
+•	Run analysis first (no data to export otherwise)
+•	Check write permissions for chosen folder
+
+
