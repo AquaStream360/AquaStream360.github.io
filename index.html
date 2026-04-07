@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 
-
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
   --navy:       #030d1a;
   --navy-mid:   #071628;
@@ -70,20 +72,6 @@ img { max-width: 100%; display: block; }
   z-index: 2;
 }
 
-
-
-
-.hero-since {
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  font-family: 'DM Mono', monospace;
-  font-size: var(--fs-xs); 
-  color: var(--muted);
-  line-height: 1.4;
-}
 /* ============================================================
    DARKER FLOWING WATER WAVE BACKGROUND
    ============================================================ */
@@ -131,18 +119,17 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-brand img {
-  height: 50px;
-  width: 50px;
+  height: 48px;
+  width: 48px;
   object-fit: contain;
   filter: drop-shadow(0 0 6px var(--teal));
 }
 
 .nav-brand-name {
-  font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: .04em;
-  color: var(--white);
+  font-size: 2.0rem;
+  letter-spacing: .01em;
+  color: var(--accent-secondary);
 }
 
 .nav-links {
@@ -192,36 +179,39 @@ img { max-width: 100%; display: block; }
   align-items: center;
 }
 
-.hero-dual-layout {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+/* COMPACT VERB WIDGET — Clean, Transparent, Grid Layout */
+.verb-widget {
+  background: rgba(5, 18, 30, 0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 150, 200, 0.25);
+  border-radius: 20px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
 }
 
-.hero-verbs-column {
-  flex: 1.3;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.verb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px 24px;
 }
 
-.verb-group {
+.verb-item {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 4px;
 }
 
 .verb-main {
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--teal);
+  letter-spacing: 0.02em;
 }
 
 .verb-desc {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   color: var(--text-tertiary);
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .hero-badge {
@@ -257,7 +247,7 @@ img { max-width: 100%; display: block; }
   color: var(--muted);
   max-width: 540px;
   margin-bottom: 36px;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .hero-actions {
@@ -274,7 +264,7 @@ img { max-width: 100%; display: block; }
   color: var(--navy);
   font-weight: 700;
   font-size: var(--fs-sm);
-  padding: 14px 28px;
+  padding: 12px 28px;
   border-radius: 8px;
   letter-spacing: .02em;
   border: none;
@@ -312,7 +302,7 @@ img { max-width: 100%; display: block; }
 .hero-meta {
   display: flex;
   gap: 28px;
-  margin-top: 44px;
+  margin-top: 40px;
   flex-wrap: wrap;
 }
 
@@ -485,6 +475,7 @@ img { max-width: 100%; display: block; }
   font-family: 'DM Mono', monospace;
   font-size: var(--fs-xs);
   color: #5a8aaa;
+  line-height: 1.4;
 }
 
 .hero-since span { color: var(--teal); }
@@ -516,10 +507,9 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   font-size: clamp(1.8rem, 3.5vw, 2.75rem);
   line-height: 1.15;
-  letter-spacing: normal;  /* or letter-spacing: 0; */
+  letter-spacing: normal;
   margin-bottom: 18px;
 }
-
 
 .section-title .accent { color: var(--teal); }
 
@@ -1287,8 +1277,7 @@ img { max-width: 100%; display: block; }
   .creator-card { grid-template-columns: 1fr; text-align: center; }
   .creator-avatar { margin: 0 auto; }
   .creator-tags { justify-content: center; }
-  .hero-dual-layout { flex-direction: column; gap: 1rem; }
-  .verb-main { font-size: 1.45rem; }
+  .verb-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -1297,6 +1286,7 @@ img { max-width: 100%; display: block; }
   .features-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
+  .verb-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -1337,34 +1327,38 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <div class="hero-inner">
       
-      <!-- Left Column -->
+      <!-- Left Column with Compact Verb Widget -->
       <div class="hero-content">
         <div class="hero-badge">
           <span class="dot"></span>
           Water Engineering Software for Modernized Network Management
         </div>
-        
-        <div class="hero-dual-layout">
-          <div class="hero-verbs-column">
-            <div class="verb-group">
+        <!-- COMPACT VERB WIDGET -->
+        <div class="verb-widget">
+          <div class="verb-grid">
+            <div class="verb-item">
               <span class="verb-main">Digitize</span>
               <span class="verb-desc">35+ data sources · multi-format support</span>
             </div>
-            <div class="verb-group">
+            <div class="verb-item">
               <span class="verb-main">Model</span>
               <span class="verb-desc">Automated construction · hydraulics · transients · water quality · pipe integrity</span>
             </div>
-            <div class="verb-group">
+            <div class="verb-item">
               <span class="verb-main">Analyze</span>
               <span class="verb-desc">Geospatial · resilience · criticality · failure scenarios · climate · performance · data analytics</span>
             </div>
-            <div class="verb-group">
+            <div class="verb-item">
               <span class="verb-main">Optimize</span>
               <span class="verb-desc">Automated calibration · automated optimization · scenario planning · reporting</span>
             </div>
-            <div class="verb-group">
+            <div class="verb-item">
               <span class="verb-main">Report</span>
               <span class="verb-desc">Click, view, save · 100+ page outputs · graphics · tables · customizable formats</span>
+            </div>
+            <div class="verb-item">
+              <span class="verb-main">Export</span>
+              <span class="verb-desc">EPANET · GIS platforms · Excel · databases · CAD · shapefiles · 35+ formats</span>
             </div>
           </div>
         </div>
@@ -1376,7 +1370,9 @@ img { max-width: 100%; display: block; }
           <a href="#download" class="btn-primary">
             <i class="fas fa-download"></i> Get AquaStream360
           </a>
-          
+          <a href="#capabilities" class="btn-outline">
+            <i class="fas fa-layer-group"></i> Explore Features
+          </a>
         </div>
         <div class="hero-meta">
           <div class="hero-meta-item">
@@ -1479,7 +1475,7 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <div class="about-content">
       <p class="section-label">Software Capabilities</p>
-      <h3 class="section-title">Real-World Relevance</h3>
+      <h3 class="section-title">What is AquaStream360?</h3>
       
       <div class="about-body fade-up">
         <p>
@@ -1740,8 +1736,10 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <div class="footer-inner">
       <div>
-        <div class="footer-brand"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2366d6ff'/%3E%3Cpath d='M35 50 L50 35 L65 50 L50 65 Z' fill='%23030d1a'/%3E%3C/svg%3E" alt="AquaStream360"><span class="footer-brand-name">AquaStream360</span></div>
-        
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="AquaStream360">
+          <span class="footer-brand-name">AquaStream360</span>
+        </div>
         <div class="footer-copy">© 2024–2026 AquaStream360. All rights reserved.</div>
       </div>
       <ul class="footer-links">
