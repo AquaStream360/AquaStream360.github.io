@@ -4,7 +4,7 @@
 
 # AquaStream360: An integrated Water System Analysis Platform
 
-AquaStream360 is an advanced software platform for managing water distribution systems. It offers several capabilities dedicated for network modeling, operational analysis, and infrastructure management, which include data analysis and processing, topographical analysis with GIS and 2D/3D modes, water quality simulations, animations and graphics, automated and manual analysis, scenario testing, optimization, calibration, climate-informed simulation, and evaluation of water distribution networks. All modules are fully capable on their own, and GIS, 2D/3D visualization, and advanced graphics can be enabled or used depending on the user's workflow.
+AquaStream360 is an integrated software platform for managing water distribution systems. It offers several capabilities dedicated for network modeling, operational analysis, and infrastructure management, which include data analysis and processing, topographical analysis with GIS and 2D/3D modes, water quality simulations, animations and graphics, automated and manual analysis, scenario testing, optimization, calibration, climate-informed simulation, and evaluation of water distribution networks. All modules are fully capable on their own, and GIS, 2D/3D visualization, and advanced graphics can be enabled or used depending on the user's workflow.
 
 ---
 
