@@ -44,7 +44,7 @@ Simulation is one component among several hydraulic capabilities in the software
 
 2. **Network Integrity Simulator (Custom Simulator):** Models environmental and operational influences such as soil chemistry, pipe aging, and operating conditions. It evaluates structural response, failure probability, and overall system robustness.  
 
-3. **Optimization Evaluation Engine (Custom Simulator):** A physics-consistent simulator designed for rapid evaluation of design alternatives within large-scale optimization workflows. Instead of running full standalone simulations for every candidate design—which is computationally expensive in large design spaces—it evaluates populations of designs within an optimization loop. It uses vectorized computation, parallel execution, learning-guided search, and evolutionary update strategies. Once optimization converges, a full EPANET-class simulation is executed on the selected design(s) for final validation with complete hydraulic fidelity.
+3. **Optimization Engine (Custom Simulator):** A physics-consistent simulator designed for rapid evaluation of design alternatives within large-scale optimization workflows. Instead of running full standalone simulations for every candidate design—which is computationally expensive in large design spaces—it evaluates populations of designs within an optimization loop. It uses vectorized computation, parallel execution, learning-guided search, and evolutionary update strategies. Once optimization converges, a full EPANET-class simulation is executed on the selected design(s) for final validation with complete hydraulic fidelity.
 
 4. **Foundational and Extended Simulations:** Supports all hydraulic and water quality EPANET and WNTR simulations.
 
