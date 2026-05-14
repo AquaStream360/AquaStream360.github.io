@@ -12,9 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 
-/* ============================================================
-   DESIGN TOKENS
-   ============================================================ */
+
 :root {
   --navy:       #030d1a;
   --navy-mid:   #071628;
@@ -45,9 +43,7 @@
   --border-subtle: #0f2d4a;
 }
 
-/* ============================================================
-   RESET & BASE
-   ============================================================ */
+
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
 html { scroll-behavior: smooth; }
@@ -72,9 +68,8 @@ img { max-width: 100%; display: block; }
   z-index: 2;
 }
 
-/* ============================================================
-   DARKER FLOWING WATER WAVE BACKGROUND
-   ============================================================ */
+
+
 #waveCanvas {
   position: fixed;
   bottom: 0;
@@ -92,9 +87,7 @@ img { max-width: 100%; display: block; }
 ::-webkit-scrollbar-track { background: #010a14; }
 ::-webkit-scrollbar-thumb { background: #0a4a5a; border-radius: 3px; }
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
+
 #site-nav {
   position: fixed;
   top: 0;
@@ -160,9 +153,7 @@ img { max-width: 100%; display: block; }
 
 .nav-cta:hover { background: #00e6b8 !important; transform: translateY(-1px); }
 
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
+
 .hero {
   min-height: 100vh;
   display: flex;
@@ -479,9 +470,7 @@ img { max-width: 100%; display: block; }
 
 .hero-since span { color: var(--teal); }
 
-/* ============================================================
-   SECTION BASE
-   ============================================================ */
+
 .section {
   padding: 100px 0;
   position: relative;
@@ -524,9 +513,7 @@ img { max-width: 100%; display: block; }
   margin: 0;
 }
 
-/* ============================================================
-   ABOUT SECTION
-   ============================================================ */
+
 .about-body p {
   font-size: var(--fs-base);
   color: var(--muted);
@@ -534,9 +521,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 20px;
 }
 
-/* ============================================================
-   CAPABILITIES SECTION (TABS)
-   ============================================================ */
+
 .cap-tabs {
   display: flex;
   gap: 8px;
@@ -650,9 +635,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.7;
 }
 
-/* ============================================================
-   VIDEO SECTION
-   ============================================================ */
+
 .video-wrapper {
   max-width: 900px;
   margin: 0 auto;
@@ -715,9 +698,7 @@ img { max-width: 100%; display: block; }
 
 .vbtn-get:hover { background: #00e6b8; transform: translateY(-1px); }
 
-/* ============================================================
-   GALLERY
-   ============================================================ */
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -781,9 +762,7 @@ img { max-width: 100%; display: block; }
   margin-right: auto;
 }
 
-/* ============================================================
-   DOWNLOAD SECTION
-   ============================================================ */
+
 .download-inner {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -885,9 +864,7 @@ img { max-width: 100%; display: block; }
   margin-top: 16px;
 }
 
-/* ============================================================
-   CONTACT SECTION
-   ============================================================ */
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -1028,9 +1005,7 @@ img { max-width: 100%; display: block; }
   margin-top: 6px;
 }
 
-/* ============================================================
-   CREATOR SECTION
-   ============================================================ */
+
 .creator-card {
   background: rgba(5, 18, 30, 0.7);
   border: 1px solid rgba(0, 150, 200, 0.2);
@@ -1102,9 +1077,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: .04em;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+
 .site-footer {
   background: rgba(1, 8, 16, 0.9);
   border-top: 1px solid rgba(0, 150, 200, 0.15);
@@ -1160,9 +1133,7 @@ img { max-width: 100%; display: block; }
 
 .footer-links a:hover { color: var(--teal); }
 
-/* ============================================================
-   MODALS
-   ============================================================ */
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -1241,9 +1212,7 @@ img { max-width: 100%; display: block; }
 }
 .preview-field span { font-size: var(--fs-sm); color: var(--white); }
 
-/* ============================================================
-   SCROLL ANIMATIONS
-   ============================================================ */
+
 .fade-up {
   opacity: 0;
   transform: translateY(28px);
@@ -1255,9 +1224,7 @@ img { max-width: 100%; display: block; }
   transform: none;
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+
 @media (max-width: 1024px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
@@ -1578,7 +1545,9 @@ img { max-width: 100%; display: block; }
     <p class="section-desc" style="text-align:center;margin:0 auto 48px;">A walkthrough of the platform's key features and workflows.</p>
 
     <div class="video-wrapper fade-up">
-      <iframe id="youtube-iframe" src="https://www.youtube.com/embed/tZRGspMhPZY?si=x77LdP5lSudVkgqA" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="youtube-iframe" src="https://youtu.be/pzN-7DLcOiU?si=BAtZ1xmeYKyATNNS"
+
+ frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div class="video-footer">
         <div class="video-actions">
           <button class="vbtn vbtn-like" id="likeButton"><i class="fas fa-thumbs-up"></i> Like on YouTube</button>
